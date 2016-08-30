@@ -19,6 +19,9 @@ globals [
   lichens-genotype-list
 
   comat
+  
+  t1-file
+  t2-file
 ]
 
 extensions[matrix]
@@ -37,12 +40,13 @@ to setup
   clear-all
 
   set tag-length 11
-  file-open "data_observed_pairs_t1.csv"
-
+  
   set prob-duplication-lichen 0.01
   set prob-duplication-fungus 0.005
   set prob-duplication-alga 0.01
-
+  set t1-file "data/data_observed_pairs_t1.csv"
+  set t2-file "data/data_observed_pairs_t2.csv"
+  file-open t1-file
   set prob-death-lichen 0.001
   set prob-death-fungus 0.001
   set prob-death-alga 0.0001
@@ -173,7 +177,7 @@ to go
 
   if ticks = 16000 [
     file-close
-    file-open "data_observed_pairs_t2.csv"
+    file-open t2-file
   ]
 
   if (ticks / 100 = int(ticks / 100) AND ticks > 100000 AND ticks < 105000) [
@@ -290,7 +294,7 @@ to display-bipartite-network
     set counter counter + 1
   ]
 
-  file-open "data_observed_pairs_t2.csv"
+  file-open t2-file
   while [NOT file-at-end?] [
     let ki file-read
     let ko file-read
@@ -771,7 +775,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 5.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

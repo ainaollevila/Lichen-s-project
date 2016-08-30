@@ -43,7 +43,7 @@ oldstuf <- function(){
 	rawdata=read.csv("data/DalGrande_et_al_2012.csv",sep='\t')
 	#rawdata=dal
 	#get a subset
-	rownames(rawdata)=rawdata[,2]
+	rownames(rawdata)=rawdata[,3]
 	rawdata=rawdata[,]
 
 	#separate th microsat
