@@ -310,7 +310,7 @@ to display-bipartite-network
   repeat 1 [ layout-spring turtles links 0.2 1 10 ]
 
   file-close
-  file-open "cooccurence_matrix2.csv"
+  file-open "data/cooccurence_matrix2.csv"
   set comat matrix:make-constant (2 ^ tag-length) (2 ^ tag-length) 0
 
   ask turtles with [color = green][
