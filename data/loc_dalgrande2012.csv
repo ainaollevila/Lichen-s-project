@@ -1,0 +1,63 @@
+Country,Nearby locality,Population n°.,Collector*,Latitude (N),Longitude (E),No. of samples,Fungus,Alga,Combined
+Canada,Fourth Pond,1,"2,26",46.34,-53.44,27,26,27,27
+Croatia,Sedmina,31,"26,27,28,29",43.34,17.05,27,16,20,21
+Croatia,Krasno Polje,32,"26,28",44.84,14.99,22,17,20,20
+France,Lacaune,19,36,44.51,-0.82,26,5,8,8
+France,Puycelci,20,36,44,1.72,24,6,8,8
+France,Gérardmer,21,"26,34,35",48.02,6.98,19,15,14,15
+Germany,Schönau,10,"11,26",47.81,7.81,54,17,19,19
+Germany,Schönau,11,"11,26",47.81,7.81,71,18,17,19
+Germany,Blössling,12,"11,26",47.81,7.81,25,14,15,15
+Great Britain,Island of Skye,22,"26,27",57.15,-5.94,25,14,15,15
+Great Britain,Kinlochlewe,23,"26,27",57.67,-5.5,25,16,13,16
+Greece,Aghios Nikolaos,24,"3,10,11",38.92,21.78,24,21,23,23
+Greece,Mts. Varko Despoti,25,"4,26",38.56,22.55,35,26,31,31
+Greece,Profitis Illias,26,26,36.28,27.93,35,9,9,13
+Italy,Rezzoaglio,27,"6,26",44.55,9.39,22,20,21,21
+Italy,Monte Cimino,28,36,42.4,12.2,84,41,35,54
+Italy,Monte Cimino,29,36,42.4,12.2,43,24,29,34
+Italy,Gennargentu,30,18,40.06,9.01,56,19,33,34
+Latvia,Sakimo Miskas,33,"17,26,31",55.04,25.46,31,24,27,27
+Macedonia,Izvar,34,"1,9,26,24",41.48,20.78,19,16,16,16
+Macedonia,Pljuska,35,"9,24,26",40.96,20.89,29,26,27,28
+Macedonia,Visni,36,"9,24,26",41.2,20.59,20,9,11,12
+Montenegro,Tara kanjon,38,26,43.13,19.31,18,15,15,15
+Montenegro,Dolovi,39,26,42.4,18.84,25,23,21,23
+Norway,Innerdalsvatna,37,26,62.71,8.73,15,12,13,14
+Norway,Skjomen Skievva,40,"12,26",68.39,17.26,31,12,13,14
+Portugal,Alvados,42,"13,26",39.55,-8.77,20,11,15,16
+Portugal,Santarem,43,26,39.49,-8.88,21,14,18,18
+Portugal,Vinhais,44,"20,26",41.83,-6.82,66,45,42,51
+Russia,Ergoza,45,"14,15,16,33",53.32,56.6,34,24,23,25
+Russia,Inzer,46,"14,15,16,33",54.18,57.61,41,34,29,35
+Russia,Ergoza,47,"14,15,16,33",53.31,56.66,35,23,22,24
+Russia,Revet,48,"14,15,16,33",54.18,57.64,30,23,23,24
+Russia,Seleuk,49,"14,15,16,33",53.34,56.53,38,20,21,23
+Russia,Tulma,50,"14,15,16,33",54.3,57.63,38,27,26,28
+Russia,Karagaika River,51,"15,16,26,33,",54.59,58.8,11,11,11,11
+Russia,Malyi Patok river,52,"22,3",64.32,59.07,30,26,19,28
+Russia,Basa Iliicha,53,"5,16,32",61.76,59.84,34,32,28,34
+Russia,Ozero Elesinskoe,54,"5,16,32",61.43,60.13,29,29,21,29
+Russia,Lozva River,55,"5,16,32",61.82,59.89,40,38,29,38
+Russia,Niznee Lake,56,16,60.48,59.97,32,31,19,31
+Russia,Ostanec,57,"5,16,32",61.3,60.17,24,24,22,24
+Russia,Ushminskay Shaitan Yama,58,16,61.46,60.06,26,22,20,22
+South Africa,Nursery Gorge,41,26,-33.76,19.07,17,14,14,15
+South Africa,Table Mountain National Park,59,"8,26",-33.98,18.42,21,17,20,20
+South Africa,Knysna Goudveld forest,60,"8,26",-33.92,22.96,22,18,20,20
+South Africa,Storms river,61,"8,26",-33.96,23.9,20,16,17,17
+Spain,Fuentcaliente,13,"26,27",38.44,-4.34,23,16,10,17
+Spain,Serra de Ancares,14,20,42.86,-6.86,38,25,27,28
+Spain,El Bosque,15,"26,27",36.77,-5.42,9,6,7,7
+Spain,Sauceda,16,26,36.52,-5.59,25,17,18,21
+Spain,Torrecilla,17,"26,27",36.69,-5.02,57,11,14,19
+Spain,Riofrio de Riaza,18,"21,25,26,",41.33,-3.48,53,17,17,20
+Sweden,Omagaliden,62,"7,19,26",63.13,19.82,18,16,16,17
+Switzerland,Brienz,2,26,46.72,8.02,25,20,19,21
+Switzerland,Basadingen,3,11,47.65,8.75,41,13,14,15
+Switzerland,Villeret,4,11,47.13,7.02,28,7,9,9
+Switzerland,Bonaudon,5,11,46.44,7.01,43,22,20,22
+Switzerland,Niederurnen,6,11,47.13,8.97,49,15,17,17
+Switzerland,Melchtal,7,26,46.82,8.28,33,5,8,8
+Switzerland,Val d'Uina,8,26,46.81,10.38,33,4,9,9
+Switzerland,Muotatal,9,"11,23",46.99,8.83,29,17,21,21

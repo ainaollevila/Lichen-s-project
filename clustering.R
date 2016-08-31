@@ -38,9 +38,17 @@ getSeparate <- function(a){
 }
 
 oldstuf <- function(){
+    ###I get the raw data from supplementary material of Widmer et al 2012 thanks to this website : https://pdftables.com/ (it was free during the summer, I put all table of SI in data.
+
 	#Get the raw data
-	rawdata=read.csv("data/Widmer et al_2012.xlsx",sep='\t')
-	rawdata=read.csv("data/DalGrande_et_al_2012.csv",sep='\t')
+	rawdataW=read.csv("data/Widmer et al_2012.xlsx",sep='\t')
+	locW=read.csv("data/loc_widmer2013.csv")
+
+	fullW=merge(rawdataW,locW,by.x="Population",by.y="Population.code")
+
+	rawdataD=read.csv("data/DalGrande_et_al_2012.csv",sep='\t')
+	locD=read.csv("data/loc_dalgrande2012.csv")
+	fullD=merge(rawdataD,locD,by.x="Population.ID",by.y="Population.n..")
 	#rawdata=dal
 	#get a subset
 	rownames(rawdata)=rawdata[,3]
@@ -344,3 +352,12 @@ dev.off()
 png("biparte_net_pop_1.png", width=1200,height=800)
 plotNetwork(m1)
 dev.off()
+
+plotSample<-function(data,...){
+
+    colscale=topo.colors(length(unique(data$Population.ID)))
+    names(colscale)=unique(data$Population.ID)
+    plot(data$Longitude..E.,data$Latitude..N.,col=colscale[data$Population],...)
+
+}
+

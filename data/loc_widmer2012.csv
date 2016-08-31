@@ -1,0 +1,143 @@
+Country,Population code,Nearby locality,Collector*,Latitude (N),Longitude (E),Samples analysed (total),Unique fungal-algal MLGs
+Albania,ALB,Llogarase,"14,43,46",40.21,19.58,14,12
+Austria,A2,Vorderer Gosausee,37,47.53,13.52,38,29
+Belgium,BE,Etalle,62,49.68,5.60,20,10
+Bulgaria,BuD,Mount Rhodopes,64,41.77,24.33,29,20
+Bulgaria,BuP,Mount Pirin,64,41.63,23.52,30,27
+Croatia,KB1,Viskovac,"46,47,48,49",43.29,17.08,8,6
+Croatia,KB2,Sedmina,"46,47,48,49",43.34,17.05,28,22
+Croatia,KV,Krasno Polje,"46,48",44.84,14.99,30,28
+Czech Republic,CR,Modrava,"20,28,31",49.02,13.42,14,12
+Estonia,EE3,Tartu,"13,44,46",58.25,27.32,8,8
+Finland,FM,Lahti,"46,19",61.17,25.05,3,3
+France,AU1,Forêt de Ste Colombe,46,42.87,2.17,14,11
+France,AU2,Forêt de Trabanet,46,42.87,2.15,44,28
+France,FA,Argelès-sur-Mer,46,42.48,3.13,10,7
+France,FB2,Hanvec,46,48.37,-3.75,8,7
+France,FBa,Plan-d'Aups-Ste-Baume,"62,63",43.33,5.75,47,23
+France,FBu,Bugeat,62,45.60,1.93,29,5
+France,FBuo,Buoux,"62,63",43.83,5.38,20,5
+France,FEs,Escragnolles,"62,63",43.72,6.79,55,5
+France,FK1,Gavignano,"39,40,41,42",42.18,9.13,30,29
+France,FL,Lacaune,62,44.51,-0.82,30,10
+France,FLA,Lacaune,62,43.72,2.70,10,3
+France,FP,Puycelci,62,44.00,1.72,24,8
+France,FS,Sorède,46,42.47,2.98,12,11
+France,FV,Gérardmer,"8,46",46.40,6.05,35,20
+France,FV1,Gérardmer,"46,58,59",48.02,6.98,53,40
+France,FMa1,Les Mayons,"62,63",43.32,6.36,19,9
+France,FMa2,Les Mayons,"62,63",43.33,6.37,43,11
+Germany,DM,Forstenrieder Park,2,48.05,11.59,15,6
+Germany,DS1,Schönau,"16,46",47.81,7.81,73,25
+Germany,DS2,Schönau,"16,46",47.81,7.81,89,27
+Germany,DS3,Blössling,"16,46",47.81,7.81,27,15
+Great Britain,GB1,Lochailort,"46,47",56.89,-5.73,22,15
+Great Britain,GB2,Island of Skye,"46,47",57.15,-5.94,9,9
+Great Britain,GB3,Island of Skye,"46,47",57.15,-5.94,28,18
+Great Britain,GB9,Kinlochlewe,"46,47",57.67,-5.50,27,16
+Great Britain,GB10,Milton,"46,47",57.28,-4.49,13,8
+Great Britain,GB17,Inveraray,"46,47",56.25,-5.06,23,14
+Great Britain,GBD,North Devon,3,50.87,-4.33,10,8
+Greece,GC,Aghios Dikeos,"33, 55",35.16,24.92,13,7
+Greece,GF1,Varetada Aitoloakarnania,"5,15,16",38.85,21.31,25,22
+Greece,GF2,Aghios Nikolaos,"5,15,16",38.92,21.78,28,27
+Greece,GM,Mola,52,38.17,23.73,17,16
+Greece,GP,Agia Triada,52,38.15,23.72,13,11
+Greece,GR1,Mts. Varko Despoti,"6,46",38.56,22.55,37,33
+Greece,GR2,Polidrosso,"6,46",38.59,22.55,13,13
+Greece,GR3,Polidrosso,"6,46",38.58,22.57,44,37
+Greece,GR4,Kiriaki,"6,46",38.34,22.81,7,6
+Greece,GR6,Parnon Mountain,46,37.23,22.61,12,7
+Greece,GR7,Pigadia,46,37.00,22.26,39,17
+Greece,GR8,Pigadia,46,37.00,22.26,24,13
+Greece,GRR,Profitis Illias,46,36.28,27.93,37,13
+Ireland,IRK,Doo Lough,46,52.02,-9.53,36,33
+Italy,IA,Vico del Gargano,57,41.82,15.98,24,24
+Italy,IC1,Gambarie,"4,26",38.17,15.83,20,20
+Italy,IC2,Fuscaldo,"4,26",39.44,16.09,30,30
+Italy,IC3,Rotondo,"4,26",39.95,16.03,29,28
+Italy,IL2,Rezzoaglio,"9,46",44.55,9.39,24,21
+Italy,IR1,Monte Cimino,62,42.40,12.20,138,87
+Italy,IS,Crocefisso,51,37.87,13.38,24,7
+Italy,IS1,Parco Regionale dei Nebrodi,46,37.94,14.61,49,13
+Italy,ISA1,Gennargentu,27,40.06,9.01,58,36
+Italy,IT,Vallombrosa,"9,27,46",43.86,11.56,8,8
+Latvia,LTA,Sakimo Miskas,"25,46,53",55.04,25.46,31,27
+Latvia,LTB,Skerdimu Miskas,"25,46,53",54.95,25.32,13,11
+Latvia,LTC,Girijos Miskas,"25,46,53",55.04,25.46,19,18
+Macedonia,MKA,Izvar,"1,46,14,43,",41.48,20.78,26,23
+Macedonia,MKB,Pljuska,"14,43,46",40.96,20.89,30,29
+Macedonia,MKD,Visni,"14,43,46",41.20,20.59,24,13
+Macedonia,MKF,Gostivar,"14,43,46",41.71,20.76,15,11
+Montenegro,MOA,Kraljiske Bare,46,42.74,19.68,24,20
+Montenegro,MOB,Biogradsko Jezero,46,42.90,19.60,27,26
+Montenegro,MOD,Rudanci,46,43.01,19.43,13,13
+Montenegro,MOE,Tara kanjon,46,43.13,19.31,22,17
+Montenegro,MOF,Gornja Bukovica,46,43.03,19.17,5,5
+Montenegro,MOG,Savnik,46,42.90,19.08,16,16
+Montenegro,MOH,Dolovi,46,42.40,18.84,30,27
+Montenegro,MOK,Crkvice,46,42.56,18.61,27,26
+Montenegro,MOL,Rosaje,46,42.84,20.04,13,12
+Norway,MO1,Innerdalsvatna,46,62.71,8.73,19,16
+Norway,MO2,Tingvoll,46,62.85,8.17,17,7
+Norway,NA1,Skjomen Skievva,"18,46",68.39,17.26,31,14
+Norway,NT,Hammer,61,64.22,12.05,31,21
+Portugal,PO,Alvados,"21,46",39.55,-8.77,54,22
+Portugal,PO2,Santarem,46,39.49,-8.88,32,21
+Portugal,PO7,Vinhais,"30,46",41.83,-6.82,89,61
+Russia,RBE,Ergoza,"22,23,24,56",53.32,56.60,40,25
+Russia,RBI,Inzer,"22,23,24,56",54.18,57.61,45,37
+Russia,RBK,Kaderali,"22,23,24,56",53.31,56.66,40,27
+Russia,RBR,Revet,"22,23,24,56",54.18,57.64,38,28
+Russia,RBS,Seleuk,"22,23,24,56",53.34,56.53,42,23
+Russia,RBT1,Tulma,"22,23,24,56",54.30,57.63,48,34
+Russia,RBT2,Tulma,"22,23,24,56",54.30,57.64,14,11
+Russia,RII,Iremel,"24,46,56",54.56,58.83,82,65
+Russia,RIJ,Jurjusan River,"23,24,46,56",54.57,58.68,6,2
+Russia,RIK,Karagaika River,"23,24,46,56",54.59,58.80,19,15
+Russia,RIN,Nurgush,"23,24,46,56",54.64,58.80,18,12
+Russia,RM,Malyi Patok river,"36,5",64.32,59.07,40,37
+Russia,RNB,Basa Iliicha,"7,24,54",61.76,59.84,34,34
+Russia,RNE,Ozero Elesinskoe,"7,24,54",61.43,60.13,38,38
+Russia,RNL1,Lozva River,"7,24,54",61.82,59.89,40,38
+Russia,RNL3,Lozva River,"7,24,54",61.61,60.02,13,13
+Russia,RNL4,Lozva River,24,61.57,60.04,5,5
+Russia,RNN,Niznee Lake,24,60.48,59.97,40,33
+Russia,RNO,Ostanec,"7,24,54",61.30,60.17,31,31
+Russia,RNP,Peshera,24,61.64,59.98,15,15
+Russia,RNS,Ushminskay Shaitan Yama,24,61.46,60.06,30,26
+Russia,RNT,Toshimka River,24,61.37,59.96,5,5
+Russia,RZ,Ilych River,"36,5",62.43,58.52,41,40
+Slovenia,SL4,Kozarisce,"9,27,46",45.68,14.47,18,7
+Slovenia,SL5,Kras,"9,27,46",45.69,13.94,18,5
+Slovenia,SL6,Kozarisce,"9,27,46",45.66,14.47,6,5
+Slovenia,SL7,Kozarisce,"27,46",45.64,14.47,66,46
+Spain,EC,Puerto de Galis,46,36.61,-5.50,14,7
+Spain,EFU,Fuentcaliente,"46,47",38.44,-4.34,51,30
+Spain,EG,Serra de Ancares,30,42.86,-6.86,43,33
+Spain,EGR,El Bosque,"46,47",36.77,-5.42,36,23
+Spain,EL,Portillo de Lunada,6,43.17,-3.64,68,12
+Spain,EM,Sauceda,46,36.52,-5.59,47,29
+Spain,EP2,Olague,6,42.96,-1.93,13,6
+Spain,EP3,Santuario de San Miguel de Aralar,6,42.96,-1.98,37,32
+Spain,ER,La Rioja,32,42.12,-2.67,31,21
+Spain,ERO,Torrecilla,"46,47",36.69,-5.02,61,20
+Spain,ES,Riofrio de Riaza,"34,45,46",41.33,-3.48,63,26
+Sweden,SF1,Rusarebo,12,57.14,14.17,31,25
+Sweden,SN4,Koikul,12,66.35,20.55,33,15
+Sweden,SO,Vindeln,"12,29,46",64.20,19.73,20,19
+Sweden,SU1,Strömsholm,12,59.48,16.22,27,22
+Switzerland,B,Vordemwald,46,47.29,7.89,43,19
+Switzerland,CHA,Brienz,46,46.72,8.02,30,24
+Switzerland,CHB,Basadingen,16,47.65,8.75,44,15
+Switzerland,CHC,Villeret,16,47.13,7.02,30,11
+Switzerland,CHG,Grindelwald,16,46.68,8.15,19,10
+Switzerland,CHM,Bonaudon,16,46.44,7.01,46,23
+Switzerland,CHN,Niederurnen,16,47.13,8.97,53,19
+Switzerland,CHO,Melchtal,46,46.82,8.28,34,8
+Switzerland,CHS,Val d'Uina,46,46.81,10.38,36,9
+Switzerland,CHV1,Vergeletto,46,46.22,8.62,30,15
+Switzerland,CHW,Muotatal,"16,38",46.99,8.83,33,21
+Tunisia,TK,Ain Draham,60,36.79,8.69,53,30
+Turkey,TU,Ayder,"10,11,28,35",40.96,41.12,14,11
+Ukraine,CA,Mt Cheremkha,17,49.03,22.68,53,48
