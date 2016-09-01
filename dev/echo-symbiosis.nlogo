@@ -19,9 +19,10 @@ globals [
   lichens-genotype-list
 
   comat
-  
+
   t1-file
   t2-file
+  ;bla bla
 ]
 
 extensions[matrix]
@@ -40,7 +41,7 @@ to setup
   clear-all
 
   set tag-length 11
-  
+
   set prob-duplication-lichen 0.01
   set prob-duplication-fungus 0.005
   set prob-duplication-alga 0.01
@@ -775,7 +776,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.2.0
+NetLogo 5.3.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
