@@ -62,7 +62,7 @@ to setup
 
   create-fungi 1000 [
     set color brown
-    set size 2.5
+    set size 0.5
     setxy random-float max-pxcor random-float max-pycor
     set tag (list)
     repeat tag-length [set tag fput random 2 tag]
@@ -73,7 +73,7 @@ to setup
   create-algae 1000 [
     set captured? FALSE
     set color green
-    set size 1.5
+    set size 0.5
     setxy random-float max-pxcor random-float max-pycor
     set tag (list)
     repeat tag-length [set tag fput random 2 tag]
@@ -87,7 +87,7 @@ end
 to go
   ask fungi [
     set heading heading + random 360
-    fd 1
+    fd 0.1
 
     let genotype1 (list)
 
@@ -115,15 +115,15 @@ to go
     ][
       set lichenization FALSE
       let my-tag tag
-      if any? algae-here [
-        ask algae-here [
+      if any? algae-here with [captured? = FALSE] [
+        ask one-of algae-here with [captured? = FALSE] [
           if lichenization-function my-tag tag [
             set lichenization TRUE
             set captured? TRUE
           ]
         ]
       ]
-      if lichenization = TRUE [hatch-lichens 1 [set size 3 set color orange]]
+      if lichenization = TRUE [hatch-lichens 1 [set size 0.5 set color orange]]
       if random-float 1.0 <= prob-death-fungus [die]
     ]
   ]
@@ -136,8 +136,8 @@ to go
     ][
       set inc_prob 2
     ]
-;dfges
-    if random-float 1.0 <= inc_prob * prob-duplication-alga * (1 - (count algae-here / (3000 / world-width * world-height))) [
+
+    if random-float 1.0 <= inc_prob * prob-duplication-alga * (1 - (count algae-here / (5000 / (world-width * world-height)))) [
       hatch 1 [
         set captured? FALSE
         if random-float 1.0 <= prob-mutation-alga [
@@ -152,7 +152,7 @@ to go
   ]
 
   ask lichens [
-    if random-float 1.0 <= prob-duplication-lichen * (1 - (count fungi-here / (2000 / world-width * world-height))) [
+    if random-float 1.0 <= prob-duplication-fungus * (1 - (count lichens-here / (5000 / (world-width * world-height)))) [
       hatch-fungi 1 [
         set sex random 2
         if random-float 1.0 <= prob-mutation-fungus [
@@ -160,28 +160,52 @@ to go
           set tag replace-item l tag (1 - item l tag)
           ;set label tag
         ]
-        set size 2.5
+        set size 0.5
         set color brown
       ]
     ]
-    if random-float 1.0 <= prob-death-lichen [
-      ask algae-here with [captured? = TRUE][die]
+    if random-float 1.0 <= prob-duplication-lichen * (1 - (count lichens-here / (5000 / (world-width * world-height)))) [
+      let newx xcor + random-float 0.5 - 0.25
+      let newy ycor + random-float 0.5 - 0.25
+      ask one-of algae-here with [captured? = true] [
+        hatch 1 [
+          setxy newx newy
+          set captured? TRUE
+          if random-float 1.0 <= prob-mutation-alga [
+            let l random tag-length
+            set tag replace-item l tag (1 - item l tag)
+            ;set label tag
+          ]
+        ]
+      ]
+      hatch 1 [
+        setxy newx newy
+        if random-float 1.0 <= prob-mutation-fungus [
+          let l random tag-length
+          set tag replace-item l tag (1 - item l tag)
+          ;set label tag
+        ]
+      ]
+    ]
+
+    if random-float 1.0 <= prob-death-lichen * (count lichens-here / (5000 / (world-width * world-height))) [
+      ask one-of algae-here with [captured? = TRUE][die]
       die
     ]
   ]
 
   plotting
   if (ticks / 100 = int(ticks / 100) AND ticks > 10000 AND ticks < 15000) [
-    snapshot-data
+    ;snapshot-data
   ]
 
   if ticks = 16000 [
-    file-close
-    file-open t2-file
+    ;file-close
+    ;file-open t2-file
   ]
 
   if (ticks / 100 = int(ticks / 100) AND ticks > 100000 AND ticks < 105000) [
-    snapshot-data2
+    ;snapshot-data2
   ]
 
   if ticks = 106000 [
@@ -279,7 +303,7 @@ to display-bipartite-network
   crt 2 ^ tag-length [
     setxy max-pxcor / 2 max-pycor / 2
     set color green
-    set size 2
+    set size 0.5
     set id counter
     set label id
     set counter counter + 1
@@ -288,7 +312,7 @@ to display-bipartite-network
   crt 2 ^ tag-length [
     setxy max-pxcor / 2 max-pycor / 2
     set color red
-    set size 2
+    set size 0.5
     set id counter
     set label id
     set counter counter + 1
@@ -386,10 +410,10 @@ NIL
 1
 
 PLOT
-528
-84
-1056
-337
+529
+58
+1057
+311
 Genotypes density in the population
 NIL
 NIL
@@ -431,6 +455,26 @@ NIL
 NIL
 NIL
 1
+
+PLOT
+529
+314
+1058
+552
+population size
+time
+individue count
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"algae" 1.0 0 -10899396 true "" "if ticks / 100 = int (ticks / 100) [plot count algae]"
+"fungi" 1.0 0 -6459832 true "" "if ticks / 100 = int (ticks / 100) [plot count fungi]"
+"lichen" 1.0 0 -955883 true "" "if ticks / 100 = int (ticks / 100) [plot count lichens]"
 
 @#$#@#$#@
 ## WHAT IS IT?
