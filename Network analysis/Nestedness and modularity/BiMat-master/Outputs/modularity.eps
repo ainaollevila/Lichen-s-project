@@ -1,0 +1,1064 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: MATLAB, The Mathworks, Inc. Version 7.9.0.529 (R2009b). Operating System: Darwin 15.3.0 Darwin Kernel Version 15.3.0: Thu Dec 10 18:40:58 PST 2015; root:xnu-3248.30.4~1/RELEASE_X86_64 x86_64.
+%%Title: /Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/Matlab_sergi/BiMat-master/Outputs/modularity.eps
+%%CreationDate: 07/04/2016  23:13:27
+%%DocumentNeededFonts: Helvetica
+%%DocumentProcessColors: Cyan Magenta Yellow Black
+%%LanguageLevel: 2
+%%Pages: 1
+%%BoundingBox:  -222   209   818   632
+%%EndComments
+
+%%BeginProlog
+% MathWorks dictionary
+/MathWorks 160 dict begin
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bind def
+/xdef {exch def} bdef
+/xstore {exch store} bdef
+% operator abbreviations
+/c  /clip ldef
+/cc /concat ldef
+/cp /closepath ldef
+/gr /grestore ldef
+/gs /gsave ldef
+/mt /moveto ldef
+/np /newpath ldef
+/cm /currentmatrix ldef
+/sm /setmatrix ldef
+/rm /rmoveto ldef
+/rl /rlineto ldef
+/s {show newpath} bdef
+/sc {setcmykcolor} bdef
+/sr /setrgbcolor ldef
+/sg /setgray ldef
+/w /setlinewidth ldef
+/j /setlinejoin ldef
+/cap /setlinecap ldef
+/rc {rectclip} bdef
+/rf {rectfill} bdef
+% page state control
+/pgsv () def
+/bpage {/pgsv save def} bdef
+/epage {pgsv restore} bdef
+/bplot /gsave ldef
+/eplot {stroke grestore} bdef
+% orientation switch
+/portraitMode 0 def /landscapeMode 1 def /rotateMode 2 def
+% coordinate system mappings
+/dpi2point 0 def
+% font control
+/FontSize 0 def
+/FMS {/FontSize xstore findfont [FontSize 0 0 FontSize neg 0 0]
+  makefont setfont} bdef
+/reencode {exch dup where {pop load} {pop StandardEncoding} ifelse
+  exch dup 3 1 roll findfont dup length dict begin
+  { 1 index /FID ne {def}{pop pop} ifelse } forall
+  /Encoding exch def currentdict end definefont pop} bdef
+/isroman {findfont /CharStrings get /Agrave known} bdef
+/FMSR {3 1 roll 1 index dup isroman {reencode} {pop pop} ifelse
+  exch FMS} bdef
+/csm {1 dpi2point div -1 dpi2point div scale neg translate
+ dup landscapeMode eq {pop -90 rotate}
+  {rotateMode eq {90 rotate} if} ifelse} bdef
+% line types: solid, dotted, dashed, dotdash
+/SO { [] 0 setdash } bdef
+/DO { [.5 dpi2point mul 4 dpi2point mul] 0 setdash } bdef
+/DA { [6 dpi2point mul] 0 setdash } bdef
+/DD { [.5 dpi2point mul 4 dpi2point mul 6 dpi2point mul 4
+  dpi2point mul] 0 setdash } bdef
+% macros for lines and objects
+/L {lineto stroke} bdef
+/MP {3 1 roll moveto 1 sub {rlineto} repeat} bdef
+/AP {{rlineto} repeat} bdef
+/PDlw -1 def
+/W {/PDlw currentlinewidth def setlinewidth} def
+/PP {closepath eofill} bdef
+/DP {closepath stroke} bdef
+/MR {4 -2 roll moveto dup  0 exch rlineto exch 0 rlineto
+  neg 0 exch rlineto closepath} bdef
+/FR {MR stroke} bdef
+/PR {MR fill} bdef
+/L1i {{currentfile picstr readhexstring pop} image} bdef
+/tMatrix matrix def
+/MakeOval {newpath tMatrix currentmatrix pop translate scale
+0 0 1 0 360 arc tMatrix setmatrix} bdef
+/FO {MakeOval stroke} bdef
+/PO {MakeOval fill} bdef
+/PD {currentlinewidth 2 div 0 360 arc fill
+   PDlw -1 eq not {PDlw w /PDlw -1 def} if} def
+/FA {newpath tMatrix currentmatrix pop translate scale
+  0 0 1 5 -2 roll arc tMatrix setmatrix stroke} bdef
+/PA {newpath tMatrix currentmatrix pop	translate 0 0 moveto scale
+  0 0 1 5 -2 roll arc closepath tMatrix setmatrix fill} bdef
+/FAn {newpath tMatrix currentmatrix pop translate scale
+  0 0 1 5 -2 roll arcn tMatrix setmatrix stroke} bdef
+/PAn {newpath tMatrix currentmatrix pop translate 0 0 moveto scale
+  0 0 1 5 -2 roll arcn closepath tMatrix setmatrix fill} bdef
+/vradius 0 def /hradius 0 def /lry 0 def
+/lrx 0 def /uly 0 def /ulx 0 def /rad 0 def
+/MRR {/vradius xdef /hradius xdef /lry xdef /lrx xdef /uly xdef
+  /ulx xdef newpath tMatrix currentmatrix pop ulx hradius add uly
+  vradius add translate hradius vradius scale 0 0 1 180 270 arc 
+  tMatrix setmatrix lrx hradius sub uly vradius add translate
+  hradius vradius scale 0 0 1 270 360 arc tMatrix setmatrix
+  lrx hradius sub lry vradius sub translate hradius vradius scale
+  0 0 1 0 90 arc tMatrix setmatrix ulx hradius add lry vradius sub
+  translate hradius vradius scale 0 0 1 90 180 arc tMatrix setmatrix
+  closepath} bdef
+/FRR {MRR stroke } bdef
+/PRR {MRR fill } bdef
+/MlrRR {/lry xdef /lrx xdef /uly xdef /ulx xdef /rad lry uly sub 2 div def
+  newpath tMatrix currentmatrix pop ulx rad add uly rad add translate
+  rad rad scale 0 0 1 90 270 arc tMatrix setmatrix lrx rad sub lry rad
+  sub translate rad rad scale 0 0 1 270 90 arc tMatrix setmatrix
+  closepath} bdef
+/FlrRR {MlrRR stroke } bdef
+/PlrRR {MlrRR fill } bdef
+/MtbRR {/lry xdef /lrx xdef /uly xdef /ulx xdef /rad lrx ulx sub 2 div def
+  newpath tMatrix currentmatrix pop ulx rad add uly rad add translate
+  rad rad scale 0 0 1 180 360 arc tMatrix setmatrix lrx rad sub lry rad
+  sub translate rad rad scale 0 0 1 0 180 arc tMatrix setmatrix
+  closepath} bdef
+/FtbRR {MtbRR stroke } bdef
+/PtbRR {MtbRR fill } bdef
+/stri 6 array def /dtri 6 array def
+/smat 6 array def /dmat 6 array def
+/tmat1 6 array def /tmat2 6 array def /dif 3 array def
+/asub {/ind2 exch def /ind1 exch def dup dup
+  ind1 get exch ind2 get sub exch } bdef
+/tri_to_matrix {
+  2 0 asub 3 1 asub 4 0 asub 5 1 asub
+  dup 0 get exch 1 get 7 -1 roll astore } bdef
+/compute_transform {
+  dmat dtri tri_to_matrix tmat1 invertmatrix 
+  smat stri tri_to_matrix tmat2 concatmatrix } bdef
+/ds {stri astore pop} bdef
+/dt {dtri astore pop} bdef
+/db {2 copy /cols xdef /rows xdef mul dup 3 mul string
+  currentfile 
+  3 index 0 eq {/ASCIIHexDecode filter}
+  {/ASCII85Decode filter 3 index 2 eq {/RunLengthDecode filter} if }
+  ifelse exch readstring pop
+  dup 0 3 index getinterval /rbmap xdef
+  dup 2 index dup getinterval /gbmap xdef
+  1 index dup 2 mul exch getinterval /bbmap xdef pop pop}bdef
+/it {gs np dtri aload pop moveto lineto lineto cp c
+  cols rows 8 compute_transform 
+  rbmap gbmap bbmap true 3 colorimage gr}bdef
+/il {newpath moveto lineto stroke}bdef
+currentdict end def
+%%EndProlog
+
+%%BeginSetup
+MathWorks begin
+
+0 cap
+
+end
+%%EndSetup
+
+%%Page: 1 1
+%%BeginPageSetup
+%%PageBoundingBox:  -222   209   818   632
+MathWorks begin
+bpage
+%%EndPageSetup
+
+%%BeginObject: obj1
+bplot
+
+/dpi2point 12 def
+portraitMode -2664 7584 csm
+
+    0     0 12491  5070 rc
+85 dict begin %Colortable dictionary
+/c0 { 0.000000 0.000000 0.000000 sr} bdef
+/c1 { 1.000000 1.000000 1.000000 sr} bdef
+/c2 { 0.900000 0.000000 0.000000 sr} bdef
+/c3 { 0.000000 0.820000 0.000000 sr} bdef
+/c4 { 0.000000 0.000000 0.800000 sr} bdef
+/c5 { 0.910000 0.820000 0.320000 sr} bdef
+/c6 { 1.000000 0.260000 0.820000 sr} bdef
+/c7 { 0.000000 0.820000 0.820000 sr} bdef
+c0
+1 j
+1 sg
+   0    0 12492 5071 rf
+6 w
+0 4132 9680 0 0 -4132 1624 4512 4 MP
+PP
+-9680 0 0 4132 9680 0 0 -4132 1624 4512 5 MP stroke
+4 w
+DO
+SO
+6 w
+0 sg
+1624 4512 mt 11304 4512 L
+1624 4512 mt 1624  380 L
+1624 4512 mt 1624 4415 L
+%%IncludeResource: font Helvetica
+/Helvetica /ISOLatin1Encoding 120 FMSR
+
+1591 4657 mt 
+(0) s
+3237 4512 mt 3237 4415 L
+3171 4657 mt 
+(10) s
+4850 4512 mt 4850 4415 L
+4784 4657 mt 
+(20) s
+6464 4512 mt 6464 4415 L
+6398 4657 mt 
+(30) s
+8077 4512 mt 8077 4415 L
+8011 4657 mt 
+(40) s
+9690 4512 mt 9690 4415 L
+9624 4657 mt 
+(50) s
+11304 4512 mt 11304 4415 L
+11238 4657 mt 
+(60) s
+1624 4512 mt 1720 4512 L
+1523 4556 mt 
+(0) s
+1624 3995 mt 1720 3995 L
+1523 4039 mt 
+(5) s
+1624 3479 mt 1720 3479 L
+1456 3523 mt 
+(10) s
+1624 2962 mt 1720 2962 L
+1456 3006 mt 
+(15) s
+1624 2446 mt 1720 2446 L
+1456 2490 mt 
+(20) s
+1624 1929 mt 1720 1929 L
+1456 1973 mt 
+(25) s
+1624 1413 mt 1720 1413 L
+1456 1457 mt 
+(30) s
+1624  896 mt 1720  896 L
+1456  940 mt 
+(35) s
+1624  380 mt 1720  380 L
+1456  424 mt 
+(40) s
+gs 1624 380 9681 4133 rc
+0 j
+/c8 { 1.000000 0.000000 0.000000 sr} bdef
+c8
+2369  857  122   78 rf
+1 j
+0 j
+3337  857  122   78 rf
+1 j
+0 j
+7532  857  122   78 rf
+1 j
+0 j
+2208  960  122   79 rf
+1 j
+0 j
+3337  960  122   79 rf
+1 j
+0 j
+3498  960  123   79 rf
+1 j
+0 j
+6886  960  123   79 rf
+1 j
+0 j
+7532  960  122   79 rf
+1 j
+0 j
+1885 1063  122   79 rf
+1 j
+0 j
+2046 1063  123   79 rf
+1 j
+0 j
+2208 1063  122   79 rf
+1 j
+0 j
+2369 1063  122   79 rf
+1 j
+0 j
+2530 1063  123   79 rf
+1 j
+0 j
+2853 1063  122   79 rf
+1 j
+0 j
+3176 1063  122   79 rf
+1 j
+0 j
+3337 1063  122   79 rf
+1 j
+0 j
+3498 1063  123   79 rf
+1 j
+0 j
+4144 1063  122   79 rf
+1 j
+0 j
+4305 1063  122   79 rf
+1 j
+0 j
+4466 1063  123   79 rf
+1 j
+0 j
+5112 1063  122   79 rf
+1 j
+0 j
+5273 1063  122   79 rf
+1 j
+0 j
+6080 1063  122   79 rf
+1 j
+0 j
+6402 1063  123   79 rf
+1 j
+0 j
+6886 1063  123   79 rf
+1 j
+0 j
+7532 1063  122   79 rf
+1 j
+0 j
+8016 1063  122   79 rf
+1 j
+0 j
+8661 1063  122   79 rf
+1 j
+0 j
+9790 1063  123   79 rf
+1 j
+0 j
+2208 1167  122   78 rf
+1 j
+0 j
+4144 1167  122   78 rf
+1 j
+0 j
+7693 1167  122   78 rf
+1 j
+0 j
+5112 1270  122   78 rf
+1 j
+0 j
+5918 1373  123   79 rf
+1 j
+0 j
+2853 1477  122   78 rf
+1 j
+0 j
+3176 1477  122   78 rf
+1 j
+0 j
+3498 1477  123   78 rf
+1 j
+0 j
+3982 1477  123   78 rf
+1 j
+0 j
+4144 1477  122   78 rf
+1 j
+0 j
+4305 1477  122   78 rf
+1 j
+0 j
+4628 1477  122   78 rf
+1 j
+0 j
+4789 1477  122   78 rf
+1 j
+0 j
+4950 1477  123   78 rf
+1 j
+0 j
+5112 1477  122   78 rf
+1 j
+0 j
+5918 1477  123   78 rf
+1 j
+0 j
+8822 1477  123   78 rf
+1 j
+0 j
+8984 1477  122   78 rf
+1 j
+0 j
+2208 1580  122   78 rf
+1 j
+0 j
+2369 1580  122   78 rf
+1 j
+0 j
+3337 1580  122   78 rf
+1 j
+0 j
+6725 1580  122   78 rf
+1 j
+0 j
+4628 1683  122   79 rf
+1 j
+0 j
+5112 1683  122   79 rf
+1 j
+0 j
+4789 1786  122   79 rf
+1 j
+0 j
+5112 1786  122   79 rf
+1 j
+0 j
+6886 1786  123   79 rf
+1 j
+0 j
+9306 1786  123   79 rf
+1 j
+0 j
+2692 1890  122   78 rf
+1 j
+0 j
+5112 1890  122   78 rf
+1 j
+0 j
+7048 1890  122   78 rf
+1 j
+0 j
+7209 1890  122   78 rf
+1 j
+0 j
+8016 1890  122   78 rf
+1 j
+0 j
+8661 1890  122   78 rf
+1 j
+0 j
+9145 1890  122   78 rf
+1 j
+0 j
+3176 1993  122   79 rf
+1 j
+0 j
+3337 1993  122   79 rf
+1 j
+0 j
+8661 1993  122   79 rf
+1 j
+0 j
+9145 1993  122   79 rf
+1 j
+0 j
+3176 2096  122   79 rf
+1 j
+0 j
+1885 2200  122   78 rf
+1 j
+0 j
+2046 2200  123   78 rf
+1 j
+0 j
+2208 2200  122   78 rf
+1 j
+0 j
+2369 2200  122   78 rf
+1 j
+0 j
+2530 2200  123   78 rf
+1 j
+0 j
+3176 2200  122   78 rf
+1 j
+0 j
+3337 2200  122   78 rf
+1 j
+0 j
+3498 2200  123   78 rf
+1 j
+0 j
+4305 2200  122   78 rf
+1 j
+0 j
+5112 2200  122   78 rf
+1 j
+0 j
+5434 2200  123   78 rf
+1 j
+0 j
+6241 2200  122   78 rf
+1 j
+0 j
+6402 2200  123   78 rf
+1 j
+0 j
+6564 2200  122   78 rf
+1 j
+0 j
+6725 2200  122   78 rf
+1 j
+0 j
+6886 2200  123   78 rf
+1 j
+0 j
+7048 2200  122   78 rf
+1 j
+0 j
+7209 2200  122   78 rf
+1 j
+0 j
+7532 2200  122   78 rf
+1 j
+0 j
+8500 2200  122   78 rf
+1 j
+0 j
+8661 2200  122   78 rf
+1 j
+0 j
+9306 2200  123   78 rf
+1 j
+0 j
+9468 2200  122   78 rf
+1 j
+0 j
+9629 2200  122   78 rf
+1 j
+0 j
+9790 2200  123   78 rf
+1 j
+0 j
+1885 2303  122   78 rf
+1 j
+0 j
+2208 2303  122   78 rf
+1 j
+0 j
+2369 2303  122   78 rf
+1 j
+0 j
+2530 2303  123   78 rf
+1 j
+0 j
+3337 2303  122   78 rf
+1 j
+0 j
+3821 2303  122   78 rf
+1 j
+0 j
+4144 2303  122   78 rf
+1 j
+0 j
+4466 2303  123   78 rf
+1 j
+0 j
+5112 2303  122   78 rf
+1 j
+0 j
+5273 2303  122   78 rf
+1 j
+0 j
+6886 2303  123   78 rf
+1 j
+0 j
+7532 2303  122   78 rf
+1 j
+0 j
+8661 2303  122   78 rf
+1 j
+0 j
+9306 2303  123   78 rf
+1 j
+0 j
+2530 2406  123   79 rf
+1 j
+0 j
+7532 2406  122   79 rf
+1 j
+0 j
+2208 2510  122   78 rf
+1 j
+0 j
+5112 2510  122   78 rf
+1 j
+0 j
+5757 2510  122   78 rf
+1 j
+0 j
+7048 2510  122   78 rf
+1 j
+0 j
+7209 2510  122   78 rf
+1 j
+0 j
+7532 2510  122   78 rf
+1 j
+0 j
+8016 2510  122   78 rf
+1 j
+0 j
+8661 2510  122   78 rf
+1 j
+0 j
+9145 2510  122   78 rf
+1 j
+0 j
+2208 2613  122   78 rf
+1 j
+0 j
+4144 2613  122   78 rf
+1 j
+0 j
+6402 2613  123   78 rf
+1 j
+0 j
+6725 2613  122   78 rf
+1 j
+0 j
+2208 2716  122   79 rf
+1 j
+0 j
+3337 2716  122   79 rf
+1 j
+0 j
+4305 2716  122   79 rf
+1 j
+0 j
+7048 2716  122   79 rf
+1 j
+0 j
+7532 2716  122   79 rf
+1 j
+0 j
+8177 2716  122   79 rf
+1 j
+0 j
+4144 2819  122   79 rf
+1 j
+0 j
+6725 2819  122   79 rf
+1 j
+0 j
+2208 2923  122   78 rf
+1 j
+0 j
+2208 3026  122   79 rf
+1 j
+0 j
+3337 3026  122   79 rf
+1 j
+0 j
+5434 3026  123   79 rf
+1 j
+0 j
+7048 3026  122   79 rf
+1 j
+0 j
+4789 3129  122   79 rf
+1 j
+0 j
+6241 3129  122   79 rf
+1 j
+0 j
+3498 3233  123   78 rf
+1 j
+0 j
+4789 3233  122   78 rf
+1 j
+0 j
+8984 3233  122   78 rf
+1 j
+0 j
+1885 3336  122   78 rf
+1 j
+0 j
+2046 3336  123   78 rf
+1 j
+0 j
+2208 3336  122   78 rf
+1 j
+0 j
+3176 3336  122   78 rf
+1 j
+0 j
+3337 3336  122   78 rf
+1 j
+0 j
+3498 3336  123   78 rf
+1 j
+0 j
+3660 3336  122   78 rf
+1 j
+0 j
+4628 3336  122   78 rf
+1 j
+0 j
+4789 3336  122   78 rf
+1 j
+0 j
+5112 3336  122   78 rf
+1 j
+0 j
+5273 3336  122   78 rf
+1 j
+0 j
+5918 3336  123   78 rf
+1 j
+0 j
+6241 3336  122   78 rf
+1 j
+0 j
+6886 3336  123   78 rf
+1 j
+0 j
+7048 3336  122   78 rf
+1 j
+0 j
+7532 3336  122   78 rf
+1 j
+0 j
+7693 3336  122   78 rf
+1 j
+0 j
+8016 3336  122   78 rf
+1 j
+0 j
+8338 3336  123   78 rf
+1 j
+0 j
+8500 3336  122   78 rf
+1 j
+0 j
+9306 3336  123   78 rf
+1 j
+0 j
+9629 3336  122   78 rf
+1 j
+0 j
+9790 3336  123   78 rf
+1 j
+0 j
+2208 3439  122   79 rf
+1 j
+0 j
+4305 3439  122   79 rf
+1 j
+0 j
+1724 3543  122   78 rf
+1 j
+0 j
+2853 3543  122   78 rf
+1 j
+0 j
+3014 3543  123   78 rf
+1 j
+0 j
+3982 3543  123   78 rf
+1 j
+0 j
+4144 3543  122   78 rf
+1 j
+0 j
+4628 3543  122   78 rf
+1 j
+0 j
+4789 3543  122   78 rf
+1 j
+0 j
+4950 3543  123   78 rf
+1 j
+0 j
+5112 3543  122   78 rf
+1 j
+0 j
+5918 3543  123   78 rf
+1 j
+0 j
+8177 3543  122   78 rf
+1 j
+0 j
+8822 3543  123   78 rf
+1 j
+0 j
+8984 3543  122   78 rf
+1 j
+0 j
+2853 3646  122   78 rf
+1 j
+0 j
+3014 3646  123   78 rf
+1 j
+0 j
+4950 3646  123   78 rf
+1 j
+0 j
+2046 3749  123   79 rf
+1 j
+0 j
+3660 3749  122   79 rf
+1 j
+0 j
+4789 3749  122   79 rf
+1 j
+0 j
+5112 3749  122   79 rf
+1 j
+0 j
+5273 3749  122   79 rf
+1 j
+0 j
+5918 3749  123   79 rf
+1 j
+0 j
+6241 3749  122   79 rf
+1 j
+0 j
+6886 3749  123   79 rf
+1 j
+0 j
+7048 3749  122   79 rf
+1 j
+0 j
+7532 3749  122   79 rf
+1 j
+0 j
+8016 3749  122   79 rf
+1 j
+0 j
+8338 3749  123   79 rf
+1 j
+0 j
+9306 3749  123   79 rf
+1 j
+0 j
+9790 3749  123   79 rf
+1 j
+0 j
+2046 3852  123   79 rf
+1 j
+0 j
+2208 3852  122   79 rf
+1 j
+0 j
+2692 3852  122   79 rf
+1 j
+0 j
+3176 3852  122   79 rf
+1 j
+0 j
+3337 3852  122   79 rf
+1 j
+0 j
+4789 3852  122   79 rf
+1 j
+0 j
+6241 3852  122   79 rf
+1 j
+0 j
+7048 3852  122   79 rf
+1 j
+0 j
+7532 3852  122   79 rf
+1 j
+0 j
+8016 3852  122   79 rf
+1 j
+0 j
+8661 3852  122   79 rf
+1 j
+0 j
+9306 3852  123   79 rf
+1 j
+0 j
+9790 3852  123   79 rf
+1 j
+0 j
+5918 3956  123   78 rf
+1 j
+0 j
+2208 4059  122   79 rf
+1 j
+0 j
+2369 4059  122   79 rf
+1 j
+0 j
+3337 4059  122   79 rf
+1 j
+0 j
+5596 4059  122   79 rf
+1 j
+0 j
+6241 4059  122   79 rf
+1 j
+0 j
+7532 4059  122   79 rf
+1 j
+0 j
+9468 4059  122   79 rf
+1 j
+0 j
+2046 4162  123   79 rf
+1 j
+0 j
+2853 4162  122   79 rf
+1 j
+0 j
+3498 4162  123   79 rf
+1 j
+0 j
+3660 4162  122   79 rf
+1 j
+0 j
+4144 4162  122   79 rf
+1 j
+0 j
+4628 4162  122   79 rf
+1 j
+0 j
+4789 4162  122   79 rf
+1 j
+0 j
+5112 4162  122   79 rf
+1 j
+0 j
+5918 4162  123   79 rf
+1 j
+0 j
+6241 4162  122   79 rf
+1 j
+0 j
+6725 4162  122   79 rf
+1 j
+0 j
+7048 4162  122   79 rf
+1 j
+0 j
+7693 4162  122   79 rf
+1 j
+0 j
+8984 4162  122   79 rf
+1 j
+0 j
+2208 4266  122   78 rf
+1 j
+0 j
+3337 4266  122   78 rf
+1 j
+0 j
+4144 4266  122   78 rf
+1 j
+0 j
+7532 4266  122   78 rf
+1 j
+0 j
+1724 4369  122   78 rf
+1 j
+0 j
+2046 4369  123   78 rf
+1 j
+0 j
+2208 4369  122   78 rf
+1 j
+0 j
+2369 4369  122   78 rf
+1 j
+0 j
+2530 4369  123   78 rf
+1 j
+0 j
+2692 4369  122   78 rf
+1 j
+0 j
+2853 4369  122   78 rf
+1 j
+0 j
+3014 4369  123   78 rf
+1 j
+0 j
+3337 4369  122   78 rf
+1 j
+0 j
+3498 4369  123   78 rf
+1 j
+0 j
+3660 4369  122   78 rf
+1 j
+0 j
+4144 4369  122   78 rf
+1 j
+0 j
+4305 4369  122   78 rf
+1 j
+0 j
+4466 4369  123   78 rf
+1 j
+0 j
+5596 4369  122   78 rf
+1 j
+0 j
+6241 4369  122   78 rf
+1 j
+0 j
+6564 4369  122   78 rf
+1 j
+0 j
+6725 4369  122   78 rf
+1 j
+0 j
+6886 4369  123   78 rf
+1 j
+0 j
+7048 4369  122   78 rf
+1 j
+0 j
+7209 4369  122   78 rf
+1 j
+0 j
+7370 4369  123   78 rf
+1 j
+0 j
+7532 4369  122   78 rf
+1 j
+0 j
+7854 4369  123   78 rf
+1 j
+0 j
+8016 4369  122   78 rf
+1 j
+0 j
+8177 4369  122   78 rf
+1 j
+0 j
+8338 4369  123   78 rf
+1 j
+0 j
+8984 4369  122   78 rf
+1 j
+0 j
+9306 4369  123   78 rf
+1 j
+0 j
+9468 4369  122   78 rf
+1 j
+gr
+
+c8
+
+end %%Color Dict
+
+eplot
+%%EndObject
+
+epage
+end
+
+showpage
+
+%%Trailer
+%%EOF
