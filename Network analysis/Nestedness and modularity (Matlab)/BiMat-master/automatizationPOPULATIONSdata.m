@@ -1,21 +1,22 @@
-g=genpath('/Users/aina/Dropbox/CSSS/Projects/Lichens ecological network/community detection/Matlab_sergi/BiMat-master');
+g=genpath('/Users/aina/Dropbox/Lichen-s-project/Network analysis/Nestedness and modularity (Matlab)/BiMat-master');
 addpath(g);
 %%
-%%Conditions
-C=0 %competition
-M=0 %mutualism
-P=1 %parasitism
-Sat=0 %saturation
-Sig=1 %sigmoid
-t=2 %time
-m=5 %replica
-
-string = sprintf('/Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/SALVA SIMULATIONS/new_data/bipartite_matrices/C%dM%dP%d_Sat%dSig%d_t%dm%d.txt',C,M,P,Sat,Sig,t,m)
-
-A = importdata(string)
+for i=53:62
+string = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/mat_pop-%d.csv',i)
+string
+A = csvread(string,1,1)
+size(A) 
+rows = size(A,1)
+cols = size(A,2)
+for j = 1:rows
+    for k=1:cols
+        if A(j,k) > 0
+            A(j,k) = 1
+        end
+    end
+end
 bp = Bipartite(A);
-
-string2 = sprintf('/Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/SALVA SIMULATIONS/new_data/bipartite_matrices/C%dM%dP%d_Sat%dSig%d_t%dm%d_GeneralProperties.txt',C,M,P,Sat,Sig,t,m)
+string2 = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/mat_pop-%d_genprop.txt',i)
 diary(string2)
 bp.printer.PrintGeneralProperties();
 
@@ -29,7 +30,7 @@ diary on
 bp.printer.PrintStructureValues();
 diary off
 
-string_fig1 = sprintf('/Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/SALVA SIMULATIONS/new_data/bipartite_matrices/C%dM%dP%d_Sat%dSig%d_t%dm%d_fig1.pdf',C,M,P,Sat,Sig,t,m)
+string_fig1 = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/mat_pop-%d_fig1.pdf',i)
 figure(1);
 %set(gcf,'Position',[0 72 1751 922]);
 bp.plotter.use_type_interaction = true;
@@ -41,7 +42,7 @@ print(string_fig1,'-dpdf')
 close
 
 figure(2);
-string_fig2 = sprintf('/Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/SALVA SIMULATIONS/new_data/bipartite_matrices/C%dM%dP%d_Sat%dSig%d_t%dm%d_fig2.pdf',C,M,P,Sat,Sig,t,m)
+string_fig2 = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/mat_pop-%d_fig2.pdf',i)
 %set(gcf,'Position',[0+50 72 932 922]);
 bp.plotter.use_isocline = true;
 bp.plotter.isocline_color = 'red';
@@ -50,7 +51,7 @@ print(string_fig2,'-dpdf')
 close
 
 figure(3);
-string_fig3 = sprintf('/Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/SALVA SIMULATIONS/new_data/bipartite_matrices/C%dM%dP%d_Sat%dSig%d_t%dm%d_fig3.pdf',C,M,P,Sat,Sig,t,m)
+string_fig3 = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/mat_pop-%d_fig3.pdf',i)
 %set(gcf,'Position',[0+100 72 1754 922]);
 subplot(1,2,1);
 bp.community = LPBrim(bp.matrix);
@@ -66,7 +67,7 @@ print(string_fig3,'-dpdf')
 close
 
 figure(4);
-string_fig4 = sprintf('/Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/SALVA SIMULATIONS/new_data/bipartite_matrices/C%dM%dP%d_Sat%dSig%d_t%dm%d_fig4.pdf',C,M,P,Sat,Sig,t,m)
+string_fig4 = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/mat_pop-%d_fig4.pdf',i)
 
 %set(gcf,'Position',[0+150 72 1754 922]);
 bp.community = LeadingEigenvector(bp.matrix);
@@ -90,13 +91,13 @@ close
 
 figure(6);
 %set(gcf,'Position',[19+800 72 932 922]);
-string_fig6 = sprintf('/Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/SALVA SIMULATIONS/new_data/bipartite_matrices/C%dM%dP%d_Sat%dSig%d_t%dm%d_fig6.pdf',C,M,P,Sat,Sig,t,m)
+string_fig6 = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/mat_pop-%d_fig6.pdf',i)
 bp.plotter.PlotModularGraph();
 print(string_fig6,'-dpdf')
 close
 
 %Statistics
-string_statistics = sprintf('/Users/ainaollevila/Dropbox/CSSS/Projects/Lichens ecological network/SALVA SIMULATIONS/new_data/bipartite_matrices/C%dM%dP%d_Sat%dSig%d_t%dm%d_Statistics.txt',C,M,P,Sat,Sig,t,m)
+string_statistics = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/mat_pop-%d_Statistics.txt',i)
 diary(string_statistics)
 diary off
 bp.statistics.DoCompleteAnalysis(100, @NullModels.EQUIPROBABLE);
@@ -123,3 +124,5 @@ bp.statistics.DoCompleteAnalysis(100, @NullModels.FIXED);
 diary on
 bp.printer.PrintStructureStatistics();
 diary off
+
+end
