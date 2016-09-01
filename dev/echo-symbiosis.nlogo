@@ -22,7 +22,6 @@ globals [
 
   t1-file
   t2-file
-  ;bla bla
 ]
 
 extensions[matrix]
@@ -137,8 +136,8 @@ to go
     ][
       set inc_prob 2
     ]
-
-    if random-float 1.0 <= inc_prob * prob-duplication-alga * (1 - count algae / 3000) [
+;dfges
+    if random-float 1.0 <= inc_prob * prob-duplication-alga * (1 - (count algae-here / (3000 / world-width * world-height))) [
       hatch 1 [
         set captured? FALSE
         if random-float 1.0 <= prob-mutation-alga [
@@ -153,7 +152,7 @@ to go
   ]
 
   ask lichens [
-    if random-float 1.0 <= prob-duplication-lichen * (1 - count fungi / 2000) [
+    if random-float 1.0 <= prob-duplication-lichen * (1 - (count fungi-here / (2000 / world-width * world-height))) [
       hatch-fungi 1 [
         set sex random 2
         if random-float 1.0 <= prob-mutation-fungus [
@@ -328,11 +327,11 @@ end
 GRAPHICS-WINDOW
 8
 10
-419
-442
+426
+449
 -1
 -1
-1.0
+8.0
 1
 10
 1
@@ -343,9 +342,9 @@ GRAPHICS-WINDOW
 1
 1
 0
-400
+50
 0
-400
+50
 0
 0
 1
@@ -414,7 +413,7 @@ CHOOSER
 lich-function
 lich-function
 "linear" "michaelis-menten" "sigmoid"
-1
+2
 
 BUTTON
 838
