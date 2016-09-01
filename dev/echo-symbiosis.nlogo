@@ -196,16 +196,16 @@ to go
 
   plotting
   if (ticks / 100 = int(ticks / 100) AND ticks > 10000 AND ticks < 15000) [
-    ;snapshot-data
+    snapshot-data
   ]
 
   if ticks = 16000 [
-    ;file-close
-    ;file-open t2-file
+    file-close
+    file-open t2-file
   ]
 
   if (ticks / 100 = int(ticks / 100) AND ticks > 100000 AND ticks < 105000) [
-    ;snapshot-data2
+    snapshot-data2
   ]
 
   if ticks = 106000 [
@@ -437,7 +437,7 @@ CHOOSER
 lich-function
 lich-function
 "linear" "michaelis-menten" "sigmoid"
-2
+1
 
 BUTTON
 838
