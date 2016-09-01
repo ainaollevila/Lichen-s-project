@@ -1,59 +1,3 @@
-library(scales)
-
-#Row = Fungus
-#Col = Algae
-
-#Return the number of difference between two rows
-simil=function(d){
-	sum(apply(d,2,function(i){ if(diff(i) == 0) return(0) else return(1)}))
-}	
-
-
-
-
-computeDist=function(d){
-	res=matrix(nrow=nrow(d),ncol=nrow(d))
-	for(i in 1:(nrow(d)-1)){
-		for(j in (i+1):(nrow(d))){
-			res[i,j]=simil(d[c(i,j),])
-			res[j,i]=simil(d[c(i,j),])
-		}
-	}
-	return(as.dist(res))
-}
-
-#ccurenceMat=function(mat){
-#	res=matrix(0,nrow=nrow(mat),ncol=ncol(mat))
-#	for(i in 1:(nrow(mat)-1)){
-#		for(j in (i+1):(ncol(d))){
-#			if(mat[i,j]<1)
-#				res[i,j]=mat[i,j]
-#		}
-#	}
-#}
-
-getSeparate <- function(a){
-	#separate th microsat
-	seplist=list(rawdata[,3:11],rawdata[,12:17])
-	names(seplist)=c("algae","fungus")
-	return(seplist)
-}
-
-oldstuf <- function(){
-    ###I get the raw data from supplementary material of Widmer et al 2012 thanks to this website : https://pdftables.com/ (it was free during the summer, I put all table of SI in data.
-
-	#Get the raw data
-	rawdataW=read.csv("data/Widmer et al_2012.xlsx",sep='\t')
-	locW=read.csv("data/loc_widmer2012.csv")
-
-	fullW=merge(rawdataW,locW,by.x="Population",by.y="Population.code")
-
-	rawdataD=read.csv("data/DalGrande_et_al_2012.csv",sep='\t')
-	locD=read.csv("data/loc_dalgrande2012.csv")
-	fullD=merge(rawdataD,locD,by.x="Population.ID",by.y="Population.n..")
-	#rawdata=dal
-	#get a subset
-	rownames(rawdata)=rawdata[,3]
 	rawdata=rawdata[,]
 
 	#separate th microsat
@@ -359,11 +303,12 @@ plotSample<-function(data,...){
 }
 
 createNetwork<-function(rwdt){
-
+#rwdt=fullD[fullD$Population.ID == 4 ,]
 	#separate th microsat
 	funghus=rwdt[,3:10]
 	algae=rwdt[,11:17]
 	
+	print(nrow(rwdt))
 	uaid=unique(apply(algae,1,paste,collapse=""))
 	ufid=unique(apply(funghus,1,paste,collapse=""))
 	res=cooccurenceMat(rwdt,1,1,groupf=ufid,groupa=uaid)
@@ -375,29 +320,28 @@ plotpop<-function(d,n,...){
 	curpop=d[d$Population.ID == n,]
 	plot(curpop$x,curpop$y)
 }
+
+
 cooccurenceMat <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
-	if(length(groupa)==0){
-		groupa=as.character(unique(datas$Sample.ID))
-		groupf=groupa
-	}
 	res=matrix(0,nrow=length(groupf),ncol=length(groupa),dimnames=list(groupf,groupa))
 	print(res)
 
-	for(i in 1:(nrow(datas))){
-		for(j in (1):(nrow(datas))){
+	for(i in 1:nrow(datas)){
+		for(j in i:nrow(datas)){
+
 			popiMlgF=paste(datas[i,3:10],collapse="")
 			popiMlgA=paste(datas[i,11:17],collapse="")
 			popjMlgF=paste(datas[j,3:10],collapse="")
 			popjMlgA=paste(datas[j,11:17],collapse="")
-
+			print(paste(i," - ",j," res=",res[popiMlgF,popiMlgA]))
+			print(paste("i:",popiMlgA,popiMlgF))
+			print(paste("j:",popjMlgA,popjMlgF))
 
 
 			if(popiMlgF == popjMlgF){
-			print(paste(i,j))
-			print(paste("i:",popiMlgA,popiMlgF))
-			print(paste("j:",popjMlgA,popjMlgF))
+#				print(paste(i,j))
 				res[popiMlgF,popjMlgA]=res[popiMlgF,popiMlgA]+1
-			#	res[popjMlgF,popiMlgA]=res[popjMlgF,popjMlgA]+1
+				#	res[popjMlgF,popiMlgA]=res[popjMlgF,popjMlgA]+1
 			}
 
 			#if(popiMlgA == popjMlgA)
@@ -414,12 +358,11 @@ cooccurenceMat <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
 }
 plotpop(fullD,2)
 
-a=9
 sapply(unique(fullD$Population.ID),function(a){
-test=createNetwork(fullD[fullD$Population.ID == a ,])
-write.csv(test,paste("mat_pop-",a,".csv",sep=""))
-png(paste("data/cooc_mat/bipartite_pop-",a,".png",sep=""),height=600,width=900)
-plotNetwork(test,main=paste("data/cooc_mat/Population",a))
+test=createNetwork(fullD[fullD$Population.ID == 4 ,])
+write.csv(test,paste("../../data/cooc_mat/mat_pop-",a,".csv",sep=""))
+png(paste("../../data/cooc_mat/bipartite_pop-",a,".png",sep=""),height=600,width=900)
+plotNetwork(test,main=paste("../../data/cooc_mat/Population",a))
 dev.off()
 })
 
