@@ -1,5 +1,7 @@
 library(scales)
 
+#Row = Fungus
+#Col = Algae
 
 #Return the number of difference between two rows
 simil=function(d){
@@ -42,7 +44,7 @@ oldstuf <- function(){
 
 	#Get the raw data
 	rawdataW=read.csv("data/Widmer et al_2012.xlsx",sep='\t')
-	locW=read.csv("data/loc_widmer2013.csv")
+	locW=read.csv("data/loc_widmer2012.csv")
 
 	fullW=merge(rawdataW,locW,by.x="Population",by.y="Population.code")
 
@@ -149,7 +151,7 @@ buildRel<- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
 }
 
 #Compute the matrix
-cooccurenceMat <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
+cooccurenceMatTocheck <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
 	if(length(groupa)==0){
 		groupa=as.character(unique(datas$Sample.ID))
 		groupf=groupa
@@ -160,12 +162,12 @@ cooccurenceMat <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
 	for(i in 1:(nrow(datas)-1)){
 		for(j in (i):(nrow(datas))){
 			#if(length(groupa)==0){
-				popa=as.character(datas[i,"Sample.ID"])
-				popb=as.character(datas[j,"Sample.ID"])
+			#	popa=as.character(datas[i,"Sample.ID"])
+			#	popb=as.character(datas[j,"Sample.ID"])
 			#}
 			#else{
-			#	popa=paste(datas[i,3:10],collapse="")
-			#	popb=paste(datas[j,11:17],collapse="")
+				popa=paste(datas[i,3:10],collapse="")
+				popb=paste(datas[j,11:17],collapse="")
 			#}
 
 
@@ -175,14 +177,14 @@ cooccurenceMat <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
 			vfungusB=datas[j,3:10]
 			if(simil(rbind(vfungusB,vfungusA))<fungdif){
 				res[popa,popb]=res[popa,popb]+1
-				res[popb,popa]=res[popb,popa]+1
+				#res[popb,popa]=res[popb,popa]+1
 			}
 
 			valgaeA=datas[i,11:17]
 			valgaeB=datas[j,11:17]
 			if(simil(rbind(valgaeB,valgaeA))<algdif){
 				res[popa,popb]=res[popa,popb]+1
-				res[popb,popa]=res[popb,popa]+1
+				#res[popb,popa]=res[popb,popa]+1
 			}
 		}
 	}
@@ -290,25 +292,20 @@ namerow <- function(x){
 }
 
 plotNetwork<-function(mat,id="",...){
-	#inp=colnames(mat)
-	#out=rownames(mat)
-	#colnames(mat)=NA
-	outWeigth = 1+apply(mat,1,sum)
-	inWeigth = 1+apply(mat,2,sum)
-	inPoints=1:length(inWeigth)
-	outPoints=1:length(outWeigth)
-	input=inPoints*4 #cbind(inPoints,names(inWeigth))
-	output=outPoints*4 #cbind(outPoints,names(outWeigth))
+	fungus=1:nrow(mat)*4 #cbind(inPoints,names(inWeigth))
+	algae=1:ncol(mat)*4 #cbind(outPoints,names(outWeigth))
 
 
 	ptsize=3
-	plot(input,rep(-1,length(inPoints)),cex=ptsize,bty="n",ylim=c(-1.5,1.5),xlim=c(-10,max(input)+5),col=alpha("red",0.5),pch=20,xaxt="n",xlab="",yaxt="n", ylab="")
-	text(input,rep(-.7,length(inPoints))-.5,label=names(inWeigth),cex=1,srt=60,c(1,1))
-	points(output,rep(1,length(outPoints)),cex=ptsize,col=alpha("yellow",0.5),pch=20)
-	text(output,rep(.7,length(outPoints))+.5,label=names(outWeigth),cex=1,srt=300,adj=c(1,1))
-	#text(-5,-1,"fungi")
-	#text(-5+length(input),1,"projects")
-	text(0,0,id,cex=2)
+	plot(fungus,rep(-1,nrow(mat)),cex=ptsize,bty="n",ylim=c(-1.5,1.5),xlim=c(-10,max(fungus)+5),col=alpha("red",0.5),pch=20,xaxt="n",xlab="",yaxt="n", ylab="",...)
+	text(fungus,rep(-.7,nrow(mat))-.5,label=rownames(mat),cex=1,srt=60,c(1,1))
+
+	points(algae,rep(1,ncol(mat)),cex=ptsize,col=alpha("yellow",0.5),pch=20)
+	text(algae,rep(.7,ncol(mat))+.5,label=colnames(mat),cex=1,srt=300,adj=c(1,1))
+	text(-5,-1,"fungi")
+	text(-5,1,"algae")
+	#text(-5+length(fungus),1,"projects")
+	text(0,0,id,cex=1)
 
 	cx0=c()
 	cy0=c()
@@ -316,22 +313,22 @@ plotNetwork<-function(mat,id="",...){
 	cy1=c()
 
 	if(nrow(mat)>0){
-		for( i in 1:(ncol(mat)-1)){
-			for(j in (i+1):(nrow(mat))){
-				xp=output[j]
+		for( f in 1:(nrow(mat))){
+			for(a in 1:(ncol(mat))){
+				xp=algae[a]
 				yp=1
-				xf=input[i]
+				xf=fungus[f]
 				yf=-1
 				#print(paste("i",i))
 				#print(paste("j",j))
 				#print(mat[i,j])
-				if(mat[i,j]>=1){
-					arrows(x0=xf,y0=yf+.05,x1=xp,y1=yp-.05,col=alpha("red",.6),lwd=log(mat[i,j]),length=.1)
+				if(mat[f,a]>=1){
+					segments(x0=xf,y0=yf+.05,x1=xp,y1=yp-.05,col=alpha("green",.6),lwd=mat[f,a]/2,length=.1)
 				}
-				if(mat[j,i]>=1){
+				#if(mat[j,i]>=1){
 
-					arrows(x0=xp,y0=yp-.05,x1=xf,y1=yf+.05,col=alpha("yellow",.6),lwd=log(mat[j,i]),length=.1)
-				}
+				#	arrows(x0=xp,y0=yp-.05,x1=xf,y1=yf+.05,col=alpha("yellow",.6),lwd=log(mat[j,i]),length=.1)
+				#}
 			}
 		}
 	}
@@ -361,3 +358,70 @@ plotSample<-function(data,...){
 
 }
 
+createNetwork<-function(rwdt){
+
+	#separate th microsat
+	funghus=rwdt[,3:10]
+	algae=rwdt[,11:17]
+	
+	uaid=unique(apply(algae,1,paste,collapse=""))
+	ufid=unique(apply(funghus,1,paste,collapse=""))
+	res=cooccurenceMat(rwdt,1,1,groupf=ufid,groupa=uaid)
+	return(res)
+
+}
+
+plotpop<-function(d,n,...){
+	curpop=d[d$Population.ID == n,]
+	plot(curpop$x,curpop$y)
+}
+cooccurenceMat <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
+	if(length(groupa)==0){
+		groupa=as.character(unique(datas$Sample.ID))
+		groupf=groupa
+	}
+	res=matrix(0,nrow=length(groupf),ncol=length(groupa),dimnames=list(groupf,groupa))
+	print(res)
+
+	for(i in 1:(nrow(datas))){
+		for(j in (1):(nrow(datas))){
+			popiMlgF=paste(datas[i,3:10],collapse="")
+			popiMlgA=paste(datas[i,11:17],collapse="")
+			popjMlgF=paste(datas[j,3:10],collapse="")
+			popjMlgA=paste(datas[j,11:17],collapse="")
+
+
+
+			if(popiMlgF == popjMlgF){
+			print(paste(i,j))
+			print(paste("i:",popiMlgA,popiMlgF))
+			print(paste("j:",popjMlgA,popjMlgF))
+				res[popiMlgF,popjMlgA]=res[popiMlgF,popiMlgA]+1
+			#	res[popjMlgF,popiMlgA]=res[popjMlgF,popjMlgA]+1
+			}
+
+			#if(popiMlgA == popjMlgA)
+			#	res[popiMlgF,popiMlgA]=res[popiMlgF,popiMlgA]+1
+
+		}
+	}
+	#res=list(resF,resA)
+	#names(res)=c("fungus","algae")
+	return(res)
+
+
+
+}
+plotpop(fullD,2)
+
+a=9
+sapply(unique(fullD$Population.ID),function(a){
+test=createNetwork(fullD[fullD$Population.ID == a ,])
+write.csv(test,paste("mat_pop-",a,".csv",sep=""))
+png(paste("data/cooc_mat/bipartite_pop-",a,".png",sep=""),height=600,width=900)
+plotNetwork(test,main=paste("data/cooc_mat/Population",a))
+dev.off()
+})
+
+fulltest=createNetwork(fullD)
+plotNetwork(test)
