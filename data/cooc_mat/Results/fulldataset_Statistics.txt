@@ -1,0 +1,31 @@
+Modularity
+	 Used algorithm:	            LeadingEigenvector
+	 Null model:    	       NullModels.EQUIPROBABLE
+	 Replicates:    	                           100
+	 Qb value:      	                        0.9961
+	     mean:      	                        0.9562
+	     std:       	                        0.0064
+	     z-score:   	                        6.1968
+	     t-score:   	                       61.9677
+	     percentil: 	                      100.0000
+	 Qr value:      	                        1.0000
+	     mean:      	                        0.9493
+	     std:       	                        0.0127
+	     z-score:   	                        3.9902
+	     t-score:   	                       39.9019
+	     percentil: 	                      100.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	       NullModels.EQUIPROBABLE
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0003
+	     mean:      	                        0.0008
+	     std:       	                        0.0000
+	     z-score:   	                      -17.6230
+	     t-score:   	                     -176.2295
+	     percentil: 	                        0.0000
+
+string_statistics =
+
+/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/fulldataset_Statistics2.txt
+
