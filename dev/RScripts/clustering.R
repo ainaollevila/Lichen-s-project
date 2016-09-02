@@ -1,3 +1,59 @@
+library(scales)
+
+#Row = Fungus
+#Col = Algae
+
+#Return the number of difference between two rows
+simil=function(d){
+	sum(apply(d,2,function(i){ if(diff(i) == 0) return(0) else return(1)}))
+}	
+
+
+
+
+computeDist=function(d){
+	res=matrix(nrow=nrow(d),ncol=nrow(d))
+	for(i in 1:(nrow(d)-1)){
+		for(j in (i+1):(nrow(d))){
+			res[i,j]=simil(d[c(i,j),])
+			res[j,i]=simil(d[c(i,j),])
+		}
+	}
+	return(as.dist(res))
+}
+
+#ccurenceMat=function(mat){
+#	res=matrix(0,nrow=nrow(mat),ncol=ncol(mat))
+#	for(i in 1:(nrow(mat)-1)){
+#		for(j in (i+1):(ncol(d))){
+#			if(mat[i,j]<1)
+#				res[i,j]=mat[i,j]
+#		}
+#	}
+#}
+
+getSeparate <- function(a){
+	#separate th microsat
+	seplist=list(rawdata[,3:11],rawdata[,12:17])
+	names(seplist)=c("algae","fungus")
+	return(seplist)
+}
+
+oldstuf <- function(){
+    ###I get the raw data from supplementary material of Widmer et al 2012 thanks to this website : https://pdftables.com/ (it was free during the summer, I put all table of SI in data.
+
+	#Get the raw data
+	rawdataW=read.csv("data/Widmer et al_2012.xlsx",sep='\t')
+	locW=read.csv("data/loc_widmer2012.csv")
+
+	fullW=merge(rawdataW,locW,by.x="Population",by.y="Population.code")
+
+	rawdataD=read.csv("data/DalGrande_et_al_2012.csv",sep='\t')
+	locD=read.csv("data/loc_dalgrande2012.csv")
+	fullD=merge(rawdataD,locD,by.x="Population.ID",by.y="Population.n..")
+	#rawdata=dal
+	#get a subset
+	rownames(rawdata)=rawdata[,3]
 	rawdata=rawdata[,]
 
 	#separate th microsat
