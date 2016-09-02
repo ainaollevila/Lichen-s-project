@@ -1,46 +1,14 @@
 General Properties
-	 Number of species:       	    30
-	 Number of row species:   	    14
-	 Number of column species:	    16
-	 Number of Interactions:  	    16
-	 Size:                    	   224
-	 Connectance or fill:     	 0.071
+	 Number of species:       	    38
+	 Number of row species:   	    18
+	 Number of column species:	    20
+	 Number of Interactions:  	    20
+	 Size:                    	   360
+	 Connectance or fill:     	 0.056
 Modularity:
 	Used algorithm:             	  LeadingEigenvector
-	N (Number of modules):      	                  14
-	Qb (Standard metric):       	              0.9219
-	Qr (Ratio of int/ext inter):	              1.0000
-Nestedness NODF:
-	NODF (Nestedness value):    	              0.0000
-	NODF (Rows value):          	              0.0000
-	NODF (Columns value):       	              0.0000
-General Properties
-	 Number of species:       	    30
-	 Number of row species:   	    14
-	 Number of column species:	    16
-	 Number of Interactions:  	    16
-	 Size:                    	   224
-	 Connectance or fill:     	 0.071
-Modularity:
-	Used algorithm:             	  LeadingEigenvector
-	N (Number of modules):      	                  14
-	Qb (Standard metric):       	              0.9219
-	Qr (Ratio of int/ext inter):	              1.0000
-Nestedness NODF:
-	NODF (Nestedness value):    	              0.0000
-	NODF (Rows value):          	              0.0000
-	NODF (Columns value):       	              0.0000
-General Properties
-	 Number of species:       	    30
-	 Number of row species:   	    14
-	 Number of column species:	    16
-	 Number of Interactions:  	    16
-	 Size:                    	   224
-	 Connectance or fill:     	 0.071
-Modularity:
-	Used algorithm:             	  LeadingEigenvector
-	N (Number of modules):      	                  14
-	Qb (Standard metric):       	              0.9219
+	N (Number of modules):      	                  18
+	Qb (Standard metric):       	              0.9400
 	Qr (Ratio of int/ext inter):	              1.0000
 Nestedness NODF:
 	NODF (Nestedness value):    	              0.0000

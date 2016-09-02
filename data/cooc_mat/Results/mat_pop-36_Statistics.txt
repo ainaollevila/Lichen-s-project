@@ -3,128 +3,128 @@ Modularity
 	 Null model:    	       NullModels.EQUIPROBABLE
 	 Replicates:    	                           100
 	 Qb value:      	                        0.9566
-	     mean:      	                        0.7887
-	     std:       	                        0.0470
-	     z-score:   	                        3.5763
-	     t-score:   	                       35.7626
+	     mean:      	                        0.7796
+	     std:       	                        0.0437
+	     z-score:   	                        4.0545
+	     t-score:   	                       40.5448
 	     percentil: 	                      100.0000
 	 Qr value:      	                        1.0000
-	     mean:      	                        0.8943
-	     std:       	                        0.0735
-	     z-score:   	                        1.4374
-	     t-score:   	                       14.3737
-	     percentil: 	                       84.0000
+	     mean:      	                        0.8764
+	     std:       	                        0.0731
+	     z-score:   	                        1.6903
+	     t-score:   	                       16.9026
+	     percentil: 	                       94.0000
 Nestedness
 	 Used algorithm:	                NestednessNODF
 	 Null model:    	       NullModels.EQUIPROBABLE
 	 Replicates:    	                           100
 	 Nestedness value:	                        0.0000
 	     mean:      	                        0.0239
-	     std:       	                        0.0054
-	     z-score:   	                       -4.4240
-	     t-score:   	                      -44.2396
+	     std:       	                        0.0051
+	     z-score:   	                       -4.7212
+	     t-score:   	                      -47.2123
 	     percentil: 	                        0.0000
 Modularity
 	 Used algorithm:	            LeadingEigenvector
 	 Null model:    	            NullModels.AVERAGE
 	 Replicates:    	                           100
 	 Qb value:      	                        0.9566
-	     mean:      	                        0.7795
-	     std:       	                        0.0550
-	     z-score:   	                        3.2218
-	     t-score:   	                       32.2177
+	     mean:      	                        0.7764
+	     std:       	                        0.0534
+	     z-score:   	                        3.3760
+	     t-score:   	                       33.7596
 	     percentil: 	                      100.0000
 	 Qr value:      	                        1.0000
-	     mean:      	                        0.8755
-	     std:       	                        0.1012
-	     z-score:   	                        1.2307
-	     t-score:   	                       12.3071
-	     percentil: 	                       81.0000
+	     mean:      	                        0.8685
+	     std:       	                        0.0960
+	     z-score:   	                        1.3694
+	     t-score:   	                       13.6942
+	     percentil: 	                       80.0000
 Nestedness
 	 Used algorithm:	                NestednessNODF
 	 Null model:    	            NullModels.AVERAGE
 	 Replicates:    	                           100
 	 Nestedness value:	                        0.0000
-	     mean:      	                        0.0241
-	     std:       	                        0.0117
-	     z-score:   	                       -2.0531
-	     t-score:   	                      -20.5309
+	     mean:      	                        0.0239
+	     std:       	                        0.0094
+	     z-score:   	                       -2.5543
+	     t-score:   	                      -25.5428
 	     percentil: 	                        0.0000
 Modularity
 	 Used algorithm:	            LeadingEigenvector
 	 Null model:    	       NullModels.AVERAGE_COLS
 	 Replicates:    	                           100
 	 Qb value:      	                        0.9566
-	     mean:      	                        0.7741
-	     std:       	                        0.0531
-	     z-score:   	                        3.4392
-	     t-score:   	                       34.3924
+	     mean:      	                        0.7662
+	     std:       	                        0.0609
+	     z-score:   	                        3.1272
+	     t-score:   	                       31.2718
 	     percentil: 	                      100.0000
 	 Qr value:      	                        1.0000
-	     mean:      	                        0.8712
-	     std:       	                        0.0879
-	     z-score:   	                        1.4652
-	     t-score:   	                       14.6521
-	     percentil: 	                       84.0000
+	     mean:      	                        0.8456
+	     std:       	                        0.1018
+	     z-score:   	                        1.5159
+	     t-score:   	                       15.1590
+	     percentil: 	                       87.0000
 Nestedness
 	 Used algorithm:	                NestednessNODF
 	 Null model:    	       NullModels.AVERAGE_COLS
 	 Replicates:    	                           100
 	 Nestedness value:	                        0.0000
-	     mean:      	                        0.0243
-	     std:       	                        0.0087
-	     z-score:   	                       -2.7816
-	     t-score:   	                      -27.8164
-	     percentil: 	                        0.0000
-Modularity
-	 Used algorithm:	            LeadingEigenvector
-	 Null model:    	       NullModels.AVERAGE_ROWS
-	 Replicates:    	                           100
-	 Qb value:      	                        0.9566
-	     mean:      	                        0.7767
-	     std:       	                        0.0586
-	     z-score:   	                        3.0687
-	     t-score:   	                       30.6872
-	     percentil: 	                      100.0000
-	 Qr value:      	                        1.0000
-	     mean:      	                        0.8785
-	     std:       	                        0.0961
-	     z-score:   	                        1.2645
-	     t-score:   	                       12.6455
-	     percentil: 	                       81.0000
-Nestedness
-	 Used algorithm:	                NestednessNODF
-	 Null model:    	       NullModels.AVERAGE_ROWS
-	 Replicates:    	                           100
-	 Nestedness value:	                        0.0000
-	     mean:      	                        0.0235
+	     mean:      	                        0.0256
 	     std:       	                        0.0110
-	     z-score:   	                       -2.1473
-	     t-score:   	                      -21.4732
+	     z-score:   	                       -2.3360
+	     t-score:   	                      -23.3600
+	     percentil: 	                        0.0000
+Modularity
+	 Used algorithm:	            LeadingEigenvector
+	 Null model:    	       NullModels.AVERAGE_ROWS
+	 Replicates:    	                           100
+	 Qb value:      	                        0.9566
+	     mean:      	                        0.7756
+	     std:       	                        0.0522
+	     z-score:   	                        3.4662
+	     t-score:   	                       34.6623
+	     percentil: 	                      100.0000
+	 Qr value:      	                        1.0000
+	     mean:      	                        0.8663
+	     std:       	                        0.0830
+	     z-score:   	                        1.6112
+	     t-score:   	                       16.1121
+	     percentil: 	                       87.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	       NullModels.AVERAGE_ROWS
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0000
+	     mean:      	                        0.0237
+	     std:       	                        0.0104
+	     z-score:   	                       -2.2716
+	     t-score:   	                      -22.7156
 	     percentil: 	                        0.0000
 Modularity
 	 Used algorithm:	            LeadingEigenvector
 	 Null model:    	              NullModels.FIXED
 	 Replicates:    	                           100
 	 Qb value:      	                        0.9566
-	     mean:      	                        0.7793
-	     std:       	                        0.0476
-	     z-score:   	                        3.7279
-	     t-score:   	                       37.2794
+	     mean:      	                        0.7659
+	     std:       	                        0.0568
+	     z-score:   	                        3.3587
+	     t-score:   	                       33.5868
 	     percentil: 	                      100.0000
 	 Qr value:      	                        1.0000
-	     mean:      	                        0.8754
-	     std:       	                        0.0845
-	     z-score:   	                        1.4751
-	     t-score:   	                       14.7508
-	     percentil: 	                       84.0000
+	     mean:      	                        0.8515
+	     std:       	                        0.0892
+	     z-score:   	                        1.6647
+	     t-score:   	                       16.6469
+	     percentil: 	                       90.0000
 Nestedness
 	 Used algorithm:	                NestednessNODF
 	 Null model:    	              NullModels.FIXED
 	 Replicates:    	                           100
 	 Nestedness value:	                        0.0000
-	     mean:      	                        0.0251
-	     std:       	                        0.0102
-	     z-score:   	                       -2.4553
-	     t-score:   	                      -24.5533
+	     mean:      	                        0.0254
+	     std:       	                        0.0105
+	     z-score:   	                       -2.4129
+	     t-score:   	                      -24.1286
 	     percentil: 	                        0.0000

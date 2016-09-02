@@ -1,0 +1,130 @@
+Modularity
+	 Used algorithm:	            LeadingEigenvector
+	 Null model:    	       NullModels.EQUIPROBABLE
+	 Replicates:    	                           100
+	 Qb value:      	                        0.9082
+	     mean:      	                        0.6629
+	     std:       	                        0.0746
+	     z-score:   	                        3.2880
+	     t-score:   	                       32.8798
+	     percentil: 	                      100.0000
+	 Qr value:      	                        1.0000
+	     mean:      	                        0.7929
+	     std:       	                        0.1412
+	     z-score:   	                        1.4668
+	     t-score:   	                       14.6676
+	     percentil: 	                       82.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	       NullModels.EQUIPROBABLE
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0000
+	     mean:      	                        0.0483
+	     std:       	                        0.0167
+	     z-score:   	                       -2.8857
+	     t-score:   	                      -28.8565
+	     percentil: 	                        0.0000
+Modularity
+	 Used algorithm:	            LeadingEigenvector
+	 Null model:    	            NullModels.AVERAGE
+	 Replicates:    	                           100
+	 Qb value:      	                        0.9082
+	     mean:      	                        0.6698
+	     std:       	                        0.0892
+	     z-score:   	                        2.6734
+	     t-score:   	                       26.7335
+	     percentil: 	                      100.0000
+	 Qr value:      	                        1.0000
+	     mean:      	                        0.8230
+	     std:       	                        0.1529
+	     z-score:   	                        1.1578
+	     t-score:   	                       11.5778
+	     percentil: 	                       71.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	            NullModels.AVERAGE
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0000
+	     mean:      	                        0.0441
+	     std:       	                        0.0277
+	     z-score:   	                       -1.5892
+	     t-score:   	                      -15.8917
+	     percentil: 	                        0.0000
+Modularity
+	 Used algorithm:	            LeadingEigenvector
+	 Null model:    	       NullModels.AVERAGE_COLS
+	 Replicates:    	                           100
+	 Qb value:      	                        0.9082
+	     mean:      	                        0.6732
+	     std:       	                        0.0788
+	     z-score:   	                        2.9827
+	     t-score:   	                       29.8272
+	     percentil: 	                      100.0000
+	 Qr value:      	                        1.0000
+	     mean:      	                        0.8239
+	     std:       	                        0.1397
+	     z-score:   	                        1.2604
+	     t-score:   	                       12.6035
+	     percentil: 	                       75.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	       NullModels.AVERAGE_COLS
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0000
+	     mean:      	                        0.0502
+	     std:       	                        0.0308
+	     z-score:   	                       -1.6299
+	     t-score:   	                      -16.2993
+	     percentil: 	                        0.0000
+Modularity
+	 Used algorithm:	            LeadingEigenvector
+	 Null model:    	       NullModels.AVERAGE_ROWS
+	 Replicates:    	                           100
+	 Qb value:      	                        0.9082
+	     mean:      	                        0.6548
+	     std:       	                        0.0850
+	     z-score:   	                        2.9788
+	     t-score:   	                       29.7876
+	     percentil: 	                      100.0000
+	 Qr value:      	                        1.0000
+	     mean:      	                        0.7984
+	     std:       	                        0.1467
+	     z-score:   	                        1.3743
+	     t-score:   	                       13.7435
+	     percentil: 	                       80.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	       NullModels.AVERAGE_ROWS
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0000
+	     mean:      	                        0.0502
+	     std:       	                        0.0280
+	     z-score:   	                       -1.7943
+	     t-score:   	                      -17.9433
+	     percentil: 	                        0.0000
+Modularity
+	 Used algorithm:	            LeadingEigenvector
+	 Null model:    	              NullModels.FIXED
+	 Replicates:    	                           100
+	 Qb value:      	                        0.9082
+	     mean:      	                        0.6485
+	     std:       	                        0.0865
+	     z-score:   	                        3.0003
+	     t-score:   	                       30.0026
+	     percentil: 	                      100.0000
+	 Qr value:      	                        1.0000
+	     mean:      	                        0.7979
+	     std:       	                        0.1518
+	     z-score:   	                        1.3310
+	     t-score:   	                       13.3105
+	     percentil: 	                       77.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	              NullModels.FIXED
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0000
+	     mean:      	                        0.0507
+	     std:       	                        0.0313
+	     z-score:   	                       -1.6214
+	     t-score:   	                      -16.2138
+	     percentil: 	                        0.0000

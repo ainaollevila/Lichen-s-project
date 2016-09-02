@@ -5,16 +5,16 @@ for i=53:62
 string = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/mat_pop-%d.csv',i)
 string
 A = csvread(string,1,1)
-size(A) 
-rows = size(A,1)
-cols = size(A,2)
-for j = 1:rows
-    for k=1:cols
-        if A(j,k) > 0
-            A(j,k) = 1
-        end
-    end
-end
+% size(A) 
+% rows = size(A,1)
+% cols = size(A,2)
+% for j = 1:rows
+%     for k=1:cols
+%         if A(j,k) > 0
+%             A(j,k) = 1
+%         end
+%     end
+% end
 bp = Bipartite(A);
 string2 = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/mat_pop-%d_genprop.txt',i)
 diary(string2)
