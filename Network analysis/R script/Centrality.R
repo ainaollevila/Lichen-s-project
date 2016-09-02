@@ -13,13 +13,25 @@ edgelist=web2edges(temp1, webName=NULL, weight.column=TRUE, both.directions=FALS
           return=TRUE, verbose=TRUE)
 
 betweennes_netw = betweenness_w(edgelist,directed=NULL,alpha=1)
-closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
-write.table(betweennes_netw,"/Users/aina/Desktop/prova.txt")
+write.table(betweennes_netw,"/Users/aina/Dropbox/Lichen-s-project/Network analysis/R script/betweenness_scores.txt")
+
+closeness_netw = closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
+write.table(closeness_netw,"/Users/aina/Dropbox/Lichen-s-project/Network analysis/R script/closeness_scores.txt")
+
+
+normalised_degree = ND(temp1, normalised=TRUE)
+ND(temp1, normalised=TRUE)
+write.table(normalised_degree,"/Users/aina/Dropbox/Lichen-s-project/Network analysis/R script/normalised_degree.txt")
+
+#these functions tardan mucho
+BC(temp1,rescale = TRUE, cmode="undirected", weighted=TRUE)
+CC(temp1, cmode="suminvundir", rescale=TRUE, weighted=TRUE)
+
+
+
+
 computeModules(temp1,deep=FALSE,deleteOriginalFiles = TRUE,steps=1000000,tolerance=1e-10,experimental=FALSE)
-
-
-
-
+BC_netw
 sampledata <- rbind(
   c(1,2,1),
   c(1,3,5),
