@@ -1,0 +1,75 @@
+Si tenemos una poblacion P24 con 7 lichenes asi :
+
+List Lichen Algae -- Funghus (L_AF):
+
+1 A_a -- F_a
+2 A_b -- F_b
+3 A_c -- F_c
+4 A_d -- F_d
+5 A_e -- F_e
+6 A_f -- F_f
+7 A_g -- F_g
+
+Digamos que si miramos al nivel genetico : 
+	Fb == Ff == Fg
+	Ae == Ag
+
+Entonces, en nuestro system tenemos 7 lichenes pero solamente 6 unicos genotipo de Algae (que llamaré AMLG_n) y 5 unicos genotipos de Fungi (FMLG_n ). Puedo escribir la listas de lichenes asi : 
+
+
+
+1 A_a (AMLG_a) -- F_a (FMLG_a)   A_a (AMLG_a) -- F_a (FMLG_a)
+2 A_b (AMLG_b) -- F_b (FMLG_b)   A_b (AMLG_b) -- F_b (FMLG_b)
+3 A_c (AMLG_c) -- F_c (FMLG_c)   A_c (AMLG_c) -- F_c (FMLG_c)
+4 A_d (AMLG_d) -- F_d (FMLG_d) = A_d (AMLG_d) -- F_d (FMLG_d) 
+5 A_e (AMLG_e) -- F_e (FMLG_e)   A_e (AMLG_e) -- F_e (FMLG_e)
+6 A_f (AMLG_f) -- F_f (FMLG_f)   A_f (AMLG_f) -- F_f (FMLG_b)
+7 A_g (AMLG_g) -- F_g (FMLG_g)   A_g (AMLG_a) -- F_g (FMLG_b)
+
+Despues ago la matriz de coocurrencia donde cuento cuantas veces un genotipo de un typo interacta con un genotipo de otro. 
+Para hacer eso saco los genotipos que son similares. Me sale dos listas de genotipos unicos : 
+
+List de Genotipocs de Algae (L_AMLG) : 
+
+AMLG_a
+AMLG_b
+AMLG_c
+AMLG_d
+AMLG_e
+AMLG_f
+
+List Genotypos de Fungus (L_FMLG) : 
+
+FMLG_a
+FMLG_b
+FMLG_c
+FMLG_d
+FMLG_e
+
+
+La matriz que queremos hacer es L_AMG x L_FMG :
+
+	FMLG_a FMLG_b FMLG_c FMLG_d FMLG_e
+AMLG_a
+AMLG_b
+AMLG_c
+AMLG_d
+AMLG_e
+AMLG_f
+AMLG_g
+
+
+Como los genotypos en la matriz estan "sorted" de la misma manera que los "lichenes" en la lista inicial (L_AF), la mayor parte del tiempo el primero genotipo de algae y el primero genotipo de Fungu correspondent a los genotypos encontrados en el premiero Lichen. Y entonces es normal que hay algo en este.
+
+En este caso la matriz final estara :
+
+	FMLG_a	FMLG_b	FMLG_c	FMLG_d	FMLG_e
+AMLG_a	1	1	0	0	0	
+AMLG_b	0	1	0	0	0
+AMLG_c	0	0	1	0	0
+AMLG_d	0	0	0	1	0
+AMLG_e	0	0	0	0	1
+AMLG_f	0	1	0	0	0
+
+
+Parece que hay una diagonal pero sale del hecho que el orden usado entre los genotypos y los lichenes e lo mismo.
