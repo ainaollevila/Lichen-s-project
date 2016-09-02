@@ -435,5 +435,6 @@ dev.off()
 })
 
 fulltest=createNetwork(fullD)
-plotNetwork(test)
+write.csv(test,paste("../../data/cooc_mat/mat_fulldataset.csv",sep=""))
+plotNetwork(fulltest)
 }
