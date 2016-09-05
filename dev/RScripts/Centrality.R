@@ -3,6 +3,7 @@ library(vegan)
 library(network)
 library(igraph)
 library(gplots)
+source(clustering.R) ##Load my Rscript (to use plotNetwork)
 
 
 datafolder="../../data/cooc_mat/"
@@ -16,8 +17,6 @@ readMatrix<-function(filename){
 }
 
 
-#Cf difference between :
-#image(temp) and image(temp1)
 
 
 computeForAllPop<-function(){
@@ -47,6 +46,9 @@ computeForAllPop<-function(){
 
 
 temp1=readMatrix("../../data/cooc_mat/mat_fulldataset.csv") #if you don't do something to say that the first clumn of the file is the name of the lines you have a matrix with a first column full of too hig number.
+#Cf difference between :
+#image(temp) and image(temp1)
+plotNetwork(temp1)
 
 
 edgelist=web2edges(temp1, webName=NULL, weight.column=TRUE, both.directions=FALSE,
