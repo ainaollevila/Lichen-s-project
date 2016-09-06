@@ -314,7 +314,7 @@ createNetwork<-function(rwdt){
     fu=apply(fungus,1,paste,collapse="")
     uaid=unique(apply(algae,1,paste,collapse=""))
     ufid=unique(apply(fungus,1,paste,collapse=""))
-    res=cooccurenceMat(rwdt,1,1,groupf=ufid,groupa=uaid)
+    res=cooccurenceMat(rwdt,groupf=ufid,groupa=uaid)
     return(res)
 
 }
@@ -325,7 +325,8 @@ plotpop<-function(d,n,...){
 }
 
 
-cooccurenceMat <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
+##TODO merge this function with createNetwork 
+cooccurenceMat <- function(datas,groupf=c(),groupa=c()){
 
     res=matrix(0,nrow=length(groupf),ncol=length(groupa),dimnames=list(groupf,groupa))
 
@@ -333,21 +334,6 @@ cooccurenceMat <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
 	popiMlgF=paste(datas[i,3:10],collapse="")
 	popiMlgA=paste(datas[i,11:17],collapse="")
 	res[popiMlgF,popiMlgA]=res[popiMlgF,popiMlgA]+1
-
-	#for(j in (i+1):nrow(datas)){
-
-	#    popjMlgF=paste(datas[j,3:10],collapse="")
-	#    popjMlgA=paste(datas[j,11:17],collapse="")
-	#    print(paste(i," - ",j," res=",res[popiMlgF,popiMlgA]))
-	#    print(paste("i:",popiMlgA,popiMlgF))
-	#    print(paste("j:",popjMlgA,popjMlgF))
-
-
-	#    if(popiMlgF == popjMlgF){
-	#	res[popiMlgF,popjMlgA]=res[popiMlgF,popjMlgA]+1
-	#	#	res[popjMlgF,popiMlgA]=res[popjMlgF,popjMlgA]+1
-	#    }
-	#}
     }
     return(res)
 

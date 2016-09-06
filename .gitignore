@@ -4,3 +4,5 @@
 .RData
 .DS_Store
 *.~lock*
+web.pairs
+web-names.lut

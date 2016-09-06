@@ -3,7 +3,8 @@ library(vegan)
 library(network)
 library(igraph)
 library(gplots)
-source(clustering.R) ##Load my Rscript (to use plotNetwork)
+source("clustering.R") ##Load my Rscript (to use plotNetwork)
+options("scipen"=100, "digits"=4)##this is very import as it allow to avoid LOT of problems comming from the fact that will reading the 
 
 
 datafolder="../../data/cooc_mat/"
@@ -18,6 +19,7 @@ readMatrix<-function(filename){
 
 
 
+    loadData() #to population fullD
 
 computeForAllPop<-function(){
     #The idea would be to read each matrix for each pop, compute the different properties as done on the full matrix. 
@@ -25,20 +27,77 @@ computeForAllPop<-function(){
     #And do some stat, ie : among our populations, nodes with Hight centrality are fungal nodes that cover big geographical distance 
     #(if that turns out to be true this would be peferct to show that sexual reproduction is used to interact on bigger distance with different genotypes of algae)
 
-	for(popfile in list.files(datafolder,pattern="mat_pop*")){
-	    print(popfile)
-		 #if you don't do something to say that the first clumn of the file is the name of the lines you have a matrix with a first column full of too hig number.
-		
-		edgelist=web2edges(readMatrix(paste(datafolder,popfile,sep="")), webName=NULL, weight.column=TRUE, both.directions=TRUE,
-		          is.one.mode=FALSE, out.files=c("edges", "names", "groups")[1:2],
-		          return=TRUE, verbose=TRUE)
-		
-		betweennes_netw = betweenness_w(edgelist,directed=NULL,alpha=1)
-		print(max(betweennes_netw[,2]))
-		
-		closeness_netw = closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
-		print(apply(closeness_netw[,2:3],2,max))
-	}
+    ##If the file clustering.R is load, so all the data are in fullD and we can directly generate the matrices without passing through file write. I will store all the matrices in the variable allmatrices doing what follows:
+    allmatrices=sapply(unique(fullD$Population.ID),function(a){
+	   createNetwork(fullD[fullD$Population.ID == a ,])
+	})
+
+    names(allmatrices)=unique(fullD$Population.ID)#then just set the names in the list allmatrices as the population id of eahc pop
+
+   #Now it's far more easier to compute the network properties and store it for every node
+   #and create database
+    wholeset=data.frame()
+
+    sapply(names(allmatrices),function(ind){
+	   mat=allmatrices[[ind]]
+
+	   fungusId=rownames(mat) 
+	   algaeId=colnames(mat) 
+	   coln=c("node_id","type","Population")
+	   alg=cbind.data.frame(algaeId,"A",ind,stringsAsFactors=F)
+	   colnames(alg)=coln
+	   fung=cbind.data.frame(fungusId,"F",ind,stringsAsFactors=F)
+	   colnames(fung)=coln
+	   join=  rbind(alg,fung)
+	   join$node_id=as.character(join$node_id)
+
+	   web2edges(mat,is.one.mode=F,verbose=TRUE,both.directions=T)
+	   edgelist=read.table("web.pairs",sep="\t")
+	   idkeyTable=read.table("web-names.lut",sep="\t",header=T,as.is=2,numerals="no.loss")
+	   ##The read table here is primordial. Without the no.loss (that somehow avoid some cut) lot of errors emerge. The as.is is here jsute to avoid factor and keep number as number.
+
+
+
+	   #compute different metrics
+	   betweenness_netw = betweenness_w(edgelist,directed=NULL,alpha=1)
+	   closeness_netw = closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
+	   #norm_netw=ND(edgelist,normalised=T)
+	   #....
+
+	   #prepare the merging of those metrics
+	   clsn_withid=merge(idkeyTable,closeness_netw,by.x="virtual",by.y="node")
+	   btwn_withid=merge(idkeyTable,betweenness_netw,by.x="virtual",by.y="node")
+
+
+	   #merge it
+	   join=merge(join,btwn_withid[,c("real","betweenness")],by.x="node_id",by.y="real",all.x=T)
+	   join=merge(join,clsn_withid[,c("real","closeness","n.closeness")],by.x="node_id",by.y="real",all.x=T)
+
+	   wholeset<<-rbind(wholeset,join)
+	})
+	#save in a file just in case 
+    write.csv(wholeset,"nodes_with_netmetrics.csv")
+
+    whola=wholeset[wholeset$type=="A",]
+    wholf=wholeset[wholeset$type=="F",]
+    plot(whola$closeness ~ whola$betweenness)
+    points(wholf$closeness ~ wholf$betweenness,col="red")
+
+
+	#for(popfile in list.files(datafolder,pattern="mat_pop*")){
+	#    print(popfile)
+	#	 #if you don't do something to say that the first clumn of the file is the name of the lines you have a matrix with a first column full of too hig number.
+	#	
+	#	edgelist=web2edges(readMatrix(paste(datafolder,popfile,sep="")), webName=NULL, weight.column=TRUE, both.directions=TRUE,
+	#	          is.one.mode=FALSE, out.files=c("edges", "names", "groups")[1:2],
+	#	          return=TRUE, verbose=TRUE)
+	#	
+	#	betweennes_netw = betweenness_w(edgelist,directed=NULL,alpha=1)
+	#	print(max(betweennes_netw[,2]))
+	#	
+	#	closeness_netw = closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
+	#	print(apply(closeness_netw[,2:3],2,max))
+	#}
 
 
 }
