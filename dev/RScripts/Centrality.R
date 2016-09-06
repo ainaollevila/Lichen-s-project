@@ -86,10 +86,10 @@ computeForAllPop<-function(){
 			    gen=n[["node_id"]]
 			    subst=getCorrespLichens(rawdata=fullD,pop=ind,type=n[["type"]],genotype=gen)
 			    dist_mat=dist(subst[,c("x","y")])
-			    c(mean(dist_mat), min(dist_mat),max(dist_mat),sd(dist_mat))
+			    c(mean(dist_mat), median(dist_mat),mad(dist_mat),min(dist_mat),max(dist_mat),sd(dist_mat))
 	})
 	   spatial=t(spatial)
-	   colnames(spatial)=c("mean_dist","min_dist","max_dist","sd_dist")
+	   colnames(spatial)=c("mean_dist","median_dist","mad","min_dist","max_dist","sd_dist")
 	
 	   join=cbind(join,spatial)
 	   #norm_netw=ND(edgelist,normalised=T)
@@ -114,11 +114,18 @@ computeForAllPop<-function(){
     wholf=wholeset[wholeset$type=="F",]
     plot(whola$closeness ~ whola$betweenness)
     points(wholf$closeness ~ wholf$betweenness,col="red")
-    plot(whola$betweenness ~whola$max_dist,log= "x")
-    points(wholf$betweenness ~wholf$max_dist,col="red")
+    plot(whola$betweenness ~whola$mad,log= "x")
+    points(wholf$betweenness ~wholf$mad,col="red")
     plot(whola$closeness ~whola$max_dist)
     points(wholf$closeness ~wholf$max_dist,col="red")
+    rang=(wholeset$max_dist - wholeset$min_dist)
+    ranga=(whola$max_dist - whola$min_dist)
+    plot(whola$betweenness ~ranga,log="x")
+    rangf=(wholf$max_dist - wholf$min_dist)
+    points(wholf$betweenness ~ rangf,col="red" )
+    
 
+    plot(wholeset$mad[wholeset$mad>0] ~wholeset$closeness[wholeset$mad>0])
 }
 
 
