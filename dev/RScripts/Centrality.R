@@ -3,14 +3,12 @@ library(vegan)
 library(network)
 library(igraph)
 library(gplots)
-source("clustering.R") ##Load my Rscript (to use plotNetwork)
+
+source("clustering.R") ##Load my Rscript (to use plotNetwork() and loadData()
 options("scipen"=100, "digits"=4)##this is very import as it allow to avoid LOT of problems comming from the fact that will reading the 
 
 
-datafolder="../../data/cooc_mat/"
-
-temp=read.csv(paste(datafolder,"mat_fulldataset.csv",sep=""), header=TRUE, sep = ",") #this relative adress will be good for every body willing to use the script 
-
+#A simple function that should be avoid by using read.table and the right set of option (such as as.is and noloss
 readMatrix<-function(filename){
     temp=read.csv(filename, header = TRUE, sep = ",") #this relative adress will be good for every body willing to use the script 
     temp1=temp[,2:ncol(temp)]
@@ -19,7 +17,6 @@ readMatrix<-function(filename){
 
 
 
-    loadData() #to population fullD
 
 computeForAllPop<-function(){
     #The idea would be to read each matrix for each pop, compute the different properties as done on the full matrix. 
@@ -28,6 +25,7 @@ computeForAllPop<-function(){
     #(if that turns out to be true this would be peferct to show that sexual reproduction is used to interact on bigger distance with different genotypes of algae)
 
     ##If the file clustering.R is load, so all the data are in fullD and we can directly generate the matrices without passing through file write. I will store all the matrices in the variable allmatrices doing what follows:
+    loadData() #to population fullD
     allmatrices=sapply(unique(fullD$Population.ID),function(a){
 	   createNetwork(fullD[fullD$Population.ID == a ,])
 	})
@@ -54,8 +52,7 @@ computeForAllPop<-function(){
 	   web2edges(mat,is.one.mode=F,verbose=TRUE,both.directions=T)
 	   edgelist=read.table("web.pairs",sep="\t")
 	   idkeyTable=read.table("web-names.lut",sep="\t",header=T,as.is=2,numerals="no.loss")
-	   ##The read table here is primordial. Without the no.loss (that somehow avoid some cut) lot of errors emerge. The as.is is here jsute to avoid factor and keep number as number.
-
+	   ##The read table here is primordial. Without the no.loss (that somehowe avoid some cut when the integer is computed) lot of errors emerge. The as.is is here jsute to avoid factor and keep number as number.
 
 
 	   #compute different metrics
@@ -83,31 +80,18 @@ computeForAllPop<-function(){
     plot(whola$closeness ~ whola$betweenness)
     points(wholf$closeness ~ wholf$betweenness,col="red")
 
-
-	#for(popfile in list.files(datafolder,pattern="mat_pop*")){
-	#    print(popfile)
-	#	 #if you don't do something to say that the first clumn of the file is the name of the lines you have a matrix with a first column full of too hig number.
-	#	
-	#	edgelist=web2edges(readMatrix(paste(datafolder,popfile,sep="")), webName=NULL, weight.column=TRUE, both.directions=TRUE,
-	#	          is.one.mode=FALSE, out.files=c("edges", "names", "groups")[1:2],
-	#	          return=TRUE, verbose=TRUE)
-	#	
-	#	betweennes_netw = betweenness_w(edgelist,directed=NULL,alpha=1)
-	#	print(max(betweennes_netw[,2]))
-	#	
-	#	closeness_netw = closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
-	#	print(apply(closeness_netw[,2:3],2,max))
-	#}
-
-
 }
 
 
 
+datafolder="../../data/cooc_mat/"
+
+temp=read.csv(paste(datafolder,"mat_fulldataset.csv",sep=""), header=TRUE, sep = ",") #this relative adress will be good for every body willing to use the script 
+
 temp1=readMatrix("../../data/cooc_mat/mat_fulldataset.csv") #if you don't do something to say that the first clumn of the file is the name of the lines you have a matrix with a first column full of too hig number.
 #Cf difference between :
 #image(temp) and image(temp1)
-plotNetwork(temp1)
+plotNetwork(temp)
 
 
 edgelist=web2edges(temp1, webName=NULL, weight.column=TRUE, both.directions=FALSE,
