@@ -129,12 +129,12 @@ to go
   ]
 
   ask algae [
-    let inc_prob 1
+    let inc_prob 2
     ifelse NOT captured? [
       set heading heading + random 360
       fd 0.1
     ][
-      set inc_prob 2
+      set inc_prob 1
     ]
 
     if random-float 1.0 <= inc_prob * prob-duplication-alga * (1 - (count algae-here / (5000 / (world-width * world-height)))) [
@@ -318,7 +318,7 @@ to display-bipartite-network
     set counter counter + 1
   ]
 
-  file-open t2-file
+  file-open t1-file
   while [NOT file-at-end?] [
     let ki file-read
     let ko file-read
@@ -334,7 +334,7 @@ to display-bipartite-network
   repeat 1 [ layout-spring turtles links 0.2 1 10 ]
 
   file-close
-  file-open "data/cooccurence_matrix2.csv"
+  file-open "data/cooccurence_matrix1.csv"
   set comat matrix:make-constant (2 ^ tag-length) (2 ^ tag-length) 0
 
   ask turtles with [color = green][
@@ -437,7 +437,7 @@ CHOOSER
 lich-function
 lich-function
 "linear" "michaelis-menten" "sigmoid"
-1
+2
 
 BUTTON
 838
