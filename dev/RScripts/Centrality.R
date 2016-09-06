@@ -16,6 +16,24 @@ readMatrix<-function(filename){
 }
 
 
+getCorrespLichens <- function(rawdata,genotype,type,pop=""){
+    print(genotype)
+    print(type)
+    print(pop)
+    res=rawdata
+    if(pop!=""){res=res[res$Population.ID == pop,]}
+
+    if(type=="A"){
+	res=res[as.character(apply(res[,11:17],1,paste,collapse="")) == as.character(genotype),]
+    }
+
+    if(type=="F"){
+	res=res[as.character(apply(res[,3:10],1,paste,collapse="")) == as.character(genotype),]
+    }
+    return(res)
+}
+
+
 
 
 computeForAllPop<-function(){
@@ -35,8 +53,9 @@ computeForAllPop<-function(){
    #Now it's far more easier to compute the network properties and store it for every node
    #and create database
     wholeset=data.frame()
-
     sapply(names(allmatrices),function(ind){
+
+	#   ind="15"
 	   mat=allmatrices[[ind]]
 
 	   fungusId=rownames(mat) 
@@ -55,9 +74,24 @@ computeForAllPop<-function(){
 	   ##The read table here is primordial. Without the no.loss (that somehowe avoid some cut when the integer is computed) lot of errors emerge. The as.is is here jsute to avoid factor and keep number as number.
 
 
+	   
 	   #compute different metrics
 	   betweenness_netw = betweenness_w(edgelist,directed=NULL,alpha=1)
 	   closeness_netw = closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
+
+
+	   #compute matrix of spatial distance beetween every similar MLG
+		      
+	   spatial=apply(join,1,function(n){
+			    gen=n[["node_id"]]
+			    subst=getCorrespLichens(rawdata=fullD,pop=ind,type=n[["type"]],genotype=gen)
+			    dist_mat=dist(subst[,c("x","y")])
+			    c(mean(dist_mat), min(dist_mat),max(dist_mat),sd(dist_mat))
+	})
+	   spatial=t(spatial)
+	   colnames(spatial)=c("mean_dist","min_dist","max_dist","sd_dist")
+	
+	   join=cbind(join,spatial)
 	   #norm_netw=ND(edgelist,normalised=T)
 	   #....
 
@@ -75,10 +109,15 @@ computeForAllPop<-function(){
 	#save in a file just in case 
     write.csv(wholeset,"nodes_with_netmetrics.csv")
 
+    wholeset[is.na(wholeset)]=0
     whola=wholeset[wholeset$type=="A",]
     wholf=wholeset[wholeset$type=="F",]
     plot(whola$closeness ~ whola$betweenness)
     points(wholf$closeness ~ wholf$betweenness,col="red")
+    plot(whola$betweenness ~whola$max_dist,log= "x")
+    points(wholf$betweenness ~wholf$max_dist,col="red")
+    plot(whola$closeness ~whola$max_dist)
+    points(wholf$closeness ~wholf$max_dist,col="red")
 
 }
 
