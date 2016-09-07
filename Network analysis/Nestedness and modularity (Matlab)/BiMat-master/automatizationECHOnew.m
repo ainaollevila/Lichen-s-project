@@ -7,10 +7,35 @@ string = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/matrix%d.txt',i)
 %A = csvread(string)
 A = importdata(string)
 %%
-for i=1:8
-string = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/m%d.txt',i)
-string
+
+path = '/Users/aina/Dropbox/Lichen-s-project/dev/data/Simon'
+%%
+myFolderInfo = dir ('/Users/aina/Dropbox/Lichen-s-project/dev/data/Simon/')
+
+
+
+myFolderInfo(3).name
+%%
+
+
+stringlist = sprintf('%s/fileslist.txt',path)
+diary(stringlist)
+diary on
+for i=4:196
+    i
+    myFolderInfo(i).name
+end
+diary off
+
+
+%%
+
+for i=4:196
+string = sprintf('%s/%s',path,myFolderInfo(i).name)
+%string = sprintf('%s/m%d.txt',path,i)
+
 A = importdata(string)
+
 %A = csvread(string,1,1)
 % size(A) 
 % rows = size(A,1)
@@ -23,7 +48,7 @@ A = importdata(string)
 %     end
 % end
 bp = Bipartite(A);
-string2 = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/mat%d_genprop.txt',i)
+string2 = sprintf('%s/mat%d_genprop.txt',path,i)
 diary(string2)
 bp.printer.PrintGeneralProperties();
 
@@ -37,7 +62,7 @@ diary on
 bp.printer.PrintStructureValues();
 diary off
 
-string_fig1 = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/mat%d_fig1.pdf',i)
+string_fig1 = sprintf('%s/mat%d_fig1.pdf',path,i)
 figure(1);
 %set(gcf,'Position',[0 72 1751 922]);
 bp.plotter.use_type_interaction = true;
@@ -49,7 +74,7 @@ print(string_fig1,'-dpdf')
 close
 
 figure(2);
-string_fig2 = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/mat%d_fig2.pdf',i)
+string_fig2 = sprintf('%s/mat%d_fig2.pdf',path,i)
 %set(gcf,'Position',[0+50 72 932 922]);
 bp.plotter.use_isocline = true;
 bp.plotter.isocline_color = 'red';
@@ -58,7 +83,7 @@ print(string_fig2,'-dpdf')
 close
 
 figure(3);
-string_fig3 = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/mat%d_fig3.pdf',i)
+string_fig3 = sprintf('%s/mat%d_fig3.pdf',path,i)
 %set(gcf,'Position',[0+100 72 1754 922]);
 subplot(1,2,1);
 bp.community = LPBrim(bp.matrix);
@@ -74,7 +99,7 @@ print(string_fig3,'-dpdf')
 close
 
 figure(4);
-string_fig4 = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/mat%d_fig4.pdf',i)
+string_fig4 = sprintf('%s/mat%d_fig4.pdf',path,i)
 
 %set(gcf,'Position',[0+150 72 1754 922]);
 bp.community = LeadingEigenvector(bp.matrix);
@@ -98,19 +123,20 @@ close
 
 figure(6);
 %set(gcf,'Position',[19+800 72 932 922]);
-string_fig6 = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/mat%d_fig6.pdf',i)
+string_fig6 = sprintf('%s/mat%d_fig6.pdf',path,i)
 bp.plotter.PlotModularGraph();
 print(string_fig6,'-dpdf')
 close
 
 %Statistics
-string_statistics = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/mat%d_Statistics.txt',i)
+string_statistics = sprintf('%s/mat%d_Statistics.txt',path,i)
 diary(string_statistics)
 diary off
 bp.statistics.DoCompleteAnalysis(100, @NullModels.EQUIPROBABLE);
 diary on
 bp.printer.PrintStructureStatistics();
-
+end 
+%%
 diary off
 bp.statistics.DoCompleteAnalysis(100, @NullModels.AVERAGE);
 diary on
@@ -132,4 +158,4 @@ diary on
 bp.printer.PrintStructureStatistics();
 diary off
 
-end
+%end
