@@ -2,8 +2,9 @@ globals [
   tag-length
 
   prob-duplication-lichen
-  prob-duplication-fungus
+  ;prob-duplication-fungus
   prob-duplication-alga
+  prob-escape-alga
 
   prob-death-lichen
   prob-death-fungus
@@ -31,10 +32,10 @@ breed [algae alga]
 breed [lichens lichen]
 
 fungi-own [tag sex]
-algae-own [tag captured?]
-lichens-own [tag]
+algae-own [tag]
+lichens-own [tag1 tag2]
 
-turtles-own[id]
+turtles-own [id]
 
 to setup
   clear-all
@@ -42,11 +43,10 @@ to setup
   set tag-length 11
 
   set prob-duplication-lichen 0.01
-  set prob-duplication-fungus 0.005
-  set prob-duplication-alga 0.01
-  set t1-file "data/data_observed_pairs_t1.csv"
-  set t2-file "data/data_observed_pairs_t2.csv"
-  file-open t1-file
+  ;set prob-duplication-fungus 0.01
+  set prob-duplication-alga 0.005
+  set prob-escape-alga 0.01
+
   set prob-death-lichen 0.001
   set prob-death-fungus 0.001
   set prob-death-alga 0.0001
@@ -60,7 +60,7 @@ to setup
 
   set-default-shape turtles "circle"
 
-  create-fungi 1000 [
+  create-fungi 300 [
     set color brown
     set size 0.5
     setxy random-float max-pxcor random-float max-pycor
@@ -70,8 +70,7 @@ to setup
     ;set label tag
   ]
 
-  create-algae 1000 [
-    set captured? FALSE
+  create-algae 300 [
     set color green
     set size 0.5
     setxy random-float max-pxcor random-float max-pycor
@@ -114,32 +113,27 @@ to go
       ]
     ][
       set lichenization FALSE
-      let my-tag tag
-      if any? algae-here with [captured? = FALSE] [
-        ask one-of algae-here with [captured? = FALSE] [
-          if lichenization-function my-tag tag [
+      let my-tag1 tag
+      let my-tag2 tag
+      if any? algae-here [
+        ask one-of algae-here [
+          if lichenization-function my-tag1 tag [
             set lichenization TRUE
-            set captured? TRUE
+            set my-tag2 tag
+            die
           ]
         ]
       ]
-      if lichenization = TRUE [hatch-lichens 1 [set size 0.5 set color orange]]
+      if lichenization = TRUE [hatch-lichens 1 [set tag1 my-tag1 set tag2 my-tag2 set size 0.5 set color orange] die]
       if random-float 1.0 <= prob-death-fungus [die]
     ]
   ]
 
   ask algae [
-    let inc_prob 2
-    ifelse NOT captured? [
-      set heading heading + random 360
-      fd 0.1
-    ][
-      set inc_prob 1
-    ]
-
-    if random-float 1.0 <= inc_prob * prob-duplication-alga * (1 - (count algae-here / (5000 / (world-width * world-height)))) [
+    set heading heading + random 360
+    fd 0.03
+    if random-float 1.0 <= prob-duplication-alga * (1 - (count algae-here / (5000 / (world-width * world-height)))) [
       hatch 1 [
-        set captured? FALSE
         if random-float 1.0 <= prob-mutation-alga [
           let l random tag-length
           set tag replace-item l tag (1 - item l tag)
@@ -148,12 +142,27 @@ to go
       ]
     ]
 
-    if random-float 1.0 <= prob-death-alga AND captured? = FALSE [die]
+    if random-float 1.0 <= prob-death-alga * (count algae-here / (5000 / (world-width * world-height))) [die]
   ]
 
   ask lichens [
+    if random-float 1.0 <= prob-escape-alga * (1 - (count algae-here / (5000 / (world-width * world-height)))) [
+      let my-tag2 tag2
+      hatch-algae 1 [
+        set tag my-tag2
+        if random-float 1.0 <= prob-mutation-alga [
+          let l random tag-length
+          set tag replace-item l tag (1 - item l tag)
+          ;set label tag
+        ]
+        set size 0.5
+        set color green
+      ]
+    ]
     if random-float 1.0 <= prob-duplication-fungus * (1 - (count lichens-here / (5000 / (world-width * world-height)))) [
+      let my-tag1 tag1
       hatch-fungi 1 [
+        set tag my-tag1
         set sex random 2
         if random-float 1.0 <= prob-mutation-fungus [
           let l random tag-length
@@ -167,51 +176,36 @@ to go
     if random-float 1.0 <= prob-duplication-lichen * (1 - (count lichens-here / (5000 / (world-width * world-height)))) [
       let newx xcor + random-float 0.5 - 0.25
       let newy ycor + random-float 0.5 - 0.25
-      ask one-of algae-here with [captured? = true] [
-        hatch 1 [
-          setxy newx newy
-          set captured? TRUE
-          if random-float 1.0 <= prob-mutation-alga [
-            let l random tag-length
-            set tag replace-item l tag (1 - item l tag)
-            ;set label tag
-          ]
-        ]
-      ]
       hatch 1 [
         setxy newx newy
+        if random-float 1.0 <= prob-mutation-alga [
+          let l random tag-length
+          set tag2 replace-item l tag2 (1 - item l tag2)
+          ;set label tag
+        ]
         if random-float 1.0 <= prob-mutation-fungus [
           let l random tag-length
-          set tag replace-item l tag (1 - item l tag)
+          set tag1 replace-item l tag1 (1 - item l tag1)
           ;set label tag
         ]
       ]
     ]
 
     if random-float 1.0 <= prob-death-lichen * (count lichens-here / (5000 / (world-width * world-height))) [
-      ask one-of algae-here with [captured? = TRUE][die]
       die
     ]
   ]
 
-  plotting
-  if (ticks / 100 = int(ticks / 100) AND ticks > 10000 AND ticks < 15000) [
+  ;plotting
+  if (ticks / 5000 = int(ticks / 5000) AND ticks < 46000) [
+    let w (word "data/mutualism_" lich-function "_" ticks "ticks_" (prob-duplication-fungus * 100) "sexualreproduction_replicateA.dat")
+    file-open w
     snapshot-data
-  ]
-
-  if ticks = 16000 [
     file-close
-    file-open t2-file
   ]
 
-  if (ticks / 100 = int(ticks / 100) AND ticks > 100000 AND ticks < 105000) [
-    snapshot-data2
-  ]
-
-  if ticks = 106000 [
-    file-close
-    stop
-  ]
+  ;STOP CONDITION IF YOU ARE NOT USING THE BEHAVIOR SPACE
+  if ticks = 46000 [stop]
 
   tick
 end
@@ -232,31 +226,17 @@ to plotting
   ]
 
   ask lichens [
-    let genotype item 0 tag + 2 * item 1 tag + 4 * item 2 tag + 8 * item 3 tag + 16 * item 4 tag + 32 * item 5 tag + 64 * item 6 tag + 128 * item 7 tag + 256 * item 8 tag + 512 * item 9 tag + 1024 * item 10 tag
+    let genotype item 0 tag1 + 2 * item 1 tag1 + 4 * item 2 tag1 + 8 * item 3 tag1 + 16 * item 4 tag1 + 32 * item 5 tag1 + 64 * item 6 tag1 + 128 * item 7 tag1 + 256 * item 8 tag1 + 512 * item 9 tag1 + 1024 * item 10 tag1
     set lichens-genotype-list fput genotype lichens-genotype-list
   ]
 end
 
 to snapshot-data
-  ask algae with [captured? = TRUE][
-    let genotype1 item 0 tag + 2 * item 1 tag + 4 * item 2 tag + 8 * item 3 tag + 16 * item 4 tag + 32 * item 5 tag + 64 * item 6 tag + 128 * item 7 tag + 256 * item 8 tag + 512 * item 9 tag + 1024 * item 10 tag
-    let genotype2 0
-    ask one-of lichens-here [
-      set genotype2 item 0 tag + 2 * item 1 tag + 4 * item 2 tag + 8 * item 3 tag + 16 * item 4 tag + 32 * item 5 tag + 64 * item 6 tag + 128 * item 7 tag + 256 * item 8 tag + 512 * item 9 tag + 1024 * item 10 tag
-    ]
-    let w (word genotype1 " " genotype2)
-    file-print w
-  ]
-end
+  ask lichens [
+    let genotype1 item 0 tag1 + 2 * item 1 tag1 + 4 * item 2 tag1 + 8 * item 3 tag1 + 16 * item 4 tag1 + 32 * item 5 tag1 + 64 * item 6 tag1 + 128 * item 7 tag1 + 256 * item 8 tag1 + 512 * item 9 tag1 + 1024 * item 10 tag1
+    let genotype2 item 0 tag2 + 2 * item 1 tag2 + 4 * item 2 tag2 + 8 * item 3 tag2 + 16 * item 4 tag2 + 32 * item 5 tag2 + 64 * item 6 tag2 + 128 * item 7 tag2 + 256 * item 8 tag2 + 512 * item 9 tag2 + 1024 * item 10 tag2
 
-to snapshot-data2
-  ask algae with [captured? = TRUE][
-    let genotype1 item 0 tag + 2 * item 1 tag + 4 * item 2 tag + 8 * item 3 tag + 16 * item 4 tag + 32 * item 5 tag + 64 * item 6 tag + 128 * item 7 tag + 256 * item 8 tag + 512 * item 9 tag + 1024 * item 10 tag
-    let genotype2 0
-    ask one-of lichens-here [
-      set genotype2 item 0 tag + 2 * item 1 tag + 4 * item 2 tag + 8 * item 3 tag + 16 * item 4 tag + 32 * item 5 tag + 64 * item 6 tag + 128 * item 7 tag + 256 * item 8 tag + 512 * item 9 tag + 1024 * item 10 tag
-    ]
-    let w (word genotype1 " " genotype2)
+    let w (word genotype1 ", " genotype2 ", " (int(100 * xcor)/ 100) ", " (int(100 * ycor)/ 100) ",")
     file-print w
   ]
 end
@@ -318,7 +298,7 @@ to display-bipartite-network
     set counter counter + 1
   ]
 
-  file-open t1-file
+  file-open t2-file
   while [NOT file-at-end?] [
     let ki file-read
     let ko file-read
@@ -334,7 +314,7 @@ to display-bipartite-network
   repeat 1 [ layout-spring turtles links 0.2 1 10 ]
 
   file-close
-  file-open "data/cooccurence_matrix1.csv"
+  file-open "data/cooccurence_matrix2.csv"
   set comat matrix:make-constant (2 ^ tag-length) (2 ^ tag-length) 0
 
   ask turtles with [color = green][
@@ -351,8 +331,8 @@ end
 GRAPHICS-WINDOW
 8
 10
-426
-449
+506
+529
 -1
 -1
 8.0
@@ -366,9 +346,9 @@ GRAPHICS-WINDOW
 1
 1
 0
-50
+60
 0
-50
+60
 0
 0
 1
@@ -410,10 +390,10 @@ NIL
 1
 
 PLOT
-529
-58
-1057
-311
+576
+130
+1104
+383
 Genotypes density in the population
 NIL
 NIL
@@ -457,10 +437,10 @@ NIL
 1
 
 PLOT
-529
-314
-1058
-552
+576
+386
+1105
+624
 population size
 time
 individue count
@@ -475,6 +455,21 @@ PENS
 "algae" 1.0 0 -10899396 true "" "if ticks / 100 = int (ticks / 100) [plot count algae]"
 "fungi" 1.0 0 -6459832 true "" "if ticks / 100 = int (ticks / 100) [plot count fungi]"
 "lichen" 1.0 0 -955883 true "" "if ticks / 100 = int (ticks / 100) [plot count lichens]"
+
+SLIDER
+839
+46
+1027
+79
+prob-duplication-fungus
+prob-duplication-fungus
+0
+10
+0.01
+0.17
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -823,6 +818,24 @@ NetLogo 5.3.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="36000"/>
+    <enumeratedValueSet variable="lich-function">
+      <value value="&quot;sigmoid&quot;"/>
+      <value value="&quot;michaelis-menten&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="prob-duplication-fungus">
+      <value value="0.01"/>
+      <value value="0.05"/>
+      <value value="0.1"/>
+      <value value="0.5"/>
+      <value value="1"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
