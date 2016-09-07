@@ -8,9 +8,8 @@ string = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/matrix%d.txt',i)
 A = importdata(string)
 %%
 for i=1:8
-string = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/m%d.txt',i)
-string
-A = importdata(string)
+%string = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/cooccurence_matrix%d.csv',i)
+%string
 %A = csvread(string,1,1)
 % size(A) 
 % rows = size(A,1)
