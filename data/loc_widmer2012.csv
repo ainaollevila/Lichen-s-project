@@ -1,4 +1,4 @@
-Country,Population code,Nearby locality,Collector*,Latitude (N),Longitude (E),Samples analysed (total),Unique fungal-algal MLGs
+Country,Population,Nearby_locality,Collector,Latitude,Longitude,tot_samples_analysed,Unique_fungal_algal_MLGs
 Albania,ALB,Llogarase,"14,43,46",40.21,19.58,14,12
 Austria,A2,Vorderer Gosausee,37,47.53,13.52,38,29
 Belgium,BE,Etalle,62,49.68,5.60,20,10

@@ -21,7 +21,7 @@ getCorrespLichens <- function(rawdata,genotype,type,pop=""){
     print(type)
     print(pop)
     res=rawdata
-    if(pop!=""){res=res[res$Population.ID == pop,]}
+    if(pop!=""){res=res[res$Population == pop,]}
 
     if(type=="A"){
 	res=res[as.character(apply(res[,11:17],1,paste,collapse="")) == as.character(genotype),]
@@ -44,11 +44,9 @@ computeForAllPop<-function(){
 
     ##If the file clustering.R is load, so all the data are in fullD and we can directly generate the matrices without passing through file write. I will store all the matrices in the variable allmatrices doing what follows:
     loadData() #to population fullD
-    allmatrices=sapply(unique(fullD$Population.ID),function(a){
-	   createNetwork(fullD[fullD$Population.ID == a ,])
-	})
+    allmatrices=sapply(unique(fullD$Population),function(a){createNetwork(fullD[fullD$Population == a ,])})
 
-    names(allmatrices)=unique(fullD$Population.ID)#then just set the names in the list allmatrices as the population id of eahc pop
+    names(allmatrices)=unique(fullD$Population)#then just set the names in the list allmatrices as the population id of eahc pop
 
    #Now it's far more easier to compute the network properties and store it for every node
    #and create database

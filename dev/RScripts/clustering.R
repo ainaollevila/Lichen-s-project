@@ -8,14 +8,14 @@ fullD=NULL
 fullW=NULL
 
 loadData<-function(){
-    rawdataW=read.csv("../../data/Widmer et al_2012.xlsx",sep='\t')
+    rawdataW=read.csv("../../data/Widmer et al_2012.xlsx")
     locW=read.csv("../../data/loc_widmer2012.csv")
 
-    fullW<<-merge(rawdataW,locW,by.x="Population",by.y="Population.code")
+    fullW<<-merge(rawdataW,locW,by="Population")
 
-    rawdataD=read.csv("../../data/DalGrande_et_al_2012.csv",sep='\t')
+    rawdataD=read.csv("../../data/DalGrande_et_al_2012.csv")
     locD=read.csv("../../data/loc_dalgrande2012.csv")
-    fullD<<-merge(rawdataD,locD,by.x="Population.ID",by.y="Population.n..")
+    fullD<<-merge(rawdataD,locD,by="Population")
 }
 
 
@@ -67,13 +67,13 @@ oldstuf <- function(){
     usaid=apply(algae,1,paste,collapse="")
     cooccurenceMat(rawdata,groupf=ufid,groupa=uaid)
 
-    algae=t(sapply(unique(rawdata$Population.ID),function(i){
-		   apply(rawdata[rawdata$Population.ID==i,3:11],2,mean)
+    algae=t(sapply(unique(rawdata$Population),function(i){
+		   apply(rawdata[rawdata$Population==i,3:11],2,mean)
 
 }))
 
-    fungus=t(sapply(unique(rawdata$Population.ID),function(i){
-		    apply(rawdata[rawdata$Population.ID==i,12:17],2,mean)
+    fungus=t(sapply(unique(rawdata$Population),function(i){
+		    apply(rawdata[rawdata$Population==i,12:17],2,mean)
 
 }))
 
@@ -153,7 +153,7 @@ buildRel<- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
 #Compute the matrix by checking if the difference is less thatn a certain value
 cooccurenceMatTocheck <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()){
     if(length(groupa)==0){
-	groupa=as.character(unique(datas$Sample.ID))
+	groupa=as.character(unique(datas$Sample))
 	groupf=groupa
     }
     res=matrix(0,nrow=length(groupf),ncol=length(groupa),dimnames=list(groupf,groupa))
@@ -295,8 +295,8 @@ readMat <- function(filename){
 
 plotSample<-function(data,...){
 
-    colscale=topo.colors(length(unique(data$Population.ID)))
-    names(colscale)=unique(data$Population.ID)
+    colscale=topo.colors(length(unique(data$Population)))
+    names(colscale)=unique(data$Population)
     plot(data$Longitude..E.,data$Latitude..N.,col=colscale[data$Population],...)
 
 }
@@ -320,7 +320,7 @@ createNetwork<-function(rwdt){
 }
 
 plotpop<-function(d,n,...){
-    curpop=d[d$Population.ID == n,]
+    curpop=d[d$Population == n,]
     plot(curpop$x,curpop$y)
 }
 
@@ -347,8 +347,8 @@ main<-function(){
     plotpop(fullD,2)
     a=15
 
-    sapply(unique(fullD$Population.ID),function(a){
-	   test=createNetwork(fullD[fullD$Population.ID == a ,])
+    sapply(unique(fullD$Population),function(a){
+	   test=createNetwork(fullD[fullD$Population == a ,])
 	   write.csv(test,paste("../../data/cooc_mat/mat_pop-",a,".csv",sep=""))
 	   png(paste("../../data/cooc_mat/bipartite_pop-",a,".png",sep=""),height=600,width=900)
 	   plotNetwork(test,main=paste("../../data/cooc_mat/Population",a))

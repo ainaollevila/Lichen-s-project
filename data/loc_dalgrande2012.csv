@@ -1,4 +1,4 @@
-Country,Nearby locality,Population n°.,Collector*,Latitude (N),Longitude (E),No. of samples,Fungus,Alga,Combined
+Country,Nearby_locality,Population,Collector,Latitude,Longitude,No_of_samples,Fungus,Alga,Combined
 Canada,Fourth Pond,1,"2,26",46.34,-53.44,27,26,27,27
 Croatia,Sedmina,31,"26,27,28,29",43.34,17.05,27,16,20,21
 Croatia,Krasno Polje,32,"26,28",44.84,14.99,22,17,20,20
