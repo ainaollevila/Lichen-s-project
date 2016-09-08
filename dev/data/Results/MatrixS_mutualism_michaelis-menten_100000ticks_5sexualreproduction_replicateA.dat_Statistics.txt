@@ -4,15 +4,15 @@ Modularity
 	 Replicates:    	                           100
 	 Qb value:      	                        0.7348
 	     mean:      	                        0.6208
-	     std:       	                        0.0040
-	     z-score:   	                       28.3705
-	     t-score:   	                      283.7051
+	     std:       	                        0.0047
+	     z-score:   	                       24.4590
+	     t-score:   	                      244.5904
 	     percentil: 	                      100.0000
 	 Qr value:      	                        0.5928
-	     mean:      	                        0.3539
-	     std:       	                        0.0119
-	     z-score:   	                       20.1385
-	     t-score:   	                      201.3850
+	     mean:      	                        0.3525
+	     std:       	                        0.0145
+	     z-score:   	                       16.5655
+	     t-score:   	                      165.6550
 	     percentil: 	                      100.0000
 Nestedness
 	 Used algorithm:	                NestednessNODF
@@ -21,13 +21,13 @@ Nestedness
 	 Nestedness value:	                        0.0120
 	     mean:      	                        0.0051
 	     std:       	                        0.0001
-	     z-score:   	                       65.1362
-	     t-score:   	                      651.3624
+	     z-score:   	                       64.1074
+	     t-score:   	                      641.0743
 	     percentil: 	                      100.0000
 
 string =
 
-/Users/aina/Dropbox/Lichen-s-project/dev/data/Matrices/MatrixS_mutualism_michaelis-menten_100000ticks_10sexualreproduction_replicateA.dat
+/Users/aina/Dropbox/Lichen-s-project/dev/data/Matrices/MatrixS_mutualism_michaelis-menten_10000ticks_100sexualreproduction_replicateA.dat
 
 
 A =
@@ -18707,5 +18707,5 @@ A =
 
 string2 =
 
-/Users/aina/Dropbox/Lichen-s-project/dev/data/Results/MatrixS_mutualism_michaelis-menten_100000ticks_10sexualreproduction_replicateA.dat_genprop.txt
+/Users/aina/Dropbox/Lichen-s-project/dev/data/Results/MatrixS_mutualism_michaelis-menten_10000ticks_100sexualreproduction_replicateA.dat_genprop.txt
 
