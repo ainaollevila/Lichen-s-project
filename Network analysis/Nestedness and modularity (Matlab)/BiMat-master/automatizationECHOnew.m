@@ -15,10 +15,10 @@ myFolderInfo = dir ('/Users/aina/Dropbox/Lichen-s-project/dev/data/Matrices')
 
 myFolderInfo(203).name
 %%
-stringlist = sprintf('%s/fileslist.txt',path)
+stringlist = sprintf('%s/fileslist.txt',path_data)
 diary(stringlist)
 diary on
-for i=4:196
+for i=3:203
     i
     myFolderInfo(i).name
 end
@@ -27,7 +27,7 @@ diary off
 
 %%
 
-for i=4:203
+for i=17:203
 string = sprintf('%s/%s',path_data,myFolderInfo(i).name)
 %string = sprintf('%s/m%d.txt',path,i)
 
@@ -125,6 +125,8 @@ bp.plotter.PlotModularGraph();
 print(string_fig6,'-dpdf')
 close
 
+end
+%%
 %Statistics
 string_statistics = sprintf('%s/%s_Statistics.txt',path_results,myFolderInfo(i).name)
 diary(string_statistics)
@@ -132,8 +134,8 @@ diary off
 bp.statistics.DoCompleteAnalysis(100, @NullModels.EQUIPROBABLE);
 diary on
 bp.printer.PrintStructureStatistics();
-end 
-%%
+
+
 diary off
 bp.statistics.DoCompleteAnalysis(100, @NullModels.AVERAGE);
 diary on
