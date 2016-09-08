@@ -6,9 +6,9 @@
 
 foldername=data/Results/
 
-echo "">result.csv
+echo "">$foldername/result.csv
 
-cat data/Results/MatrixS_mutualism_michaelis-menten_30000ticks_10sexualreproduction_replicateA.dat_genprop.txt |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' >> "$foldername"/concatenate_result.csv
+cat data/Results/MatrixS_mutualism_michaelis-menten_30000ticks_10sexualreproduction_replicateA.dat_genprop.txt |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' > "$foldername"/concatenate_result.csv
 
 #for mutualism in michaelis-menten linear sigmoid;
 for mutualism in michaelis-menten sigmoid;
@@ -24,7 +24,7 @@ do
 		file="$foldername"/"$filename"
 		if [ -f $file ];
 		then
-		    cat  $file | sed "s/\s*//g" | awk -v mut="$mutualism" -v ticks="$ticks" -v sp="$sexprob" -v rep="$rep" 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; varvalue=$2","varvalue}}END{print varvalue mut","ticks","sp","rep}' >> "$foldername"/concatenate_resul.csv
+		    cat  $file | sed "s/\s*//g" | awk -v mut="$mutualism" -v ticks="$ticks" -v sp="$sexprob" -v rep="$rep" 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; varvalue=$2","varvalue}}END{print varvalue mut","ticks","sp","rep}' >> "$foldername"/concatenate_result.csv
 		fi
 	    done
 	done
