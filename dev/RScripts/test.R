@@ -1,38 +1,98 @@
 source("utils.R")
 
 
-#loadData()
 
-
-#wholeset=getNodesAndProp()
-#
-#mat=cooccurenceModel(data_model)
-#wholesetModel=getNodesAndPropModel(mat,data_model)
-
-getNewDalgrande<-function(){
+unitTestDalGrande2014<-function(){
 
     taiw=read.csv("../../data/DalGrande_et_al_New_Phytol.csv")
     made=read.csv("../../data/DalGrande_et_al_New_PhytolM.csv")
-  taiw=cbind(taiw,"Taiwan") 
-  made=cbind(made,"Made") 
-  colnames(taiw)[ncol(taiw)]="Population"
-  colnames(made)[ncol(made)]="Population"
-  alldat=rbind(taiw,made)
+    taiw=cbind(taiw,"Taiwan") 
+    made=cbind(made,"Madera") 
+    colnames(taiw)[ncol(taiw)]="Population"
+    colnames(made)[ncol(made)]="Population"
+    alldat=rbind(taiw,made)
+    alldat$A=apply(alldat[,3:9],1,paste,collapse="")
+    alldat$F=as.character(alldat$Host_species)
+    wholepop=cooccurenceMat(alldat)
+    plotNetwork(wholepop)
+    dosmat=loadAllMatrices(alldat)
+    plotNetwork(dosmat[["Taiwan"]])
+#    taiwProp=getNodesAndProp(dosmat[["Taiwan"]],alldat[alldat$Population == "Taiwan",])
+# this isn't working as there is not x-y position in the 2014's dataset
+}
 
-  alldat$A=apply(alldat[,3:9],1,paste,collapse="")
-  alldat$F=as.character(alldat$Host_species)
+unitTestDalGrande2012<-function(){
 
-  return(alldat)
-
+    loadData()
+    wholepop=cooccurenceMat(fullD)
+    plotNetwork(wholepop)
+    allmatrice=loadAllMatrices(fullD)
+    plotNetwork(allmatrice[["2"]])
+    plotNetwork(allmatrice[["62"]])
+    m1=getNodesAndProp(allmatrice[["2"]],fullD[fullD$Population == "2",])
+    plotProperties(m1,log="x")
+    m2=getNodesAndProp(wholepop,fullD)
+    plotProperties(m2,log="xy")
+    
 
 }
 
-allnew=getNewDalgrande()
-the_matrix_of_your_dream = cooccurenceModel(allnew)
+unitTestWid2012<-function(){
+
+    loadData()
+    wholepop=cooccurenceMat(fullW)
+    plotNetwork(wholepop)
+    allmatrice=loadAllMatrices(fullW)
+    plotNetwork(allmatrice[["A2"]])
+    plotNetwork(allmatrice[["MOL"]])
+    #m3=getNodesAndProp(allmatrice[["A2"]],fullW[fullW$Population == "A2",])
+    #impossible car pas de x-y position des sample (mais long lat des pop oui)
+    #plotProperties(m3,log="x")
+    #m4=getNodesAndProp(wholepop,fullW)
+    #plotProperties(m4,log="xy")
+
+}
+
+unitTestModel<-function(){
+
+    data_model1=read.csv("../../dev/data/mutualism_michaelis-menten_10000ticks_10sexualreproduction_replicateA.dat",header=F)
+    colnames(data_model1)=c("A","F","x","y")
+    matMod=cooccurenceMat(data_model1)
+    wholesetModel=getNodesAndProp(matMod,data_model1)
+
+    plotNetwork(matMod)
+    allmatrice=loadAllMatrices(data_model1)
+    m3=getNodesAndProp(matMod,data_model1)
+    plotProperties(m3,log="x")
+
+    data_model1=read.csv("../../dev/data/mutualism_sigmoid_10000ticks_10sexualreproduction_replicateE.dat",header=F)
+    colnames(data_model1)=c("A","F","x","y")
+    data_model1$x=data_model1$x * 10
+    data_model1$y=data_model1$y * 10
+    matMod2=cooccurenceMat(data_model1)
+    m4=getNodesAndProp(matMod,data_model1)
+    plotProperties(m4,log="x")
+    compareDataset(m3,m4)
+
+    compareDataset(m3,m4)
+
+    data_model1=read.csv("../../dev/data/mutualism_michaelis-menten_10000ticks_100sexualreproduction_replicateA.dat",header=F)
+    colnames(data_model1)=c("A","F","x","y")
+    matMod=cooccurenceMat(data_model1)
+    m3b=getNodesAndProp(matMod,data_model1)
+    compareDataset(m3,m3b)
+
+    data_model1=read.csv("../../dev/data/mutualism_sigmoid_100000ticks_100sexualreproduction_replicateA.dat",header=F)
+    colnames(data_model1)=c("A","F","x","y")
+    matMod=cooccurenceMat(data_model1)
+    m4b=getNodesAndProp(matMod,data_model1)
+    compareDataset(m4,m4b)
+
+    compareDataset(m3,m2)
+
+}
 
 
-#data_model=read.csv("../../dev/data/mutualism_michaelis-menten_10000ticks_10sexualreproduction_replicateA.dat",header=F)
-#colnames(data_model)=c("A","F","x","y")
 #
 
 oldstuf <- function(){

@@ -10,16 +10,16 @@ options("scipen"=100, "digits"=4)##this is very import as it allow to avoid LOT 
 #Row = Fungus
 #Col = Algae
 
+
+
 #Global variables 
 fullD=NULL
 fullW=NULL
 
-
-
 #Function to load and merge data from Widmer 2012 et Dal Grande 2012
 #As those data can be useuful to check divers things and are used in various functions they are global. Should be change
 loadData<-function(){
-	print(paste("Load data"))
+    print(paste("Load data"))
     rawdataW=read.csv("../../data/Widmer et al_2012.xlsx")
     locW=read.csv("../../data/loc_widmer2012.csv")
 
@@ -28,7 +28,18 @@ loadData<-function(){
     rawdataD=read.csv("../../data/DalGrande_et_al_2012.csv")
     locD=read.csv("../../data/loc_dalgrande2012.csv")
     fullD<<-merge(rawdataD,locD,by="Population")
-	print(paste("done."))
+    fullD<<-cbind(fullD,apply(fullD[,11:17],1,paste,collapse=""))
+
+    colnames(fullD)[length(colnames(fullD))]<<-"A"
+
+    fullD<<-cbind(fullD,apply(fullD[,3:10],1,paste,collapse=""))
+
+    colnames(fullD)[length(colnames(fullD))]<<-"F"
+    fullW<<-cbind(fullW,apply(fullW[,11:17],1,paste,collapse=""))
+    colnames(fullW)[length(colnames(fullW))]<<-"A"
+    fullW<<-cbind(fullW,apply(fullW[,3:10],1,paste,collapse=""))
+    colnames(fullW)[length(colnames(fullW))]<<-"F"
+    print(paste("done."))
 }
 
 
@@ -36,22 +47,22 @@ loadData<-function(){
 
 
 #return the list of lichens where is found the symbiont (algal or fungal symbtion, depending on type) with the MLG genotypes.
-getCorrespLichensModel <- function(rawdata,genotype,type){
-    res=rawdata
+getCorrespLichens <- function(dataset,genotype,type){
+    res=dataset
 
     if(type=="A"){
-	res=res[as.character(res[,2]) == as.character(genotype),]
+	res=res[as.character(res[,"A"]) == as.character(genotype),]
     }
 
     if(type=="F"){
-	res=res[as.character(res[,1]) == as.character(genotype),]
+	res=res[as.character(res[,"F"]) == as.character(genotype),]
     }
     return(res)
 }
 
 #same as befor but for result of the model 
-getCorrespLichens <- function(rawdata,genotype,type,pop=""){
-    res=rawdata
+getCorrespLichensCollapse <- function(dataset,genotype,type,pop=""){
+    res=dataset
     if(pop!=""){res=res[res$Population == pop,]}
 
     if(type=="A"){
@@ -67,7 +78,7 @@ getCorrespLichens <- function(rawdata,genotype,type,pop=""){
 
 
 #from the list of lichens create bipartite matrix of intereaction between algal and fungal symbionts
-cooccurenceMat <- function(datas,groupf=c(),groupa=c()){
+cooccurenceMatCollapse <- function(datas,groupf=c(),groupa=c()){
 
     res=matrix(0,nrow=length(groupf),ncol=length(groupa),dimnames=list(groupf,groupa))
 
@@ -78,19 +89,18 @@ cooccurenceMat <- function(datas,groupf=c(),groupa=c()){
     }
     return(res)
 
-
-
 }
-##same as before for the result of the model
-cooccurenceModel <- function(datas){
-    res=matrix(0,nrow=length(unique(datas$A)),ncol=length(unique(datas$F)))
 
-    rownames(res)=unique(datas$A)
-    colnames(res)=unique(datas$F)
+##same as before for the result of the model
+cooccurenceMat <- function(datas){
+    res=matrix(0,nrow=length(unique(datas$F)),ncol=length(unique(datas$A)))
+
+    rownames(res)=unique(datas$F)
+    colnames(res)=unique(datas$A)
 
     for(i in 1:nrow(datas)){
-	popiMlgF=as.character(datas[i,"A"])
-	popiMlgA=as.character(datas[i,"F"])
+	popiMlgF=as.character(datas[i,"F"])
+	popiMlgA=as.character(datas[i,"A"])
 	res[popiMlgF,popiMlgA]=res[popiMlgF,popiMlgA]+1
     }
     return(res)
@@ -99,82 +109,35 @@ cooccurenceModel <- function(datas){
 
 
 
-getNodesAndProp<-function(){
+computeAllPop<-function(dataset){
     #The idea would be to read each matrix for each pop, compute the different properties as done on the full matrix. 
     #Then in parallel check the spatial properties of the nodes (if the node include algae/fungus that are spread wide or not) 
     #And do some stat, ie : among our populations, nodes with Hight centrality are fungal nodes that cover big geographical distance 
     #(if that turns out to be true this would be peferct to show that sexual reproduction is used to interact on bigger distance with different genotypes of algae)
     ##If the file clustering.R is load, so all the data are in fullD and we can directly generate the matrices without passing through file write. I will store all the matrices in the variable allmatrices doing what follows:
-    loadData() #to population fullD
-    allmatrices=loadAllMatrices()
+    allmatrices=loadAllMatrices(dataset)
 
    #Now it's far more easier to compute the network properties and store it for every node
    #and create database
 
-	print(paste("Calculate metrics for all pop"))
+    print(paste("Calculate metrics for all pop"))
     wholeset=data.frame()
     sapply(names(allmatrices),function(ind){
 
-	print(paste("   Metrics in red pop:",ind))
-	#   ind="15"
-	   mat=allmatrices[[ind]]
+	   print(paste("   Metrics in red pop:",ind))
 
-	   fungusId=rownames(mat) 
-	   algaeId=colnames(mat) 
-	   coln=c("node_id","type","Population")
-	   alg=cbind.data.frame(algaeId,"A",ind,stringsAsFactors=F)
-	   colnames(alg)=coln
-	   fung=cbind.data.frame(fungusId,"F",ind,stringsAsFactors=F)
-	   colnames(fung)=coln
-	   join=  rbind(alg,fung)
-	   join$node_id=as.character(join$node_id)
+	   cur_mat=allmatrices[[ind]]
 
-	   web2edges(mat,is.one.mode=F,verbose=F,both.directions=T)
-	   edgelist=read.table("web.pairs",sep="\t")
-	   idkeyTable=read.table("web-names.lut",sep="\t",header=T,as.is=2,numerals="no.loss")
-	   ##The read table here is primordial. Without the no.loss (that somehowe avoid some cut when the integer is computed) lot of errors emerge. The as.is is here jsute to avoid factor and keep number as number.
+	   tojoin=getNodesAndProp(cur_mat,dataset)
 
-
-	   
-	   #compute different metrics
-	   betweenness_netw = betweenness_w(edgelist,directed=NULL,alpha=1)
-	   closeness_netw = closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
-
-
-	   #compute matrix of spatial distance beetween every similar MLG
-		      
-	   spatial=apply(join,1,function(n){
-			    gen=n[["node_id"]]
-			    subst=getCorrespLichens(rawdata=fullD,pop=ind,type=n[["type"]],genotype=gen)
-			    dist_mat=dist(subst[,c("x","y")])
-			    c(mean(dist_mat), median(dist_mat),mad(dist_mat),min(dist_mat),max(dist_mat),sd(dist_mat))
-	})
-	   spatial=t(spatial)
-	   colnames(spatial)=c("mean_dist","median_dist","mad","min_dist","max_dist","sd_dist")
-	
-	   join=cbind(join,spatial)
-	   #norm_netw=ND(edgelist,normalised=T)
-	   #....
-
-	   #prepare the merging of those metrics
-	   clsn_withid=merge(idkeyTable,closeness_netw,by.x="virtual",by.y="node")
-	   btwn_withid=merge(idkeyTable,betweenness_netw,by.x="virtual",by.y="node")
-
-
-	   #merge it
-	   join=merge(join,btwn_withid[,c("real","betweenness")],by.x="node_id",by.y="real",all.x=T)
-	   join=merge(join,clsn_withid[,c("real","closeness","n.closeness")],by.x="node_id",by.y="real",all.x=T)
-
-	   wholeset<<-rbind(wholeset,join)
-	})
-	print(paste("done."))
-	#save in a file just in case 
-    #write.csv(wholeset,"nodes_with_netmetrics.csv")
+	   wholeset<<-rbind(wholeset,tojoin)
+})
+    print(paste("done."))
+    #save in a file just in case 
     return(wholeset)
 }
 
-getNodesAndPropModel<-function(mat,rawdatas){
-	colnames(rawdatas)=c("A","F","x","y") #put that in the model output
+getNodesAndProp<-function(mat,dataset){
 	result=data.frame()
 	fungusId=rownames(mat) 
 	algaeId=colnames(mat) 
@@ -186,20 +149,10 @@ getNodesAndPropModel<-function(mat,rawdatas){
 	join=rbind(alg,fung)
 	join$node_id=as.character(join$node_id)
 
-	web2edges(mat,is.one.mode=F,verbose=F,both.directions=T)
-	edgelist=read.table("web.pairs",sep="\t")
-	idkeyTable=read.table("web-names.lut",sep="\t",header=T,as.is=2,numerals="no.loss")
-	##The read table here is primordial. Without the no.loss (that somehowe avoid some cut when the integer is computed) lot of errors emerge. The as.is is here jsute to avoid factor and keep number as number.
-
-	#compute different metrics
-	betweenness_netw = betweenness_w(edgelist,directed=NULL,alpha=1)
-	closeness_netw = closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)
-
-
 	#compute matrix of spatial distance beetween every similar MLG
 	spatial=apply(join,1,function(n){
 		      gen=n[["node_id"]]
-		      subst=getCorrespLichensModel(rawdata=data_model,type=n[["type"]],genotype=gen)
+		      subst=getCorrespLichens(dataset,type=n[["type"]],genotype=gen)
 		      dist_mat=dist(subst[,c("x","y")])
 		      c(mean(dist_mat), median(dist_mat),mad(dist_mat),min(dist_mat),max(dist_mat),sd(dist_mat))
 })
@@ -210,23 +163,24 @@ getNodesAndPropModel<-function(mat,rawdatas){
 	#norm_netw=ND(edgelist,normalised=T)
 	#....
 
-	#prepare the merging of those metrics
-	clsn_withid=merge(idkeyTable,closeness_netw,by.x="virtual",by.y="node")
-	btwn_withid=merge(idkeyTable,betweenness_netw,by.x="virtual",by.y="node")
+	prop=getMatProperties(mat)
+
+	closeness=prop[["closeness"]]
+	betweenness=prop[["betweenness"]]
 
 	#merge it
-	join=merge(join,btwn_withid[,c("real","betweenness")],by.x="node_id",by.y="real",all.x=T)
-	join=merge(join,clsn_withid[,c("real","closeness","n.closeness")],by.x="node_id",by.y="real",all.x=T)
+	join=merge(join,betweenness[,c("real","betweenness")],by.x="node_id",by.y="real",all.x=T)
+	join=merge(join,closeness[,c("real","closeness","n.closeness")],by.x="node_id",by.y="real",all.x=T)
 
 	result<-rbind(result,join)
 	return(result)
 }
 
 ##Function that return a list with all matrices corresponding to the bipartite network of all populations. The indices of the list are the names of the populations
-loadAllMatrices<-function(){
+loadAllMatrices<-function(dataset){
     print(paste("Compute all bipartite"))
-    allmatrices<-sapply(unique(fullD$Population),function(a){createNetwork(fullD[fullD$Population == a ,])})
-    names(allmatrices)<-unique(fullD$Population)#then just set the names in the list allmatrices as the population id of eahc pop
+    allmatrices<-sapply(unique(dataset$Population),function(a){cooccurenceMat(dataset[dataset$Population == a ,])})
+    names(allmatrices)<-unique(dataset$Population)#then just set the names in the list allmatrices as the population id of eahc pop
     print(paste("done."))
     return(allmatrices)
 }
@@ -258,11 +212,10 @@ errmess <- function(a,d){
 }
 
 #plot two graph !warnings: suppose that result re stored in global variables
-plotModelVsData<-function(x,y){
-	print(paste(x,y))
+compareDataset<-function(datasetA,datasetB,x="mad",y= "betweenness"){
     par(mfrow=c(1,2))
-    plotProperties(wholeset,x,y,log="x",main="Data")
-    plotProperties(wholesetModel,x,y,log="x",main="Model")
+    plotProperties(datasetA,x,y,log="x",main="Data")
+    plotProperties(datasetB,x,y,log="x",main="Model")
 }
 
 
@@ -449,5 +402,27 @@ readMatrix<-function(filename){
     temp=read.csv(filename, header = TRUE, sep = ",") #this relative adress will be good for every body willing to use the script 
     temp1=temp[,2:ncol(temp)]
     return(as.matrix(temp1))
+}
+
+
+#return a list with the betweenness and closeness of all node of the matrix dat
+getMatProperties<-function(dat){
+
+    listres=list()
+    
+	web2edges(dat,is.one.mode=F,verbose=F,both.directions=T)
+	edgelist=read.table("web.pairs",sep="\t")
+	idkeyTable=read.table("web-names.lut",sep="\t",header=T,as.is=2,numerals="no.loss")
+	##The read table here is primordial. Without the no.loss (that somehowe avoid some cut when the integer is computed) lot of errors emerge. The as.is is here jsute to avoid factor and keep number as number.
+
+	#compute different metrics
+	betweenness_netw=betweenness_w(edgelist,directed=NULL,alpha=1)
+	closeness_netw=closeness_w(edgelist, directed = FALSE, gconly=TRUE, alpha=1)	
+	#prepare the merging of those metrics
+	clsn_withid=merge(idkeyTable,closeness_netw,by.x="virtual",by.y="node")
+	btwn_withid=merge(idkeyTable,betweenness_netw,by.x="virtual",by.y="node")
+	listres[["betweenness"]] = btwn_withid
+	listres[["closeness"]] = clsn_withid
+	return(listres)
 }
 
