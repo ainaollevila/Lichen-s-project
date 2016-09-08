@@ -223,7 +223,7 @@ getNodesAndPropModel<-function(mat,rawdatas){
 }
 
 ##Function that return a list with all matrices corresponding to the bipartite network of all populations. The indices of the list are the names of the populations
-loadAllMatrices(){
+loadAllMatrices<-function(){
     print(paste("Compute all bipartite"))
     allmatrices<-sapply(unique(fullD$Population),function(a){createNetwork(fullD[fullD$Population == a ,])})
     names(allmatrices)<-unique(fullD$Population)#then just set the names in the list allmatrices as the population id of eahc pop
