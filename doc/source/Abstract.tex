@@ -71,21 +71,34 @@
 \tocauthor{}
 \maketitle
 \section*{Abstract}
+Lichens are a hyperdiverse symbiotic group spread across the globe in widely different {\em niche} and climates. This partnership between fungi and a photobiont (cyanobacteria, algae or both) allows the fungi to obtain carbohydrate-rich resources directly from their photosynthetic partner\cite{lutzoni2009lichens} while the fungus protects the photobiont from desiccation, allowing for coevolution and adaptive radiation into new environments\cite{nash1996lichen}. Lichenization is an evolutionarily and ecologically successful strategy ($>$20\% of fungi are lichenized), resulting in approximately 14,000 lichen species known to date\cite{lutzoni2009lichens,honegger1998lichen}. Although the nature of the lichen symbiosis is still widely debated, many sources agree that the lichen system represents an ecologically obligate mutualistic interaction whereby the net fitness of all partners is maximized\cite{bronstein1994our,honegger1998lichen}.
 
-\section{Introduction}
-\label{sec:methods}
-\input{./Sections/introduction.tex}
+Lichens can reproduce sexually via fungal spores (horizontal transmission) and asexually via vegetative propagules and thallus fragmentation (vertical transmission). In the sexual mode of reproduction, the fungal spores must interact with a compatible free-living algae and/or cyanobacterium in order to reconstitute the lichen thallus. In the asexual mode of reproduction, mycobionts and photobionts are co-dispersed via fragmentation of the main thallus body and specialized asexual propagules.
 
-\section{Method}
-\label{sec:method}
-\input{./Sections/method.tex}
+These peculiar mode of reproduction strongly influences the genetic structure of lichen populations\cite{dal2012vertical,dal2011phylogeny}, affecting dispersal and evolutionary rates. This was evidenced by recent articles in the most studied lichen system: {\em L. pulmonaria}, where thalli from 62 populations in forests throughout Europe, North America, Asia, and Africa were genotyped at several hypervariable microsatellite loci\cite{dal2012vertical}. These studies concluded that the {\em L. pulmonaria-S. reticulata} symbiosis showed significant within-population genetic structure due to restricted gene flow and vertical transmission (i.e. co-dispersal of vegetative propagules). 
 
-\section{Results}
-\label{sec:results}
-\input{./Sections/results.tex}
+The lichen symbiosis is extremely interesting, as the nature of the system is different from the widely studied plant-animal mutualistic systems\cite{rohr2014structural,bascompte2006asymmetric,bascompte2006structure,bastolla2009architecture,rezende2007non,guimaraes2011evolution}. Its different modes of reproduction, the fact that you find events of delichenization throughout evolution \cite{lutzoni2001major} and that non of the partners is mobile (only throughout spores), make of it a rather particular system. Moreover, it has been conjectured the asymetry in the coevolution of the two species, due to a limited capacity of adaptation in the photobiont\cite{hill2009asymmetric} as well as that the relationship between the two species cannot always be considered a mutualism but rather a comensalism or even parasitism (with the fungi taking advantage over the photobiont) \cite{ahmadjian1993lichen}. 
+
+In order to unveil which are the potential factors driving the evolution of the lichen symbiosis, as well as its population structure, we constructed an agent-based model based on the widely used ECHO framework\cite{holland1999echoing,holland1995hidden}. The ECHO model typically consists of a collection of entities living in a simplified spatial domain, which can move around and interact with one another and with their environment. The interactions among agents can be used to model different kinds of processes -such as mating-, and are driven by locality as well as agent-specific properties, namely the agents' genotypes. The ECHO model is also a continuous genetic algorithm\cite{mitchell1998introduction}; upon reproduction old genotypes are copied with slight mutations, giving rise to quantifiable evolutionary dynamics.
+
+In our case, we used the tag system of ECHO to model the molecular recognition (receptors and physical embedding) between algae and fungi necessary to create the lichen. We considered two different lichenization functions based on similarity, sigmoid (hill function with $n=2$) and michaelis-menten (saturation dynamics). Additionally, other ecologically relevant features such as dispersal rates (introduced here as random walks) and the ratio between sexual and asexual reproduction were included in the model. Simulations were carried out assuming a wide range of ecological relations between the algae and fungi: competition (both algae and fungi are better off on their own than forming a lichen), parasitism (only one type of agent benefits from the partnership) and mutualism (both agents benefit).
+
+On the other hand, we have studied two available data sets \cite{dal2012vertical,dal2014molecular}.The first consists of the fungal and algal symbionts of 1960 L. pulmonaria thalli from 62 populations in forests throughout Europs, America, Asia and Africa genotyped at eight and seven microsatellite loci, respectively. The sparseness of this dataset has only allowed us to find potential similarities at a sampling scale (for each region sample) with the population of lichens retrieved from the ECHO model. The second one, were seven alga-specific microsatellite of a particular algal species were genotyped for a total of 13 fungal species forming partnership, allowed us to compare the structure of the bipartite network arising from a higher level, where significant modular structure is found. Different measures from network theory have been used to unveil the structure of the studied bipartite networks, with different interesting results arising. Having the temporal scale in the ECHO model has allowed us to study the possible coevolution signatures that might be driving the evolution of the lichen symbiosis. 
+
+%\section{Introduction}
+%\label{sec:methods}
+%\input{./Sections/introduction.tex}
+
+%\section{Method}
+%\label{sec:method}
+%\input{./Sections/method.tex}
+
+%\section{Results}
+%\label{sec:results}
+%\input{./Sections/results.tex}
 
 \section*{Acknowledgements}
-This work was initiated at the 2016 Complex Systems Summer School (CSSS) at the Sante Fe Institute (SFI) and was supported by grants from the British Lichen Society and the British Ecological Society. The authors would like to thank all SFI resident faculty members, SFI external faculty members, SFI Omidyar Postdoctoral Fellows, and 2016 CSSS course participants for productive discussions as well as SFI staff during the 2016 CSSS. The authors would also like to thank Dr. Christoph Scheidegger for access to multiple datasets and Dr. Francesco Dal Grande for providing detailed knowledge of the L. pulmonaria system. 
+This work was initiated at the 2016 Complex Systems Summer School (CSSS) at the Sante Fe Institute (SFI) and was supported by grants from the British Lichen Society and the British Ecological Society. The authors would like to thank all SFI resident faculty members, SFI external faculty members, SFI Omidyar Postdoctoral Fellows, and 2016 CSSS course participants for productive discussions as well as SFI staff during the 2016 CSSS. The authors would also like to thank Dr. Christoph Scheidegger for access to multiple datasets and Dr. Francesco Dal Grande for providing detailed knowledge of the \emph{L. pulmonaria} system. 
 
 \bibliographystyle{splncs03.bst}
 
