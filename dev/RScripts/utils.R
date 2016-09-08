@@ -89,8 +89,8 @@ cooccurenceModel <- function(datas){
     colnames(res)=unique(datas$F)
 
     for(i in 1:nrow(datas)){
-	popiMlgF=as.character(datas[i,1])
-	popiMlgA=as.character(datas[i,2])
+	popiMlgF=as.character(datas[i,"A"])
+	popiMlgA=as.character(datas[i,"F"])
 	res[popiMlgF,popiMlgA]=res[popiMlgF,popiMlgA]+1
     }
     return(res)

@@ -1,16 +1,39 @@
 source("utils.R")
 
 
-data_model=read.csv("../../dev/data/mutualism_michaelis-menten_10000ticks_10sexualreproduction_replicateA.dat",header=F)
-colnames(data_model)=c("A","F","x","y")
-
-loadData()
+#loadData()
 
 
-wholeset=getNodesAndProp()
+#wholeset=getNodesAndProp()
+#
+#mat=cooccurenceModel(data_model)
+#wholesetModel=getNodesAndPropModel(mat,data_model)
 
-mat=cooccurenceModel(data_model)
-wholesetModel=getNodesAndPropModel(mat,data_model)
+getNewDalgrande<-function(){
+
+    taiw=read.csv("../../data/DalGrande_et_al_New_Phytol.csv")
+    made=read.csv("../../data/DalGrande_et_al_New_PhytolM.csv")
+  taiw=cbind(taiw,"Taiwan") 
+  made=cbind(made,"Made") 
+  colnames(taiw)[ncol(taiw)]="Population"
+  colnames(made)[ncol(made)]="Population"
+  alldat=rbind(taiw,made)
+
+  alldat$A=apply(alldat[,3:9],1,paste,collapse="")
+  alldat$F=as.character(alldat$Host_species)
+
+  return(alldat)
+
+
+}
+
+allnew=getNewDalgrande()
+the_matrix_of_your_dream = cooccurenceModel(allnew)
+
+
+#data_model=read.csv("../../dev/data/mutualism_michaelis-menten_10000ticks_10sexualreproduction_replicateA.dat",header=F)
+#colnames(data_model)=c("A","F","x","y")
+#
 
 oldstuf <- function(){
     ###I get the raw data from supplementary material of Widmer et al 2012 thanks to this website : https://pdftables.com/ (it was free during the summer, I put all table of SI in data.
