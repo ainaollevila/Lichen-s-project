@@ -100,7 +100,7 @@ string_fig6 = sprintf('%s/%s_fig6.pdf',path,namefile)
 bp.plotter.PlotModularGraph();
 print(string_fig6,'-dpdf')
 close
-
+%%
 %Statistics
 string_statistics = sprintf('%s/%s_Statistics2.txt',path,namefile)
 diary(string_statistics)
@@ -109,10 +109,10 @@ bp.statistics.DoCompleteAnalysis(100, @NullModels.EQUIPROBABLE);
 diary on
 bp.printer.PrintStructureStatistics();
 diary off
-%%
-string_statistics = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/fulldataset_Statistics2.txt')
-diary(string_statistics)
-diary off
+
+%string_statistics = sprintf('/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/Results/fulldataset_Statistics2.txt')
+%diary(string_statistics)
+%diary off
 bp.statistics.DoCompleteAnalysis(100, @NullModels.AVERAGE);
 diary on
 bp.printer.PrintStructureStatistics();
