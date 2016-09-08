@@ -2,6 +2,10 @@ source("utils.R")
 
 
 
+testNestednes=read.csv("../data/Results/concatenate_result.csv")
+plot(testNestednes$N.Numberofmodules. ~ testNestednes$mutualism)
+plot(testNestednes$NODF.Nestednessvalue. ~ testNestednes$sexproba)
+
 unitTestDalGrande2014<-function(){
 
     taiw=read.csv("../../data/DalGrande_et_al_New_Phytol.csv")
@@ -33,6 +37,8 @@ unitTestDalGrande2012<-function(){
     plotProperties(m1,log="x")
     m2=getNodesAndProp(wholepop,fullD)
     plotProperties(m2,log="xy")
+    todo=computeAllPop(fullD)
+    compareDataset(m2,todo)
     
 
 }
@@ -93,6 +99,11 @@ unitTestModel<-function(){
 }
 
 
+    data_model1=read.csv("../../dev/data/mutualism_linear_45000ticks_1000sexualreproduction_replicateA.dat",header=F)
+    colnames(data_model1)=c("A","F","x","y")
+    matMod=cooccurenceMat(data_model1)
+    m3b=getNodesAndProp(matMod,data_model1)
+    compareDataset(m3b,m2)
 #
 
 oldstuf <- function(){

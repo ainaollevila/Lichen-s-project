@@ -4,7 +4,7 @@
 #cat data/Results/MatrixS_mutualism_michaelis-menten_30000ticks_10sexualreproduction_replicateA.dat_genprop.txt | sed "s/\s\+/,/g"
 
 
-foldername=data/Results/
+foldername=../data/Results/
 
 echo "">$foldername/result.csv
 

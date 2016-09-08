@@ -51,8 +51,8 @@ to setup
   set prob-death-fungus 0.001
   set prob-death-alga 0.0001
 
-  set prob-mutation-fungus 0.05
-  set prob-mutation-alga 0.05
+  set prob-mutation-fungus 0.005
+  set prob-mutation-alga 0.005
 
   set algae-genotype-list (list)
   set fungi-genotype-list (list)
@@ -131,7 +131,7 @@ to go
 
   ask algae [
     set heading heading + random 360
-    fd 0.03
+    fd 0.001
     if random-float 1.0 <= prob-duplication-alga * (1 - (count algae-here / (5000 / (world-width * world-height)))) [
       hatch 1 [
         if random-float 1.0 <= prob-mutation-alga [
@@ -155,7 +155,7 @@ to go
           set tag replace-item l tag (1 - item l tag)
           ;set label tag
         ]
-        set size 0.5
+        set size 0.1
         set color green
       ]
     ]
@@ -169,7 +169,7 @@ to go
           set tag replace-item l tag (1 - item l tag)
           ;set label tag
         ]
-        set size 0.5
+        set size 0.1
         set color brown
       ]
     ]
@@ -191,7 +191,7 @@ to go
       ]
     ]
 
-    if random-float 1.0 <= prob-death-lichen * (count lichens-here / (5000 / (world-width * world-height))) [
+    if random-float 1.0 <= prob-death-lichen * (count lichens-here / (5000 / (world-width * world-height * .01))) [
       die
     ]
   ]
@@ -417,7 +417,7 @@ CHOOSER
 lich-function
 lich-function
 "linear" "michaelis-menten" "sigmoid"
-2
+0
 
 BUTTON
 838
@@ -464,8 +464,8 @@ SLIDER
 prob-duplication-fungus
 prob-duplication-fungus
 0
+100
 10
-0.01
 0.17
 1
 NIL
