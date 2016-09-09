@@ -215,7 +215,13 @@ errmess <- function(a,d){
 compareDataset<-function(datasetA,datasetB,x="mad",y= "betweenness"){
     par(mfrow=c(1,2))
     plotProperties(datasetA,x,y,log="x",main="Data")
+    marb=par()$mar
+    mar=par()$mar
+    
+    mar[2]=1
+    par(mar=mar)
     plotProperties(datasetB,x,y,log="x",main="Model")
+    par(mar=marb)
 }
 
 
