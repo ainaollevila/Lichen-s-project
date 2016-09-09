@@ -3,15 +3,40 @@ library(vegan)
 library(network)
 library(igraph)
 library(gplots)
-
 #CODE PREPARED TO ANALYSE THE NETWORKS, JUST DONE WITH ONE AS AN EXAMPLE
-datafolder="/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/"
+#datafolder="/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/"
+datafolder = "../data/Matrices/"
 datafolder
 temp=read.csv(paste(datafolder,"mat_pop-4.csv",sep=""), header = TRUE, sep = ",")
 temp1=temp[,2:ncol(temp)]
 mat <- as.matrix(temp1)
 dimnames(mat) <- NULL
 mat
+
+
+datafolder = "../data/ECHOresults/"
+datafolder= "/Users/aina/Dropbox/Lichen-s-project/dev/data/ECHOresults/"
+
+
+
+
+cooccurenceModel <- function(datas){
+  print(unique(datas[,1]))
+  res=matrix(0,nrow=length(unique(datas$A)),ncol=length(unique(datas$F)))
+  
+  rownames(res)=unique(datas$A)
+  colnames(res)=unique(datas$F)
+  
+  print (res)
+  for(i in 1:nrow(datas)){
+    popiMlgF=as.character(datas[i,1])
+    popiMlgA=as.character(datas[i,2])
+    res[popiMlgF,popiMlgA]=res[popiMlgF,popiMlgA]+1
+  }
+  res
+  return(res)
+}
+
 
 #TEST MATRIX
 #mat <-matrix(0,nrow=4,ncol=5)
@@ -24,6 +49,21 @@ mat
 #mat[4,4] = 3
 #mat[4,5] = 4
 #mat
+
+
+for (l in list.files(datafolder,pattern="*reproduction*"))
+{
+  filename=paste(datafolder,l,sep="")
+  data_model=read.csv(filename,header=F)
+  colnames(data_model)=c("A","F","x","y")
+  M=cooccurenceModel(data_model)
+}
+M
+filename=paste(datafolder,"mutualism_michaelis-menten_5000ticks_1sexualreproduction_replicateA.dat",sep="")
+data_model=read.csv(filename,header=F)
+colnames(data_model)=c("A","F","x","y")
+mat=cooccurenceModel(data_model)
+mat
 
 matP <-matrix(0,nrow=nrow(mat),ncol=ncol(mat))
 matP
@@ -62,6 +102,7 @@ for (i in 1:nrow(mat)){
     AS[i,j] = (matP[i,j] - matA[j,i])/max(matP[i,j],matA[j,i])
   }
 }
+AS
 AS[is.nan(AS)] <- 0
 AS
 AS_abs <-AS
@@ -112,6 +153,7 @@ degree_merged
 #PLOT FREQUENCY DISTRIBUTIONS OF DEPENDENCE (from matrices A and P)
 dependence_values = c(as.vector(t(matA)),as.vector(t(matP)))
 dependence_values
+
 hist(dependence_values,breaks=5)
 
 #PLOT FREQUENCY DISTRIBUTIONS OF ASYMMETRY VALUES (from the absolute value of matrix AS)
@@ -119,4 +161,3 @@ hist(as.vector(t(AS_abs)))
 
 #PLOT SPECIES DEGREE VERSUS SPECIES STRENGTH
 plot(degree_merged,strength_merged)
-

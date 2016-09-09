@@ -1,0 +1,12 @@
+General Properties
+	 Number of species:       	  2653
+	 Number of row species:   	  1430
+	 Number of column species:	  1223
+	 Number of Interactions:  	  5431
+	 Size:                    	1748890
+	 Connectance or fill:     	 0.003
+
+string_statistics =
+
+/Users/aina/Dropbox/Lichen-s-project/dev/data/ResultsStat/MatrixS_mutualism_michaelis-menten_100000ticks_100sexualreproduction_replicateC.dat_Statistics.txt
+

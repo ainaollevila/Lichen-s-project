@@ -7,9 +7,9 @@ General Properties
 	 Connectance or fill:     	 0.005
 Modularity:
 	Used algorithm:             	  LeadingEigenvector
-	N (Number of modules):      	                  50
-	Qb (Standard metric):       	              0.7348
-	Qr (Ratio of int/ext inter):	              0.5928
+	N (Number of modules):      	                  48
+	Qb (Standard metric):       	              0.7440
+	Qr (Ratio of int/ext inter):	              0.6103
 Nestedness NODF:
 	NODF (Nestedness value):    	              0.0120
 	NODF (Rows value):          	              0.0121

@@ -1,0 +1,7 @@
+General Properties
+	 Number of species:       	  2385
+	 Number of row species:   	  1278
+	 Number of column species:	  1107
+	 Number of Interactions:  	  5105
+	 Size:                    	1414746
+	 Connectance or fill:     	 0.004

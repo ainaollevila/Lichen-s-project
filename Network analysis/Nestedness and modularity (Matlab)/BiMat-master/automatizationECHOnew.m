@@ -13,12 +13,12 @@ path_results = '/Users/aina/Dropbox/Lichen-s-project/dev/data/Results'
 %%
 myFolderInfo = dir ('/Users/aina/Dropbox/Lichen-s-project/dev/data/Matrices')
 
-myFolderInfo(203).name
+myFolderInfo(4).name
 %%
 stringlist = sprintf('%s/fileslist.txt',path_data)
 diary(stringlist)
 diary on
-for i=3:203
+for i=4:10
     i
     myFolderInfo(i).name
 end
@@ -27,11 +27,11 @@ diary off
 
 %%
 
-for i=17:203
+for i=10:1003
 string = sprintf('%s/%s',path_data,myFolderInfo(i).name)
 %string = sprintf('%s/m%d.txt',path,i)
 
-A = importdata(string)
+A = importdata(string);
 
 %A = csvread(string,1,1)
 % size(A) 
@@ -59,6 +59,8 @@ diary on
 bp.printer.PrintStructureValues();
 diary off
 
+end
+%%
 string_fig1 = sprintf('%s/%s_fig1.pdf',path_results,myFolderInfo(i).name)
 figure(1);
 %set(gcf,'Position',[0 72 1751 922]);
