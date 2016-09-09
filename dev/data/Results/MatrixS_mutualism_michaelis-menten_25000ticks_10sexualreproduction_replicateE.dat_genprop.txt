@@ -5,3 +5,12 @@ General Properties
 	 Number of Interactions:  	  4385
 	 Size:                    	1296174
 	 Connectance or fill:     	 0.003
+Modularity:
+	Used algorithm:             	  LeadingEigenvector
+	N (Number of modules):      	                  58
+	Qb (Standard metric):       	              0.5757
+	Qr (Ratio of int/ext inter):	              0.2629
+Nestedness NODF:
+	NODF (Nestedness value):    	              0.0090
+	NODF (Rows value):          	              0.0097
+	NODF (Columns value):       	              0.0077
