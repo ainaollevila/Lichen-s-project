@@ -1,18 +1,18 @@
 #the function reads the matrix as it is read by your function cooccurenceMat(). I think this should be called by the function GetMatProperties()
 
 #TEST MATRIX: this is a test matrix if you wanna get the intuition about these properties measured.
-#mat <-matrix(0,nrow=4,ncol=5)
-#mat[1,1] = 2
-#mat[2,1] = 1
-#mat[2,2] = 3
-#mat[2,3] = 4
-#mat[2,4] = 5
-#mat[3,4] = 10
-#mat[4,4] = 3
-#mat[4,5] = 4
-#mat
+testmat <-matrix(0,nrow=4,ncol=50)
+testmat[1,1] = 2
+testmat[2,1] = 1
+testmat[2,2] = 3
+testmat[2,3] = 4
+testmat[2,4] = 5
+testmat[3,4] = 10
+testmat[4,4] = 3
+testmat[4,5] = 4
+testmat
 
-ComputeAssymetryValues(mat)
+#ComputeAssymetryValues(testmat)
 
 ComputeAssymetryValues<-function(mat){ 
   #strength_nodes and degree_nodes can be written to the csv file with the nodes properties you already have constructed (if I am not wrong)
@@ -24,11 +24,11 @@ ComputeAssymetryValues<-function(mat){
   matP=ComputematP(mat)
   vA=as.vector(t(matA))
   vP=as.vector(t(matP))
-  AS=ComputeAS(mat)
+  AS=ComputeAS(mat,matP,matA)
   vAS_abs=as.vector(t(abs(AS)))
   strength_nodes = ComputeStrength(mat)  #to plot degree_nodes versus strength_nodes, as it is seen that it does not grow linearly the relationship.
   degreenodes=ComputeDegree(mat)
-  return(0) 
+  return(list(degreenodes,strength_nodes)) 
 }
 
 ComputematA <- function(mat){
@@ -58,7 +58,7 @@ ComputematP <- function(mat){
   return(matP)
 }
 
-ComputeAS <- function(mat){
+ComputeAS <- function(mat,matP,matA){
   AS <-matrix(0,nrow=nrow(mat),ncol=ncol(mat))
   for (i in 1:nrow(mat)){
     for(j in 1:ncol(mat)){
