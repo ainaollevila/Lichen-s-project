@@ -448,11 +448,8 @@ getMatProperties<-function(dat){
 
 
      bins=seq(-.1,60+60/sqrt(npop),60/sqrt(npop))
-     print(bins)
-     print(length(bins))
      for(i in 1:(length(bins)-1)){
 	 for(j in 1:(length(bins)-1)){
-	     print(paste(i,j))
 	     tosplit$Population[tosplit$x > bins[i] & tosplit$x <= bins[i+1]& tosplit$y > bins[j] & tosplit$y <= bins[j+1]]=as.character(paste(i,j,sep= ""))
 	 }
      }
