@@ -164,13 +164,19 @@ getNodesAndProp<-function(mat,dataset){
 	#....
 
 	prop=getMatProperties(mat)
-
 	closeness=prop[["closeness"]]
 	betweenness=prop[["betweenness"]]
+
+	assym=ComputeAssymetryValues(mat)
+	strength=assym[["strength"]]
+	degree=assym[["degree"]]
+
 
 	#merge it
 	join=merge(join,betweenness[,c("real","betweenness")],by.x="node_id",by.y="real",all.x=T)
 	join=merge(join,closeness[,c("real","closeness","n.closeness")],by.x="node_id",by.y="real",all.x=T)
+	join=merge(join,degree,all.x=T)
+	join=merge(join,strength,all.x=T)
 
 	result<-rbind(result,join)
 	return(result)
@@ -464,6 +470,7 @@ getMatProperties<-function(dat){
 
 
 
+ #This function split a vector it tow a number "num" of classes with nice labels
  splitPropInClass <- function(prop,num){
      prop[is.na(prop)]=0
      num_n= max(prop)/num

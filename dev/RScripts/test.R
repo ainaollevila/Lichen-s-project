@@ -1,4 +1,5 @@
  source("utils.R")
+ source("AsymmetryValuesFunction.R")
  
 
 unitTestPopSize<-function(){
@@ -17,7 +18,8 @@ unitTestPopSize<-function(){
     #wholesetModel=getNodesAndProp(matMod,data_model1) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
 
     todoModel=computeAllPop(data_model1)
-    compareDataset(todo,todoModel)
+    plotProperties(todo)
+    compareDataset(todo,todoModel,y="strength")
 
 
 }
