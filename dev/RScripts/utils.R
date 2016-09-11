@@ -432,3 +432,33 @@ getMatProperties<-function(dat){
 	return(listres)
 }
 
+ #This function split a unique sample into a given number of subpopluation
+ #Here should be a square with long and lat both startin from 0 to 60, but it could be easily done with any value 
+ splitSpace <- function(tosplit,npop=62){
+     #in case there is not already a column with pop id
+     if(!("Population" %in% colnames(tosplit))){
+	 tosplit$Population = "P"
+     }
+
+
+     bins=seq(-.1,60+60/sqrt(npop),60/sqrt(npop))
+     print(bins)
+     print(length(bins))
+     for(i in 1:(length(bins)-1)){
+	 for(j in 1:(length(bins)-1)){
+	     print(paste(i,j))
+	     tosplit$Population[tosplit$x > bins[i] & tosplit$x <= bins[i+1]& tosplit$y > bins[j] & tosplit$y <= bins[j+1]]=as.character(paste(i,j,sep= ""))
+	 }
+     }
+
+     return(tosplit)
+
+ }
+
+ #This functino print some mean properties about the distance within pop. To be exact: the mean between populations of the mean distance within population and the mean between population of the standard deviation around the mean distance within population. Statistics are so unnatural sometimes...
+ showDistanceProp <- function(sans33){
+     #print(print t(sapply(unique(sans33$Population),function(i){apply(sans33[sans33$Population == i, c("x","y")],2,max)})))
+     print(paste("mean distance amoung pop",mean(sapply(unique(sans33$Population),function(i){mean(dist(sans33[sans33$Population == i, c("x","y")]))}))))
+     print(paste("mean deviation distance", mean(sapply(unique(sans33$Population),function(i){sd(dist(sans33[sans33$Population == i, c("x","y")]))}))))
+ }
+
