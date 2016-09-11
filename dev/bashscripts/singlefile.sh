@@ -1,3 +1,4 @@
+##Shhould be somehow merged with merge.sh 
 
 
 foldername=../../data/cooc_mat/Results/
@@ -15,5 +16,3 @@ do
 
 done
 
-#filename=MatrixS_mutualism_"$mutualism"_"$ticks"ticks_"$sexprob"sexualreproduction_replicate"$rep".dat_"$suffix".txt
-#file="$foldername"/"$filename"

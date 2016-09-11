@@ -3,20 +3,28 @@
 #
 #cat data/Results/MatrixS_mutualism_michaelis-menten_30000ticks_10sexualreproduction_replicateA.dat_genprop.txt | sed "s/\s\+/,/g"
 
+foldername=$1
+suffix=$2
 
-if [[ $1 != "genprop" && $1 != "Statistics"  ]];
+if [[ $foldername == "" ]];
 then
-    echo "usage : ./merge suffix"
+    echo "please add the folder name where statfile are stored"
+    echo "usage : ./merge foldername suffix"
     echo " 	where suffix is 'genprop' or 'Statistics' "
     exit 0
 fi
 
-suffix=$1
-foldername=../data/Results/
+if [[ $suffix != "genprop" && $suffix != "Statistics"  ]];
+then
+    echo "usage : ./merge foldername suffix"
+    echo " 	where suffix is 'genprop' or 'Statistics' "
+    exit 0
+fi
+
 outputname="$foldername"/concatenate_result_"$suffix".csv
 
 echo "">$outputname
-cat "$foldername"/MatrixS_mutualism_michaelis-menten_10000ticks_10sexualreproduction_replicateA.dat_"$suffix".txt |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' > "$outputname"
+cat "$foldername"/MatrixS_mutualism_*"$suffix".txt |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' > "$outputname"
 
 for mutualism in michaelis-menten linear sigmoid;
 do
@@ -30,6 +38,7 @@ do
 		file="$foldername"/"$filename"
 		if [ -f $file ];
 		then
+		    echo "Parsing file:$file"
 		    cat  $file | sed "s/\s*//g" | awk -v mut="$mutualism" -v ticks="$ticks" -v sp="$sexprob" -v rep="$rep" 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($1 == "string"){exit}if($2 != ""){varname=$1","varname; varvalue=$2","varvalue}}END{print varvalue mut","ticks","sp","rep}' >> "$outputname"
 		fi
 	    done
