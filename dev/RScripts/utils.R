@@ -212,15 +212,15 @@ errmess <- function(a,d){
 }
 
 #plot two graph !warnings: suppose that result re stored in global variables
-compareDataset<-function(datasetA,datasetB,x="mad",y= "betweenness"){
+compareDataset<-function(datasetA,datasetB,x="mad",y= "betweenness",...){
     par(mfrow=c(1,2))
-    plotProperties(datasetA,x,y,log="x",main="Data")
+    plotProperties(datasetA,x,y,...,main="Data")
     marb=par()$mar
     mar=par()$mar
     
     mar[2]=1
     par(mar=mar)
-    plotProperties(datasetB,x,y,log="x",main="Model")
+    plotProperties(datasetB,x,y,...,main="Model")
     par(mar=marb)
 }
 
@@ -461,4 +461,16 @@ getMatProperties<-function(dat){
      print(paste("mean distance amoung pop",mean(sapply(unique(sans33$Population),function(i){mean(dist(sans33[sans33$Population == i, c("x","y")]))}))))
      print(paste("mean deviation distance", mean(sapply(unique(sans33$Population),function(i){sd(dist(sans33[sans33$Population == i, c("x","y")]))}))))
  }
+
+
+
+ splitPropInClass <- function(prop,num){
+     prop[is.na(prop)]=0
+     num_n= max(prop)/num
+     lbreaks=seq(0,max(prop)-num_n,num_n)
+     breaks=seq(0,max(prop),num_n)
+     prop=cut(prop,breaks=breaks,label=lbreaks,include.lowest=T) 
+	      return(prop)
+ }
+
 
