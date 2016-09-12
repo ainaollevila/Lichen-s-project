@@ -3,23 +3,28 @@
  
 
 unitTestPopSize<-function(){
-    data_model1=read.csv("../../dev/data/ECHOresults/mutualism_michaelis-menten_100000ticks_1sexualreproduction_replicateA.dat",header=F)
-    colnames(data_model1)=c("A","F","x","y")
-    showDistanceProp(data_model1) #print NA 'cause there is initially no pop in salva's output
-    data_model1$y = data_model1$y * 35 #This to se a scale more close to real scale (1unit model ~ 35m in reality
-    data_model1$x = data_model1$x * 35
+    allrep=c("A","B","C","D","E")
+    allModel=data.frame()
+    for(nrep  in  allrep){
+	data_model1=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_100000ticks_1sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
+	colnames(data_model1)=c("A","F","x","y")
+	showDistanceProp(data_model1) #print NA 'cause there is initially no pop in salva's output
+	data_model1=splitSpace(data_model1)
+	data_model1$y = data_model1$y * 35 #This to se a scale more close to real scale (1unit model ~ 35m in reality
+	data_model1$x = data_model1$x * 35
 
-    data_model1=splitSpace(data_model1)
 
-    showDistanceProp(data_model1) #This Ho!Magic! we have stuff cause we splitted in different pop.
+	showDistanceProp(data_model1) #This Ho!Magic! we have stuff cause we splitted in different pop.
 
-    #matMod=cooccurenceMat(data_model1)
+	#matMod=cooccurenceMat(data_model1)
 
-    #wholesetModel=getNodesAndProp(matMod,data_model1) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
+	#wholesetModel=getNodesAndProp(matMod,data_model1) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
 
-    todoModel=computeAllPop(data_model1)
-    plotProperties(todo)
-    compareDataset(todo,todoModel,y="strength")
+	todoModel=computeAllPop(data_model1)
+	allModel=rbind(allModel,todoModel)
+    }
+    plotProperties(allModel)
+    compareDataset(todo,allModel,y="strength")
 
 
 }
