@@ -1,0 +1,16 @@
+General Properties
+	 Number of species:       	  1196
+	 Number of row species:   	   682
+	 Number of column species:	   514
+	 Number of Interactions:  	  1166
+	 Size:                    	350548
+	 Connectance or fill:     	 0.003
+Modularity:
+	Used algorithm:             	  LeadingEigenvector
+	N (Number of modules):      	                 149
+	Qb (Standard metric):       	              0.8808
+	Qr (Ratio of int/ext inter):	              0.8165
+Nestedness NODF:
+	NODF (Nestedness value):    	              0.0041
+	NODF (Rows value):          	              0.0046
+	NODF (Columns value):       	              0.0032
