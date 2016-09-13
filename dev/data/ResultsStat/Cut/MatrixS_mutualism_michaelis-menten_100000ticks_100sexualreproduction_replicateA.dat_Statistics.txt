@@ -1,0 +1,26 @@
+Modularity
+	 Used algorithm:	                  AdaptiveBrim
+	 Null model:    	       NullModels.EQUIPROBABLE
+	 Replicates:    	                           100
+	 Qb value:      	                        0.5091
+	     mean:      	                        0.4892
+	     std:       	                        0.0034
+	     z-score:   	                        5.8850
+	     t-score:   	                       58.8496
+	     percentil: 	                      100.0000
+	 Qr value:      	                        0.0959
+	     mean:      	                        0.0910
+	     std:       	                        0.0287
+	     z-score:   	                        0.1714
+	     t-score:   	                        1.7137
+	     percentil: 	                       62.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	       NullModels.EQUIPROBABLE
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0059
+	     mean:      	                        0.0033
+	     std:       	                        0.0000
+	     z-score:   	                       68.9685
+	     t-score:   	                      689.6851
+	     percentil: 	                      100.0000

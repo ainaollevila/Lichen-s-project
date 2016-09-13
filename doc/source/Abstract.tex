@@ -37,7 +37,7 @@
 \title{Modeling the Coevolutionary Dynamics of the \emph{Lobaria pulmonaria} Lichen Symbiosis}
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{Coevolutionary Dynamics \emph{L. pulmonaria} Lichen Symbiosis}
+\titlerunning{Coevolutionary Dynamics in \emph{L. pulmonaria} Lichen Symbiosis}
 
 % the name(s) of the author(s) follow(s) next
 %
@@ -49,7 +49,7 @@
 %
 
 
-\authorrunning{Coevolutionary Dynamics \emph{L. pulmonaria} Lichen Symbiosis}
+\authorrunning{S. Carrignon, S. Duran-Nebreda, A. Oll\'e Vila \& J. Adams}
 % (feature abused for this document to repeat the title also on left hand pages)
 
 % the affiliations are given next; don't give your e-mail address
@@ -70,24 +70,39 @@
 \toctitle{Coevolutionary Dynamics \emph{L. pulmonaria} Lichen Symbiosis}
 \tocauthor{}
 \maketitle
-\section*{Abstract}
 
-\section{Introduction}
-\label{sec:methods}
-\input{./Sections/introduction.tex}
+Lichens are a hyperdiverse symbiotic group spread across the globe in widely different niches and climates. This partnership between a fungus (also called the mycobiont) and a photobiont (cyanobacteria, algae or both) allows the fungus to obtain carbohydrate-rich resources directly from their photosynthetic partner \cite{lutzoni2009lichens} while the fungus protects the photobiont from desiccation, leading to the coevolution of both species and adaptive radiation into new environments \cite{nash1996lichen}. Lichenization is an evolutionarily and ecologically successful strategy ($>$20\% of fungi are lichenized), resulting in approximately 14,000 lichen species known to date \cite{lutzoni2009lichens,honegger1998lichen}. Although the nature of the lichen symbiosis is still widely debated, many sources agree that the lichen system represents an ecologically obligate mutualistic interaction whereby the net fitness of all partners is maximized~\cite{bronstein1994our,honegger1998lichen}.
 
-\section{Method}
-\label{sec:method}
-\input{./Sections/method.tex}
+%Lichens can reproduce sexually via fungal spores (horizontal transmission) and asexually via vegetative propagules and thallus fragmentation (vertical transmission). In the sexual mode of reproduction, the fungal spores must interact with a compatible free-living algae and/or cyanobacterium in order to reconstitute the lichen thallus. In the asexual mode of reproduction, mycobionts and photobionts are co-dispersed via fragmentation of the main thallus body and specialized asexual propagules.
 
-\section{Results}
-\label{sec:results}
-\input{./Sections/results.tex}
+Lichens can reproduce sexually and asexually. In the asexual mode of reproduction, mycobionts and photobionts are co-dispersed via fragmentation of the main thallus body or via specialized asexual propagules, resulting into a genetically identical lichen where the photobiont is vertically transmitted from the initial thallus to the new lichen. 
+In the sexual mode of reproduction, the fungal spores are spread without the photobiont and have thus to find a compatible algae and/or cyanobacteria in order to reconstitute the lichen thallus (\emph{relichenization}). This mechanism leads to the horizontal transmission of a new photobiont from a neighboring lichen or from a free-living photobiont, genetically different from the photobiont associated with the lichen from which the fungal spores come from. 
+
+
+This peculiar mode of reproduction strongly influences the genetic structure of lichen populations \cite{dal2012vertical,dal2011phylogeny}, affecting dispersal and evolutionary rates. 
+Though it has been recently shown, through the study of {\em L. pulmonaria} \cite{dal2012vertical}, that asexual reproduction could be the main way of reproduction for lichen, sexual reproduction is suspected to play a central role at larger evolutionary scale. Relichenization process could be a successful strategy for genetic recombination, allowing lichens to  explore wider ecological niche by sharing photobiont between different lichens already adapted to diverse local conditions. It as been hypothesized \cite{rikkinen2003ecological} that this process could lead to the emergence of photobiont-mediated guilds, where different species of lichen interact and exchange similar photobionts within an evolutionary coherent structure. These loosely integrated functional units, where different species can exchange resources and genetics materials, are good candidates to explain the evolutionary success of lichens. They allow its different sub-components to evolve more or less independently, at different rates and under different ecological niche, thus making the whole community more responsive to environmental changes and able to adapt to a wider range of environmental conditions.
+
+Nonetheless, studying the evolutionary dynamics of such assemblages is a difficult task. It involves a broad range of heterogeneous entities that co-evolve and interact ecologically at various spatial and temporal levels. This makes fields studies delicate and costly as they have to include lot of material from different places and different temporal scales. Experimental work is also difficult as lichens are fragile biological entities extremely dependent to their local environment, conditions complex and hard to reproduce in the laboratory.    
+
+%This was evidenced by recent articles in the most studied lichen system: {\em L. pulmonaria}, where thalli from 62 populations in forests throughout Europe, North America, Asia, and Africa were genotyped at several hypervariable microsatellite loci \cite{dal2012vertical}. These studies concluded that the {\em L. pulmonaria-S. reticulata} symbiosis showed significant within-population genetic structure due to restricted gene flow and vertical transmission (i.e. co-dispersal of vegetative propagules). 
+%
+%The lichen symbiosis is extremely interesting, as the nature of the system is different from the widely studied plant-animal mutualistic systems \cite{rohr2014structural,bascompte2006asymmetric,bascompte2006structure,bastolla2009architecture,rezende2007non,guimaraes2011evolution}. Its different modes of reproduction, the fact that you find events of delichenization throughout evolution  \cite{lutzoni2001major} and that non of the partners is mobile (only throughout spores), make of it a rather particular system. Moreover, it has been conjectured the asymetry in the coevolution of the two species, due to a limited capacity of adaptation in the photobiont \cite{hill2009asymmetric} as well as that the relationship between the two species cannot always be considered a mutualism but rather a comensalism or even parasitism (with the fungi taking advantage over the photobiont)  \cite{ahmadjian1993lichen}. 
+
+One solution to encompass such obstacles is the use of computer simulations. It allows the study of a wide range of parameters involving a massive number of heterogeneous entities. 
+In order to do so and to unveil which are the potential factors driving the evolution of the lichen symbiosis and of broader ecological and evolutionary interactions, we constructed an agent-based model based on the widely used ECHO framework \cite{holland1999echoing,holland1995hidden}. The ECHO model typically consists of a collection of entities living in a simplified spatial domain, which can move around and interact with one another and with their environment. The interactions among agents can be used to model different kinds of processes -such as mating-, and are driven by locality as well as agent-specific properties, namely the agents' genotypes. The ECHO model is also a continuous genetic algorithm \cite{mitchell1998introduction}; upon reproduction old genotypes are copied with slight mutations, giving rise to quantifiable evolutionary dynamics.
+
+In our case, we used the tag system of ECHO to model the molecular recognition (receptors and physical embedding) between algae and fungi necessary to create the lichen. We considered two different lichenization functions based on similarity, sigmoid (hill function with $n=2$) and Michaelis-Menten (saturation dynamics). Additionally, other ecologically relevant features such as dispersal rates (introduced here as random walks) and the ratio between sexual and asexual reproduction were included in the model. Simulations were carried out assuming a wide range of ecological relations between the algae and fungi: competition (both algae and fungi are better off on their own than forming a lichen), parasitism (only one type of agent benefits from the partnership) and mutualism (both agents benefit).
+
+To legitimate the choice and the design of our model, we crossed the study of the simulations' results with empirical evidences. We first show the ability of our model to reproduce simple dynamics already well studied and understood. Then, we demonstrate that this ability can be scaled through a 'bottom-up' approach to different levels of increasing complexity; before generalising to encompass all the level of interaction, from simple well-known biological processes to broad interspecies co-evolutionary dynamics.
+
+At the empirical level, we have first used a dataset from \cite{dal2012vertical} to understand the very local process of dispersion and reproduction of the lichen {\em L. pulmonaria}.
+Using tools borrowed from network theory, we show that our model can successfully reproduce the dynamics and the general properties exhibited by populations, implying that the implemented processes are consistent with the biological ones. In a second approach, we have studied a dataset from \cite{dal2014molecular}. In this case, some key features of the interactions between different species of lichens, thus coming from wider populations, are measured. We use our model to show that those key features can indeed emerge from the generalization and the expansion of the same process previously described, as far as certain particular conditions are met. 
+
+In the future, and given the ability of our model to reproduce those first level of dynamics, we want to push further our simulations to see if the emergence of more complex entities is possible, and if it is the case, under which conditions. We expect our results to help testing the solidity of the photobiont-mediated guilds hypothesis, thus unveiling the important factors driving the evolutionary dynamics of the lichen symbiosis, and through that, shed new light on how species can co-evolve to form complex ecological communities.
 
 \section*{Acknowledgements}
-This work was initiated at the 2016 Complex Systems Summer School (CSSS) at the Sante Fe Institute (SFI) and was supported by grants from the British Lichen Society and the British Ecological Society. The authors would like to thank all SFI resident faculty members, SFI external faculty members, SFI Omidyar Postdoctoral Fellows, and 2016 CSSS course participants for productive discussions as well as SFI staff during the 2016 CSSS. The authors would also like to thank Dr. Christoph Scheidegger for access to multiple datasets and Dr. Francesco Dal Grande for providing detailed knowledge of the L. pulmonaria system. 
+This work was initiated at the 2016 Complex Systems Summer School (CSSS) at the Sante Fe Institute (SFI). The authors would like to thank all SFI resident faculty members, SFI external faculty members, SFI Omidyar Postdoctoral Fellows, and 2016 CSSS course participants for productive discussions as well as SFI staff during the 2016 CSSS. The authors would also like to thank Dr. Christoph Scheidegger for access to multiple datasets and Dr. Francesco Dal Grande for providing detailed knowledge of the \emph{L. pulmonaria} system. 
 
-\bibliographystyle{splncs03.bst}
-
-\bibliography{bib/simon,bib/biblio}
+\bibliographystyle{splncs}
+\bibliography{bib/simon}
 \end{document}
