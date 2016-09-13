@@ -1,0 +1,26 @@
+Modularity
+	 Used algorithm:	            LeadingEigenvector
+	 Null model:    	       NullModels.EQUIPROBABLE
+	 Replicates:    	                           100
+	 Qb value:      	                        0.8828
+	     mean:      	                        0.6644
+	     std:       	                        0.0704
+	     z-score:   	                        3.1041
+	     t-score:   	                       31.0407
+	     percentil: 	                      100.0000
+	 Qr value:      	                        1.0000
+	     mean:      	                        0.7850
+	     std:       	                        0.1307
+	     z-score:   	                        1.6456
+	     t-score:   	                       16.4556
+	     percentil: 	                       89.0000
+Nestedness
+	 Used algorithm:	                NestednessNODF
+	 Null model:    	       NullModels.EQUIPROBABLE
+	 Replicates:    	                           100
+	 Nestedness value:	                        0.0109
+	     mean:      	                        0.0536
+	     std:       	                        0.0160
+	     z-score:   	                       -2.6747
+	     t-score:   	                      -26.7471
+	     percentil: 	                        1.0000

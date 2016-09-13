@@ -1,4 +1,4 @@
-g=genpath('/Users/aina/Desktop/Lichen-s-project/Network analysis/Nestedness and modularity (Matlab)/BiMat-master');
+g=genpath('/Users/aina/Dropbox/Lichen-s-project/Network analysis/Nestedness and modularity (Matlab)/BiMat-master');
 addpath(g);
 %%
 i=1
@@ -8,12 +8,12 @@ string = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/matrix%d.txt',i)
 A = importdata(string)
 %%
 
-path_data = '/Users/aina/Desktop/Lichen-s-project/dev/data/MatricesParasitism'
-path_results = '/Users/aina/Desktop/Lichen-s-project/dev/data/ResultsParasitism' 
+path_data = '/Users/aina/Desktop/testmat'
+path_results = '/Users/aina/Dropbox/Lichen-s-project/dev/data/ResultsCut' 
 %%
-myFolderInfo = dir ('/Users/aina/Desktop/Lichen-s-project/dev/data/MatricesParasitism')
+myFolderInfo = dir ('/Users/aina/Desktop/testmat')
 %%
-myFolderInfo(1002).name
+myFolderInfo(63590).name
 %%
 stringlist = sprintf('%s/fileslist.txt',path_data)
 diary(stringlist)
@@ -27,13 +27,13 @@ diary off
 
 %%
 
-for i=3:1002
+for i=3:63590
 string = sprintf('%s/%s',path_data,myFolderInfo(i).name)
 %string = sprintf('%s/m%d.txt',path,i)
 
-A = importdata(string);
+%A = importdata(string);
 
-%A = csvread(string,1,1)
+A = csvread(string,1,1)
 % size(A) 
 % rows = size(A,1)
 % cols = size(A,2)
@@ -59,7 +59,17 @@ diary on
 bp.printer.PrintStructureValues();
 diary off
 
+%Statistics
+string_statistics = sprintf('%s/%s_Statistics.txt',path_results,myFolderInfo(i).name)
+diary(string_statistics)
+diary off
+bp.statistics.DoCompleteAnalysis(100, @NullModels.EQUIPROBABLE);
+diary on
+bp.printer.PrintStructureStatistics();
+diary off
 end
+
+
 %%
 string_fig1 = sprintf('%s/%s_fig1.pdf',path_results,myFolderInfo(i).name)
 figure(1);
