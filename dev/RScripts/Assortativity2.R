@@ -4,7 +4,7 @@ library(network)
 library(igraph)
 library(gplots)
 
-datafolder="/Users/aina/Dropbox/Lichen-s-project/data/cooc_mat/"
+datafolder="../../data/cooc_mat/"
 datafolder
 temp=read.csv(paste(datafolder,"mat_pop-4.csv",sep=""), header = TRUE, sep = ",")
 temp1=temp[,2:ncol(temp)]
