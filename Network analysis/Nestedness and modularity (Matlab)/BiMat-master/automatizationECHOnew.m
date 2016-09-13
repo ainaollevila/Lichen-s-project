@@ -1,4 +1,4 @@
-g=genpath('/Users/aina/Dropbox/Lichen-s-project/Network analysis/Nestedness and modularity (Matlab)/BiMat-master');
+g=genpath('/Users/aina/Desktop/Lichen-s-project/Network analysis/Nestedness and modularity (Matlab)/BiMat-master');
 addpath(g);
 %%
 i=1
@@ -8,12 +8,12 @@ string = sprintf('/Users/aina/Dropbox/Lichen-s-project/dev/data/matrix%d.txt',i)
 A = importdata(string)
 %%
 
-path_data = '/Users/aina/Dropbox/Lichen-s-project/dev/data/Matrices'
-path_results = '/Users/aina/Dropbox/Lichen-s-project/dev/data/Results' 
+path_data = '/Users/aina/Desktop/Lichen-s-project/dev/data/MatricesParasitism'
+path_results = '/Users/aina/Desktop/Lichen-s-project/dev/data/ResultsParasitism' 
 %%
-myFolderInfo = dir ('/Users/aina/Dropbox/Lichen-s-project/dev/data/Matrices')
-
-myFolderInfo(4).name
+myFolderInfo = dir ('/Users/aina/Desktop/Lichen-s-project/dev/data/MatricesParasitism')
+%%
+myFolderInfo(1002).name
 %%
 stringlist = sprintf('%s/fileslist.txt',path_data)
 diary(stringlist)
@@ -27,7 +27,7 @@ diary off
 
 %%
 
-for i=10:1003
+for i=3:1002
 string = sprintf('%s/%s',path_data,myFolderInfo(i).name)
 %string = sprintf('%s/m%d.txt',path,i)
 
