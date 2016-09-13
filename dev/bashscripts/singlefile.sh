@@ -1,9 +1,27 @@
 ##Shhould be somehow merged with merge.sh 
 
 
-foldername=../../data/cooc_mat/Results/
-outputname=$1
+foldername=$1
 suffix=$2
+
+if [[ $foldername == "" ]];
+then
+    echo "please add the folder name where statfile are stored"
+    echo "usage : ./merge foldername suffix"
+    echo " 	where suffix is 'genprop' or 'Statistics' "
+    exit 0
+fi
+
+if [[ $suffix != "genprop" && $suffix != "Statistics"  ]];
+then
+    echo "usage : ./merge foldername suffix"
+    echo " 	where suffix is 'genprop' or 'Statistics' "
+    exit 0
+fi
+
+outputname="$foldername"/concatenate_result_"$suffix".csv
+
+
 
 echo "" >  $outputname 
 for file in "$foldername"/*"$suffix".txt; 

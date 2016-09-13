@@ -23,8 +23,10 @@ fi
 
 outputname="$foldername"/concatenate_result_"$suffix".csv
 
+
 echo "">$outputname
-cat "$foldername"/MatrixS_mutualism_*"$suffix".txt |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' > "$outputname"
+
+cat "$foldername"/MatrixS_mutualism_michaelis-menten_100000ticks_100sexualreproduction_replicateA.dat_genprop.txt |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' > "$outputname"
 
 for mutualism in michaelis-menten linear sigmoid;
 do
