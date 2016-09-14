@@ -6,3 +6,5 @@
 *.~lock*
 web.pairs
 web-names.lut
+
+dev/data/ResultsCut/*
