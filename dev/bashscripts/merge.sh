@@ -5,11 +5,20 @@
 
 foldername=$1
 suffix=$2
+prefix=$3
+
+if [[ $1 == "-h" || $1 == "--help"  ]];
+then
+    echo "usage : ./merge foldername suffix prefix"
+    echo "exemple:"
+    echo "	./merge.sh ../data/ResultsParasitism/ genprop M_parasitism "
+    exit 0
+fi
 
 if [[ $foldername == "" ]];
 then
     echo "please add the folder name where statfile are stored"
-    echo "usage : ./merge foldername suffix"
+    echo "usage : ./merge foldername suffix prefix"
     echo " 	where suffix is 'genprop' or 'Statistics' "
     exit 0
 fi
@@ -24,11 +33,11 @@ fi
 outputname="$foldername"/concatenate_result_"$suffix".csv
 
 
-echo "">$outputname
 
-for file in "$foldername"/*;  #this just to get the head, so to run only on the first file
+for tfile in "$foldername"/*.txt;  #this just to get the head, so to run only on the first file
 do
-    cat "$file" |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' > "$outputname"
+    echo $tfile
+    cat "$tfile" |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' > "$outputname"
     break 1
 done
 
@@ -40,7 +49,7 @@ do
 	do
 	    for sexprob in 1 5 10 50 100; 
 	    do
-		filename=MatrixS_mutualism_"$mutualism"_"$ticks"ticks_"$sexprob"sexualreproduction_replicate"$rep".dat_"$suffix".txt
+		filename="$prefix"_"$mutualism"_"$ticks"ticks_"$sexprob"sexualreproduction_replicate"$rep".dat_"$suffix".txt
 		file="$foldername"/"$filename"
 		if [ -f $file ];
 		then
