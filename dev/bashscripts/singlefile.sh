@@ -23,7 +23,15 @@ outputname="$foldername"/concatenate_result_"$suffix".csv
 
 
 
-echo "" >  $outputname 
+echo "">$outputname
+
+for file in "$foldername"/*;  #this just to get the head, so to run only on the first file
+do
+    cat "$file" |  sed "s/\s*//g" | awk 'BEGIN{FS=":"; varname="" ; varvalue=""}{if($2 != ""){varname=$1","varname; }}END{print varname "mutualism,ticks,sexproba,rep"}' > "$outputname"
+    break 1
+done
+
+
 for file in "$foldername"/*"$suffix".txt; 
 do 
     echo $file

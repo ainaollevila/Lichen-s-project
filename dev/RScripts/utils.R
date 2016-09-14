@@ -1,9 +1,10 @@
-library(bipartite)
-library(vegan)
-library(network)
-library(igraph)
-library(gplots)
-library(scales)
+#Use if else
+require(bipartite)
+require(vegan)
+require(network)
+require(igraph)
+require(gplots)
+require(scales)
 
 options("scipen"=100, "digits"=4)##this is very import as it allow to avoid LOT of problems comming from the fact that will reading the 
 
