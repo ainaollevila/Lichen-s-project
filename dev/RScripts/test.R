@@ -5,6 +5,7 @@
 unitTestPopSize<-function(){
     allrep=c("A","B","C","D","E")
     allModel=data.frame()
+    nrep="A"
     for(nrep  in  allrep){
 	data_model1=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_100000ticks_1sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
 	colnames(data_model1)=c("A","F","x","y")
@@ -34,12 +35,22 @@ testNestAndCompares <- function(){
 
     testNestednesStat=read.csv("../data/Results/concatenate_result_Statistics.csv")
     testNestednesGen=read.csv("../data/Results/concatenate_result_genprop.csv")
-    testReal=read.csv("../bashscripts/test.csv",head=F)
+    testReal=read.csv("../../data/cooc_mat/Results/concatenate_result_genprop.csv",head=F)
     colnames(testReal)=colnames(testNestednesGen)[1:14]
-    test=testNestednesGen[testNestednesGen$ticks == 10001, ]
-    boxplot(testReal$NODF.Nestednessvalue. ~ test$sexproba,xlab="sexproba",ylab="Nestednessvalue")
+    test=testNestednesGen[testNestednesGen$ticks > 60000 & testNestednesGen$mutualism == "michaelis-menten", ]
 
-    plot(testNestednesGen$NODF.Nestednessvalue. ~ testNestednesGen$ticks)
+    points(rep(8000,testReal$Qb.Standardmetric.,col="yellow")
+
+    plot(testNestednesGen$Qb.Standardmetric. ~ testNestednesGen$ticks,plot="n",ylab="Qb Metrics",xlab="time")
+    colsex=1:length(unique(testNestednesGen$sexproba))
+    names(colsex)=unique(testNestednesGen$sexproba)
+    sapply(unique(testNestednesGen$sexproba) , function(i){
+	this=testNestednesGen[ testNestednesGen$sexproba == i,]
+    	points(this$Qb.Standardmetric. ~ this$ticks,col=colsex[as.character(i)])
+	 })
+    legend("center",legend=c(names(colsex),"real data"),col=c(colsex,"yellow"),pch=1,title="Sex. Proba.")
+    
+
 
     testOnfile=read.csv("../data/ECHOresults/mutualism_michaelis-menten_10000ticks_1sexualreproduction_replicateA.dat",header=F)
     testOnfile=read.csv("../data/ECHOresults/mutualism_michaelis-menten_10000ticks_5sexualreproduction_replicateA.dat",header=F)
@@ -54,7 +65,7 @@ testNestAndCompares <- function(){
 
 checkSpecies<-function(){
     comp=c()
-    rown=181
+    rown=481
     for( rown in 1:10){
 	this=testNestednesGen[rown,]
 	testOnfile=read.csv(paste("../data/ECHOresults/mutualism_michaelis-menten_",this$ticks,"ticks_",this$sexproba,"sexualreproduction_replicate",this$rep,".dat",sep=""),header=F)
@@ -257,4 +268,71 @@ main<-function(){
     fulltest=createNetwork(fullD)
     write.csv(fulltest,paste("../../data/cooc_mat/mat_fulldataset.csv",sep=""))
     plotNetwork(fulltest)
+}
+
+
+
+
+printGraph<-function(){
+    testNestednesGen=read.csv("../data/Results/concatenate_result_genprop.csv")
+    dalgrande2012=read.csv("../../data/cooc_mat/Results/concatenate_result_genprop.csv",head=F)
+    colnames(dalgrande2012)=colnames(testNestednesGen)[1:14]
+
+    modSP1=testNestednesGen[testNestednesGen$ticks > 60000 & testNestednesGen$sexproba == 1,1:14 ]
+    modSP1$type= "Model Sp=1"
+    modSP5=testNestednesGen[testNestednesGen$ticks > 60000 & testNestednesGen$sexproba == 5,1:14 ]
+    modSP5$type= "Model Sp=5"
+    dalgrande2012$type= "Dal Grande 2012"
+    compare=rbind(dalgrande2012,modSP5,modSP1)
+
+    png("img/QbMetcompare.png")
+    boxplot(compare$Qb.Standardmetric. ~ compare$type,ylab="Qb Metrics",xlab="",main="Qb Metrics")
+    dev.off()
+
+    png("img/NestedNODFcompare.png")
+    boxplot(compare$NODF.Columnsvalue. ~ compare$type,ylab="NODF Nestedness",xlab="",main="NODF Nestedness")
+    dev.off()
+
+    png("img/QrRatiocompare.png")
+    boxplot(compare$Qr.Ratioofint.extinter. ~ compare$type,ylab="Qr Ratio",xlab="",main="Qr Ratio")
+    dev.off()
+
+    png("img/NModuelcompare.png")
+    boxplot(compare$N.M ~ compare$type,ylab="Number of Modules",xlab="",main="Number of Modules")
+    dev.off()
+
+    png("img/QbMetvsSexProb_tsup60k.png")
+    test=testNestednesGen[testNestednesGen$ticks > 60000, ]
+    boxplot(test$Qb.Standardmetric. ~ test$sexproba,ylab="Qb Metrics",xlab="Sex. Proba",main="Qb Metrics wrt Sex Prob\n(after 60000ticks)")
+    dev.off()
+
+    png("img/NestedNODFvsSexProb_tsup60k.png")
+    boxplot(test$NODF.Nestednessvalue. ~ test$sexproba,ylab="NODF Nestedness",xlab="Sex. Proba",main="Nestedness value wrt Sex Prob\n(after 60000ticks)")
+    dev.off()
+
+    png("img/QrRatiovsSexProb_tsup60k.png")
+    boxplot(test$Qr.Ratioofint.extinter. ~ test$sexproba,ylab="Qr Ratio",xlab="Sex. Proba",main="Qr ratio wrt Sex Prob\n(after 60000ticks)")
+    dev.off()
+
+    sapply(unique(testNestednesGen$ticks),function(ti){
+    	test=testNestednesGen[testNestednesGen$ticks == ti , ]
+	   png(paste("img/NModulevsSexProb_t=",ti,".png",sep=""))
+	   boxplot(test$N.Numberofmodules. ~ test$sexproba,ylab="N. Modules",xlab="Sex. Proba",main=paste("Num of modules wrt Sex Proba (ticks=",ti,")",sep=""),ylim=c(0,160))
+	   dev.off()
+	})
+}
+
+
+writeAllsubMatrice <- function(){
+	foldername="../../dev/data/ECHOresults/"
+	for( filename in list.files(path=foldername,pattern="*.dat")){
+		data_model1=read.csv(paste(foldername,filename,sep=""),header=F)
+		colnames(data_model1)=c("A","F","x","y")
+		data_model1=splitSpace(data_model1)
+		allm=loadAllMatrices(data_model1)
+		for(n in names(allm)){
+			write.csv(allm[n],paste("testmat/",filename,n,sep=""))
+		}
+	}
+}
 }
