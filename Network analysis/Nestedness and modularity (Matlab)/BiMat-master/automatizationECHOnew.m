@@ -18,7 +18,7 @@ myFolderInfo(63590).name
 stringlist = sprintf('%s/fileslist.txt',path_data)
 diary(stringlist)
 diary on
-for i=4:10
+for i=3:63590
     i
     myFolderInfo(i).name
 end
@@ -27,7 +27,7 @@ diary off
 
 %%
 
-for i=3:63590
+for i=1004:1004
 string = sprintf('%s/%s',path_data,myFolderInfo(i).name)
 %string = sprintf('%s/m%d.txt',path,i)
 
