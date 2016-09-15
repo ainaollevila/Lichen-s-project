@@ -164,6 +164,8 @@ cooccurenceModel <- function(datas){
   
 }
 
+foldername="/Users/aina/Dropbox/Lichen-s-project/data/Dalgrande_new"
+mat=read.table("/Users/aina/Dropbox/Lichen-s-project/data/Dalgrande_new/Dalgrande_new.txt")
 
 #vec_files <- list.files(datafolder,pattern="*reproduction*")
 
