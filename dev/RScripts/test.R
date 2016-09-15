@@ -2,33 +2,47 @@
  source("AsymmetryValuesFunction.R")
  
 
-unitTestPopSize<-function(){
-    allrep=c("A","B","C","D","E")
-    allModel=data.frame()
-    nrep="A"
-    for(nrep  in  allrep){
-	data_model1=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_100000ticks_1sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
-	colnames(data_model1)=c("A","F","x","y")
-	showDistanceProp(data_model1) #print NA 'cause there is initially no pop in salva's output
-	data_model1=splitSpace(data_model1)
-	data_model1$y = data_model1$y * 35 #This to se a scale more close to real scale (1unit model ~ 35m in reality
-	data_model1$x = data_model1$x * 35
+ unitTestPopSize<-function(y="betweenness", x="mad"){
+
+	 dir.create("img/ModelVsData/")
+	 allrep=c("A","B","C","D","E")
+	 nrep="A"
+
+	 for(nsex  in  c(1,5,10,100)){
+		 for(tick  in  c(10000,100000,50000)){
+			 allModel=data.frame()
+			 for(nrep  in  allrep){
+				 dat=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_",tick,"ticks_",nsex,"sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
+				 colnames(dat)=c("A","F","x","y")
+				 showDistanceProp(dat) #print NA 'cause there is initially no pop in salva's output
+				 dat=splitSpace(dat)
+				 dat$y = dat$y  #This to se a scale more close to real scale (1unit model ~ 35m in reality
+				 dat$x = dat$x 
 
 
-	showDistanceProp(data_model1) #This Ho!Magic! we have stuff cause we splitted in different pop.
+				 showDistanceProp(dat) #This Ho!Magic! we have stuff cause we splitted in different pop.
 
-	#matMod=cooccurenceMat(data_model1)
+				 #matMod=cooccurenceMat(dat)
 
-	#wholesetModel=getNodesAndProp(matMod,data_model1) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
+				 #wholesetModel=getNodesAndProp(matMod,dat) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
 
-	todoModel=computeAllPop(data_model1)
-	allModel=rbind(allModel,todoModel)
-    }
-    plotProperties(allModel)
-    compareDataset(todo,allModel,y="strength")
+				 todoModel=computeAllPop(dat)
+				 allModel=rbind(allModel,todoModel)
+			 }
+			 png(paste("img/ModelVsData/",x,"VS",y,"-ticks=",tick,"_sp=",nsex,".png",sep=""),width=600)
+			 par(mfrow=c(1,2),mar=c(5,4,4,.5))
+			 plotProperties(todo,x,y,main="Data",log="x")
+			 mar=par()$mar
+
+			 par(mar=c(5,2,4,1))
+			 plotProperties(allModel,x,y,main=paste("Model with:\nsexprob=",nsex,", ticks=",tick,sep=""),log="x")
+			 par(mar=mar)
+			 dev.off()
+		 }
+	 }
 
 
-}
+ }
 
 
 testNestAndCompares <- function(){
@@ -272,55 +286,6 @@ main<-function(){
 
 
 
-
-printGraph<-function(){
-    testNestednesGen=read.csv("../data/Results/concatenate_result_genprop.csv")
-    dalgrande2012=read.csv("../../data/cooc_mat/Results/concatenate_result_genprop.csv",head=F)
-    colnames(dalgrande2012)=colnames(testNestednesGen)[1:14]
-
-    modSP1=testNestednesGen[testNestednesGen$ticks > 60000 & testNestednesGen$sexproba == 1,1:14 ]
-    modSP1$type= "Model Sp=1"
-    modSP5=testNestednesGen[testNestednesGen$ticks > 60000 & testNestednesGen$sexproba == 5,1:14 ]
-    modSP5$type= "Model Sp=5"
-    dalgrande2012$type= "Dal Grande 2012"
-    compare=rbind(dalgrande2012,modSP5,modSP1)
-
-    png("img/QbMetcompare.png")
-    boxplot(compare$Qb.Standardmetric. ~ compare$type,ylab="Qb Metrics",xlab="",main="Qb Metrics")
-    dev.off()
-
-    png("img/NestedNODFcompare.png")
-    boxplot(compare$NODF.Columnsvalue. ~ compare$type,ylab="NODF Nestedness",xlab="",main="NODF Nestedness")
-    dev.off()
-
-    png("img/QrRatiocompare.png")
-    boxplot(compare$Qr.Ratioofint.extinter. ~ compare$type,ylab="Qr Ratio",xlab="",main="Qr Ratio")
-    dev.off()
-
-    png("img/NModuelcompare.png")
-    boxplot(compare$N.M ~ compare$type,ylab="Number of Modules",xlab="",main="Number of Modules")
-    dev.off()
-
-    png("img/QbMetvsSexProb_tsup60k.png")
-    test=testNestednesGen[testNestednesGen$ticks > 60000, ]
-    boxplot(test$Qb.Standardmetric. ~ test$sexproba,ylab="Qb Metrics",xlab="Sex. Proba",main="Qb Metrics wrt Sex Prob\n(after 60000ticks)")
-    dev.off()
-
-    png("img/NestedNODFvsSexProb_tsup60k.png")
-    boxplot(test$NODF.Nestednessvalue. ~ test$sexproba,ylab="NODF Nestedness",xlab="Sex. Proba",main="Nestedness value wrt Sex Prob\n(after 60000ticks)")
-    dev.off()
-
-    png("img/QrRatiovsSexProb_tsup60k.png")
-    boxplot(test$Qr.Ratioofint.extinter. ~ test$sexproba,ylab="Qr Ratio",xlab="Sex. Proba",main="Qr ratio wrt Sex Prob\n(after 60000ticks)")
-    dev.off()
-
-    sapply(unique(testNestednesGen$ticks),function(ti){
-    	test=testNestednesGen[testNestednesGen$ticks == ti , ]
-	   png(paste("img/NModulevsSexProb_t=",ti,".png",sep=""))
-	   boxplot(test$N.Numberofmodules. ~ test$sexproba,ylab="N. Modules",xlab="Sex. Proba",main=paste("Num of modules wrt Sex Proba (ticks=",ti,")",sep=""),ylim=c(0,160))
-	   dev.off()
-	})
-}
 
 
 writeAllsubMatrice <- function(){

@@ -222,13 +222,12 @@ errmess <- function(a,d){
 compareDataset<-function(datasetA,datasetB,x="mad",y= "betweenness",...){
     par(mfrow=c(1,2))
     plotProperties(datasetA,x,y,...,main="Data")
-    marb=par()$mar
     mar=par()$mar
     
     mar[2]=1
     par(mar=mar)
     plotProperties(datasetB,x,y,...,main="Model")
-    par(mar=marb)
+    par(resetPar())
 }
 
 
@@ -479,3 +478,31 @@ getMatProperties<-function(dat){
  }
 
 
+
+ splitGraph <- function(tosplit,npop=62){
+
+     bins=seq(0,60+60/sqrt(npop),60/sqrt(npop))
+     for(i in 1:(length(bins))){
+	 for(j in 1:(length(bins))){
+		 abline(h=bins[i],col="red")
+		 abline(v=bins[j],col="red")
+	 }
+     }
+
+ }
+
+ plotAllPop <- function(dat){
+	 npop=round(sqrt(length(unique(dat$Population))))
+	 par(mfrow=c(npop,npop),mar=rep(.1,4),oma=c(2,2,5,2))
+	 sapply(unique(dat$Population),function(pop){plot(dat[dat$Population == pop,c("x","y")],axes=F);box();})
+	 mtext("Spatial Disperstion of Sample\n within each pop (real Data)",side=3,outer=T,line=2) 
+	 par(resetPar())
+ }
+
+
+ resetPar <- function() {
+	     dev.new()
+     op <- par(no.readonly = TRUE)
+         dev.off()
+         op
+ }
