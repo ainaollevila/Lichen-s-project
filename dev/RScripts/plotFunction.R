@@ -15,10 +15,11 @@ text(m29all$x[m29all$A == maxAlgae],m29all$y[m29all$A == maxAlgae]+5,"A4",col="d
 	 allrep=c("A","B","C","D","E")
 	 nrep="A"
 
+	 x="mean_dist"
 	 for(nsex  in  c(1,5,10,100)){
 		 for(tick  in  c(10000,100000,50000)){
 		     nsex=100
-		     tick=50000
+		     tick=10000
 			 allModel=data.frame()
 			 for(nrep  in  allrep){
 				 dat=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_",tick,"ticks_",nsex,"sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
@@ -43,6 +44,7 @@ text(m29all$x[m29all$A == maxAlgae],m29all$y[m29all$A == maxAlgae]+5,"A4",col="d
 			 plotProperties(todoB,x,y,ma="Dal Grande 2012",log="x")
 			 mar=par()$mar
 
+			allModelB10000=allModel[allModel$betweenness>1,]
 			 par(mar=c(5,2,4,1))
 			 plotProperties(allModelB10000,x,y,main=paste("Model with:\nsexprob=",nsex,", ticks=",tick,sep=""),log="x")
 			 par(mar=mar)

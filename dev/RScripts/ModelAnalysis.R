@@ -39,26 +39,31 @@ printGraph<-function(){
     colnames(dalgrande2012)=colnames(testModelMut)[1:14]
 
     modSP1subpop=testModelPop[testModelPop$ticks > 60000 & testModelPop$sexproba == 1,1:14 ]
-    modSP1subpop$type= "Cut Sp=1"
+    modSP1subpop$type= "Model Sp=1"
     modSP5subpop=testModelPop[testModelPop$ticks > 60000 & testModelPop$sexproba == 5,1:14 ]
-    modSP5subpop$type= "Cut Sp=5"
+    modSP5subpop$type= "Model Sp=5"
     modSP10subpop=testModelPop[testModelPop$ticks > 60000 & testModelPop$sexproba == 10,1:14 ]
-    modSP10subpop$type= "Cut Sp=10"
+    modSP10subpop$type= "Model Sp=10"
+    modSP100subpop=testModelPop[testModelPop$ticks > 60000 & testModelPop$sexproba == 100,1:14 ]
+    modSP100subpop$type= "Model Sp=100"
     modSP1=testModelMut[testModelMut$ticks > 60000 & testModelMut$sexproba == 1,1:14 ]
     modSP1$type= "Model Sp=1"
-    modSP5=testModelMut[testModelMut$ticks > 60000 & testModelMut$sexproba == 5,1:14 ]
-    modSP5$type= "Model Sp=5"
+    modSP100=testModelMut[testModelMut$ticks > 60000 & testModelMut$sexproba == 100,1:14 ]
+    modSP100$type= "Model Sp=100"
     modSP10=testModelMut[testModelMut$ticks > 60000 & testModelMut$sexproba == 10,1:14 ]
     modSP10$type= "Model Sp=10"
     dalgrande2012$type= "DalGrande12"
+
     compare=rbind(dalgrande2012,modSP1,modSP1subpop,modSP5,modSP5subpop,modSP10,modSP10subpop)
+    compare=rbind(dalgrande2012,modSP1subpop,modSP10subpop,modSP100subpop)
+    compare=rbind(dalgrande2012,modSP1,modSP10,modSP100)
 
     png("img/compareAll/QbMetcompare.png",width=750)
-    boxplot(compare$Qb.Standardmetric. ~ compare$type,ylab="Qb Metrics",xlab="",main="Qb Metrics")
+    boxplot(compare$Qb.Standardmetric. ~ compare$type,ylab="Modularity",xlab="",main="Modularity",outline=F,ylim=c(0,1))
     dev.off()
 
     png("img/compareAll/NestedNODFcompare.png",width=750)
-    boxplot(compare$NODF.Columnsvalue. ~ compare$type,ylab="NODF Nestedness",xlab="",main="NODF Nestedness")
+    boxplot(compare$N.Numberofmodules. ~ compare$type,ylab="Number of Node",xlab="",main="Modularity",outline=F,ylim=c(0,210))
     dev.off()
 
     png("img/compareAll/QrRatiocompare.png",width=750)
