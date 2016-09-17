@@ -2,47 +2,6 @@
  source("AsymmetryValuesFunction.R")
  
 
- unitTestPopSize<-function(y="betweenness", x="mad"){
-
-	 dir.create("img/ModelVsData/")
-	 allrep=c("A","B","C","D","E")
-	 nrep="A"
-
-	 for(nsex  in  c(1,5,10,100)){
-		 for(tick  in  c(10000,100000,50000)){
-			 allModel=data.frame()
-			 for(nrep  in  allrep){
-				 dat=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_",tick,"ticks_",nsex,"sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
-				 colnames(dat)=c("A","F","x","y")
-				 showDistanceProp(dat) #print NA 'cause there is initially no pop in salva's output
-				 dat=splitSpace(dat)
-				 dat$y = dat$y  #This to se a scale more close to real scale (1unit model ~ 35m in reality
-				 dat$x = dat$x 
-
-
-				 showDistanceProp(dat) #This Ho!Magic! we have stuff cause we splitted in different pop.
-
-				 #matMod=cooccurenceMat(dat)
-
-				 #wholesetModel=getNodesAndProp(matMod,dat) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
-
-				 todoModel=computeAllPop(dat)
-				 allModel=rbind(allModel,todoModel)
-			 }
-			 png(paste("img/ModelVsData/",x,"VS",y,"-ticks=",tick,"_sp=",nsex,".png",sep=""),width=600)
-			 par(mfrow=c(1,2),mar=c(5,4,4,.5))
-			 plotProperties(todo,x,y,main="Data",log="x")
-			 mar=par()$mar
-
-			 par(mar=c(5,2,4,1))
-			 plotProperties(allModel,x,y,main=paste("Model with:\nsexprob=",nsex,", ticks=",tick,sep=""),log="x")
-			 par(mar=mar)
-			 dev.off()
-		 }
-	 }
-
-
- }
 
 
 testNestAndCompares <- function(){
@@ -271,11 +230,11 @@ main<-function(){
     plotpop(fullD,2)
     a=15
 
-    sapply(unique(fullD$Population),function(a){
-	   test=createNetwork(fullD[fullD$Population == a ,])
-	   write.csv(test,paste("../../data/cooc_mat/mat_pop-",a,".csv",sep=""))
-	   png(paste("../../data/cooc_mat/bipartite_pop-",a,".png",sep=""),height=600,width=900)
-	   plotNetwork(test,main=paste("../../data/cooc_mat/Population",a))
+    sapply(names(allmatrice),function(a){
+	   #write.csv(test,paste("../../data/cooc_mat/mat_pop-",a,".csv",sep=""))
+	   png(paste("pop-",a,".png",sep=""))
+	   par(mar=rep(0.1,4))
+	   plotNetwork(allmatrice[[a]])
 	   dev.off()
 })
 

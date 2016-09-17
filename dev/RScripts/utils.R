@@ -340,15 +340,21 @@ cooccurenceMatTocheck <- function(datas,algdif=2,fungdif=2,groupf=c(),groupa=c()
 #Plot the bipartite network with size of link prop to the weight of the relation
 #Some fixes need
 plotNetwork<-function(mat,id="",...){
-    fungus=1:nrow(mat)*4 
-    algae=1:ncol(mat)*4 
+    xmax=max(nrow(mat),ncol(mat))
+    xmin=min(nrow(mat),ncol(mat))
+    begin=(xmax-xmin)*2
+    f=0
+    a=0
+    if(nrow(mat)>ncol(mat)){a = begin}else{f=begin}
+    fungus=1:nrow(mat)*4+f
+    algae=1:ncol(mat)*4+a
     ptsize=3
-    plot(fungus,rep(-1,nrow(mat)),cex=ptsize,bty="n",ylim=c(-1.5,1.5),xlim=c(-10,max(fungus)+5),col=alpha("red",0.5),pch=20,xaxt="n",xlab="",yaxt="n", ylab="",...)
-    text(fungus,rep(-.7,nrow(mat))-.5,label=rownames(mat),cex=1,srt=60,c(1,1))
-    points(algae,rep(1,ncol(mat)),cex=ptsize,col=alpha("yellow",0.5),pch=20)
-    text(algae,rep(.7,ncol(mat))+.5,label=colnames(mat),cex=1,srt=300,adj=c(1,1))
-    text(-5,-1,"fungi")
-    text(-5,1,"algae")
+    plot(fungus,rep(-1,nrow(mat)),cex=ptsize,bty="n",ylim=c(-2.5,2.5),col=alpha("dark green",0.8),pch=20,xaxt="n",xlab="",yaxt="n", ylab="",xlim=c(-10,xmax*4),...)
+    text(fungus,rep(-.7,nrow(mat))-.5,label=rownames(mat),cex=.5,srt=60,c(1,1))
+    points(algae,rep(1,ncol(mat)),cex=ptsize,col=alpha("dark orange",0.8),pch=20)
+    text(algae,rep(.7,ncol(mat))+.5,label=colnames(mat),cex=.5,srt=300,adj=c(1,1))
+    text(-5+f,-1,"fungi")
+    text(-5+a,1,"algae")
     text(0,0,id,cex=1)
     cx0=c()
     cy0=c()
@@ -362,7 +368,7 @@ plotNetwork<-function(mat,id="",...){
 		xf=fungus[f]
 		yf=-1
 		if(mat[f,a]>=1){
-		    segments(x0=xf,y0=yf+.05,x1=xp,y1=yp-.05,col=alpha("green",.6),lwd=mat[f,a]/2,length=.1)
+		    segments(x0=xf,y0=yf+.05,x1=xp,y1=yp-.05,col=alpha("black",.6),lwd=mat[f,a]/2,length=.1)
 		}
 	    }
 	}
@@ -479,8 +485,7 @@ getMatProperties<-function(dat){
 
 
 
- splitGraph <- function(tosplit,npop=62){
-
+ splitGraph <- function(npop=62){
      bins=seq(0,60+60/sqrt(npop),60/sqrt(npop))
      for(i in 1:(length(bins))){
 	 for(j in 1:(length(bins))){
@@ -506,3 +511,54 @@ getMatProperties<-function(dat){
          dev.off()
          op
  }
+
+
+getMax <- function(mat,type){
+
+    return(colnames(m29)[which.max(apply(mat,type,sum))])
+}
+
+
+
+#This functionr eturn a list with the properties10000 
+			 allModel=data.frame()
+			 for(nrep  in  allrep){
+				 dat=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_",tick,"ticks_",nsex,"sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
+				 colnames(dat)=c("A","F","x","y")
+				 showDistanceProp(dat) #print NA 'cause there is initially no pop in salva's output
+				 dat=splitSpace(dat)
+				 dat$y = dat$y*10 #This to se a scale more close to real scale (1unit model ~ 35m in reality
+				 dat$x = dat$x*10 
+
+
+				 showDistanceProp(dat) #This Ho!Magic! we have stuff cause we splitted in different pop.
+
+				 #matMod=cooccurenceMat(dat)
+
+				 #wholesetModel=getNodesAndProp(matMod,dat) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
+
+				 todoModel=computeAllPop(dat)
+				 allModel=rbind(allModel,todoModel)
+			 }
+getModelResultAndProp <- function(tick,nsex,mate="michaelis-menten"){
+			 allModel=data.frame()
+			 for(nrep  in  allrep){
+				 dat=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_",tick,"ticks_",nsex,"sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
+				 colnames(dat)=c("A","F","x","y")
+				 showDistanceProp(dat) #print NA 'cause there is initially no pop in salva's output
+				 dat=splitSpace(dat)
+				 dat$y = dat$y*10 #This to se a scale more close to real scale (1unit model ~ 35m in reality
+				 dat$x = dat$x*10 
+
+
+				 showDistanceProp(dat) #This Ho!Magic! we have stuff cause we splitted in different pop.
+
+				 #matMod=cooccurenceMat(dat)
+
+				 #wholesetModel=getNodesAndProp(matMod,dat) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
+
+				 todoModel=computeAllPop(dat)
+				 allModel=rbind(allModel,todoModel)
+			 }
+			 return(allModel)
+}
