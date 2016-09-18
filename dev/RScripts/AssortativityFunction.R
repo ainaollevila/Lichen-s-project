@@ -8,7 +8,7 @@ library(bipartite)
 
 ComputeAssortativity <-function(mat){
   m=fromBipartiteToSquareMatrix(mat)
-  graph=graph_from_adjacency_matrix(m, mode = "undirected", weighted = NULL, diag = TRUE, add.colnames = NULL, add.rownames = NA)
+  graph=graph_from_adjacency_matrix(m, mode = "undirected", weighted = T, diag = TRUE, add.colnames = NULL, add.rownames = NA)
   assort_degree=assortativity_degree(graph) 
   return(assort_degree)
 }

@@ -1,12 +1,12 @@
 plotOneStuff <- function(){
-dev.off()
-par(mar=rep(1,4))
-plot(m29all$x[m29all$A != maxAlgae],m29all$y[m29all$A != maxAlgae],axes=F,pch=20,col="grey",xlab="lat",ylab="long",cex=2)
-box()
-points(m29all$x[m29all$A == maxAlgae],m29all$y[m29all$A == maxAlgae],col="dark red",pch=20,cex=2)
-text(m29all$x[m29all$A == maxAlgae],m29all$y[m29all$A == maxAlgae]+5,"A4",col="dark red")
-#points(m29all$x[m29all$A == sec],m29all$y[m29all$A == sec],col="blue",pch=20)
-#points(m29all$x[m29all$F == sec]+1,m29all$y[m29all$F == sec],col="blue",pch=20)
+	dev.off()
+	par(mar=rep(1,4))
+	plot(m29all$x[m29all$A != maxAlgae],m29all$y[m29all$A != maxAlgae],axes=F,pch=20,col="grey",xlab="lat",ylab="long",cex=2)
+	box()
+	points(m29all$x[m29all$A == maxAlgae],m29all$y[m29all$A == maxAlgae],col="dark red",pch=20,cex=2)
+	text(m29all$x[m29all$A == maxAlgae],m29all$y[m29all$A == maxAlgae]+5,"A4",col="dark red")
+	#points(m29all$x[m29all$A == sec],m29all$y[m29all$A == sec],col="blue",pch=20)
+	#points(m29all$x[m29all$F == sec]+1,m29all$y[m29all$F == sec],col="blue",pch=20)
 }
 
  unitTestPopSize<-function(y="betweenness", x="mad"){
