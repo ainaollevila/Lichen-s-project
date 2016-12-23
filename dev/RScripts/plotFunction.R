@@ -74,3 +74,23 @@ plotAll <- function(allmatrice){
 	   dev.off()
 })
 }
+
+
+
+par(mar=rep(.5,4))
+aa=read.csv("../data/ECHOresults/mutualism_michaelis-menten_100000ticks_1sexualreproduction_replicateA.dat",header=F)    
+pdf("split.pdf")
+ plot(aa$V3,aa$V4,axes=F,ylab= "",xlab="")
+splitGraph()             
+box()
+dev.off()
+
+ plotAllPop <- function(dat){
+	par(mar=rep(.5,4))
+	 npop=round(sqrt(length(unique(dat$Population))))
+	 par(mfrow=c(npop,npop),mar=rep(.1,4),oma=c(2,2,5,2))
+	 sapply(unique(dat$Population),function(pop){plot(dat[dat$Population == pop,c("x","y")],axes=F);box();})
+	 #mtext("Spatial Disperstion of Sample\n within each pop (real Data)",side=3,outer=T,line=2) 
+	 par(resetPar())
+ }
+
