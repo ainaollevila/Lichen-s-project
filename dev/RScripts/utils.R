@@ -3,7 +3,7 @@ require(bipartite)
 require(vegan)
 require(network)
 require(igraph)
-require(gplots)
+#require(gplots)
 require(scales)
 
 options("scipen"=100, "digits"=4)##this is very import as it allow to avoid LOT of problems comming from the fact that will reading the 
@@ -349,7 +349,7 @@ plotNetwork<-function(mat,id="",...){
     fungus=1:nrow(mat)*4+f
     algae=1:ncol(mat)*4+a
     ptsize=3
-    plot(fungus,rep(-1,nrow(mat)),cex=ptsize,bty="n",ylim=c(-2.5,2.5),col=alpha("dark green",0.8),pch=20,xaxt="n",xlab="",yaxt="n", ylab="",xlim=c(-10,xmax*4),...)
+    plot(fungus,rep(-1,nrow(mat)),cex=ptsize,bty="n",ylim=c(-1.05,1.05),col=alpha("dark green",0.8),pch=20,xaxt="n",xlab="",yaxt="n", ylab="",xlim=c(-10,xmax*4),...)
     text(fungus,rep(-.7,nrow(mat))-.5,label=rownames(mat),cex=.5,srt=60,c(1,1))
     points(algae,rep(1,ncol(mat)),cex=ptsize,col=alpha("dark orange",0.8),pch=20)
     text(algae,rep(.7,ncol(mat))+.5,label=colnames(mat),cex=.5,srt=300,adj=c(1,1))
@@ -485,22 +485,23 @@ getMatProperties<-function(dat){
 
 
 
- splitGraph <- function(npop=62){
+ splitGraph <- function(npop=62,coln="red"){
      bins=seq(0,60+60/sqrt(npop),60/sqrt(npop))
      for(i in 1:(length(bins))){
 	 for(j in 1:(length(bins))){
-		 abline(h=bins[i],col="red")
-		 abline(v=bins[j],col="red")
+		 abline(h=bins[i],col=coln,lwd=2)
+		 abline(v=bins[j],col=coln,lwd=2)
 	 }
      }
 
  }
 
  plotAllPop <- function(dat){
+
 	 npop=round(sqrt(length(unique(dat$Population))))
-	 par(mfrow=c(npop,npop),mar=rep(.1,4),oma=c(2,2,5,2))
+	 par(mfrow=c(npop,npop),mar=rep(.1,4),oma=c(2,2,2,2))
 	 sapply(unique(dat$Population),function(pop){plot(dat[dat$Population == pop,c("x","y")],axes=F);box();})
-	 mtext("Spatial Disperstion of Sample\n within each pop (real Data)",side=3,outer=T,line=2) 
+	 #mtext("Spatial Disperstion of Sample\n within each pop (real Data)",side=3,outer=T,line=2) 
 	 par(resetPar())
  }
 
@@ -521,25 +522,25 @@ getMax <- function(mat,type){
 
 
 #This functionr eturn a list with the properties10000 
-			 allModel=data.frame()
-			 for(nrep  in  allrep){
-				 dat=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_",tick,"ticks_",nsex,"sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
-				 colnames(dat)=c("A","F","x","y")
-				 showDistanceProp(dat) #print NA 'cause there is initially no pop in salva's output
-				 dat=splitSpace(dat)
-				 dat$y = dat$y*10 #This to se a scale more close to real scale (1unit model ~ 35m in reality
-				 dat$x = dat$x*10 
+			 #allModel=data.frame()
+			 #for(nrep  in  allrep){
+			 #        dat=read.csv(paste("../../dev/data/ECHOresults/mutualism_michaelis-menten_",tick,"ticks_",nsex,"sexualreproduction_replicate",nrep,".dat",sep=""),header=F)
+			 #        colnames(dat)=c("A","F","x","y")
+			 #        showDistanceProp(dat) #print NA 'cause there is initially no pop in salva's output
+			 #        dat=splitSpace(dat)
+			 #        dat$y = dat$y*10 #This to se a scale more close to real scale (1unit model ~ 35m in reality
+			 #        dat$x = dat$x*10 
 
 
-				 showDistanceProp(dat) #This Ho!Magic! we have stuff cause we splitted in different pop.
+			 #        showDistanceProp(dat) #This Ho!Magic! we have stuff cause we splitted in different pop.
 
-				 #matMod=cooccurenceMat(dat)
+			 #        #matMod=cooccurenceMat(dat)
 
-				 #wholesetModel=getNodesAndProp(matMod,dat) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
+			 #        #wholesetModel=getNodesAndProp(matMod,dat) #this should not be used as this time the idea is to get node and properties for all matrices of all pop: use computeAllProp
 
-				 todoModel=computeAllPop(dat)
-				 allModel=rbind(allModel,todoModel)
-			 }
+			 #        todoModel=computeAllPop(dat)
+			 #        allModel=rbind(allModel,todoModel)
+			 #}
 getModelResultAndProp <- function(tick,nsex,mate="michaelis-menten"){
 			 allModel=data.frame()
 			 for(nrep  in  allrep){
