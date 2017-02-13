@@ -80,8 +80,15 @@ plotAll <- function(allmatrice){
 par(mar=rep(.5,4))
 aa=read.csv("../data/ECHOresults/mutualism_michaelis-menten_100000ticks_1sexualreproduction_replicateA.dat",header=F)    
 pdf("split.pdf")
- plot(aa$V3,aa$V4,axes=F,ylab= "",xlab="")
-splitGraph()             
+par(mar=c(0,0,0,0))
+ plot(aa$V3,aa$V4,axes=F,ylab= "",xlab="",col="green",pch=20)
+splitGraph(coln="darkgreen")             
+box()
+dev.off()
+
+pdf("nosplit.pdf")
+par(mar=c(0,0,0,0))
+ plot(aa$V3,aa$V4,axes=F,ylab= "",xlab="",col="blue",pch=20)
 box()
 dev.off()
 
