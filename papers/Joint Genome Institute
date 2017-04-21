@@ -13,3 +13,60 @@ References
 	•	Škaloud P, Friedl T, Hallmann C, Beck A, Dal Grande F (2016) Taxonomic revision and species delimitation of coccoid green algae currently assigned to the genus Dictyochloropsis (Trebouxiophyceae, Chlorophyta). Journal of Phycology, DOI: 10.1111/jpy.12422.
 	•	Werth S, Scheidegger C (2012) Congruent genetic structure in the lichen-forming fungus Lobaria pulmonaria and its green-algal photobiont. Molecular Plant-Microbe Interactions 25, 220-230.
 	•	Widmer I, Dal Grande F, Excoffier L, Holderegger R, Keller C, Mikryukov VS, Scheidegger C (2012) European phylogeography of the epiphytic lichen fungus Lobaria pulmonaria and its green algal symbiont. Molecular Ecology 21, 5827-5844.
+
+Status
+
+[February 2017] The Lobaria pulmonaria Scotland genome was sequenced with Illumina, assembled with Velvet and then AllPathsLG, and annotated with the JGI Annotation Pipeline. Mitochondrial genome was assembled separately and is available in the downloads section.
+
+Summary statistics for the Lobaria pulmonaria Scotland v1.0 release are below. 
+Genome Assembly	
+Genome Assembly size (Mbp)	56.12
+Sequencing read coverage depth	145.5x
+# of contigs	2271
+# of scaffolds	1911
+# of scaffolds >= 2Kbp	1808
+Scaffold N50	300
+Scaffold L50 (Mbp)	0.05
+# of gaps	360
+% of scaffold length in gaps	0.4%
+Three largest Scaffolds (Mbp)	0.42, 0.32, 0.30
+
+ESTs	Data set	# sequences total	# mapped to genome	% mapped to genome
+EstClusters	ESTclusters	103899	82360	79.3%
+Ests	est.fasta	167967177	165731449	98.7%
+
+Gene Models	FilteredModels2	
+length (bp) of:	average	median
+gene	1546	1289
+transcript	1379	1134
+exon	464	290
+intron	87	60
+description:		
+protein length (aa)	401	313
+exons per gene	2.97	2
+# of gene models	15607	
+
+Collaborators
+
+DOE Joint Genome Institute
+Ólafur Andrésson at Háskóli Íslands
+Silke Werth at Karl-Franzens-Universität Gra
+Links
+
+JGI Symbiochloris reticulata Spain Portal
+JGI Lichens EcoGroup Portal
+JGI Lecanoromycetes PhyloGroup Portal
+Funding
+
+The work conducted by the U.S. Department of Energy Joint Genome Institute, a DOE Office of Science User Facility, is supported by the Office of Science of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231.
+
+#Other lichen genomes sequenced to date 
+##	Name	Assembly Length	# Genes	Published
+1	Asterochloris sp. Cgr/DA1pho v2.0	55,816,160	10,025	
+2	Cladonia grayi Cgr/DA2myc/ss v2.0	34,622,149	11,389	
+3	Endocarpon pusillum Z07020		37,130,611	9,238	Wang YY et al., 2014
+4	Lobaria pulmonaria Scotland v1.0	56,119,610	15,607	
+5	Symbiochloris reticulata Spain v1.0	58,316,282	13,073	
+6	Trypethelium eluteriae v1.0		32,160,005	11,858	
+7	Usnea florida ATCC18376 v1.0		44,323,432	12,649	
+8	Xanthoria parietina 46-1-SA22 v1.1	31,900,637	11,065	
