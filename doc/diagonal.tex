@@ -1,4 +1,4 @@
-Si tenemos una poblacion P24 con 7 lichenes asi :
+Si tenemos una poblacion P24 con 7 lichenes asi (If we have a population; P24 with 7 lichens here):
 
 List Lichen Algae -- Funghus (L_AF):
 
@@ -10,11 +10,11 @@ List Lichen Algae -- Funghus (L_AF):
 6 A_f -- F_f
 7 A_g -- F_g
 
-Digamos que si miramos al nivel genetico : 
+Digamos que si miramos al nivel genetico (Let's say that we look at the genetic level) : 
 	Fb == Ff == Fg
 	Ae == Ag
 
-Entonces, en nuestro system tenemos 7 lichenes pero solamente 6 unicos genotipo de Algae (que llamaré AMLG_n) y 5 unicos genotipos de Fungi (FMLG_n ). Puedo escribir la listas de lichenes asi : 
+Entonces, en nuestro system tenemos 7 lichenes pero solamente 6 unicos genotipo de Algae (que llamaré AMLG_n) y 5 unicos genotipos de Fungi (FMLG_n ). Puedo escribir la listas de lichenes asi [Then, in our system we have 7 lichens, but only six unique genotypes of algae (let's call it AMLG_n) and 5 unique genotypes of Fungi (FMLG_n)]: 
 
 
 
@@ -27,7 +27,7 @@ Entonces, en nuestro system tenemos 7 lichenes pero solamente 6 unicos genotipo 
 7 A_g (AMLG_g) -- F_g (FMLG_g)   A_g (AMLG_a) -- F_g (FMLG_b)
 
 Despues ago la matriz de coocurrencia donde cuento cuantas veces un genotipo de un typo interacta con un genotipo de otro. 
-Para hacer eso saco los genotipos que son similares. Me sale dos listas de genotipos unicos : 
+Para hacer eso saco los genotipos que son similares. Me sale dos listas de genotipos unicos (Then the cooccurence matrix where I count how many times a genotype of one type interacts with a genotype of another. To do that, I sack the genotypes that are similar and get two lists of unique genotypes) : 
 
 List de Genotipocs de Algae (L_AMLG) : 
 
@@ -47,7 +47,7 @@ FMLG_d
 FMLG_e
 
 
-La matriz que queremos hacer es L_AMG x L_FMG :
+La matriz que queremos hacer es L_AMG x L_FMG (The matrix we want to do is):
 
 	FMLG_a FMLG_b FMLG_c FMLG_d FMLG_e
 AMLG_a
@@ -59,7 +59,7 @@ AMLG_f
 AMLG_g
 
 
-Como los genotypos en la matriz estan "sorted" de la misma manera que los "lichenes" en la lista inicial (L_AF), la mayor parte del tiempo el primero genotipo de algae y el primero genotipo de Fungu correspondent a los genotypos encontrados en el premiero Lichen. Y entonces es normal que hay algo en este.
+Como los genotypos en la matriz estan "sorted" de la misma manera que los "lichenes" en la lista inicial (L_AF), la mayor parte del tiempo el primero genotipo de algae y el primero genotipo de Fungu correspondent a los genotypos encontrados en el premiero Lichen. Y entonces es normal que hay algo en este [As the genotypes in the matrix are "sorted" in the same way as the "lichens" in the intial list (L_AF), the majority of the time the first genotype of algae (e.g., AMLG_a) and the first genotype of the fungus (e.g., FMLG_a) will correspond to the genotypes found in the first lichen (L_AF).
 
 En este caso la matriz final estara :
 
@@ -72,4 +72,4 @@ AMLG_e	0	0	0	0	1
 AMLG_f	0	1	0	0	0
 
 
-Parece que hay una diagonal pero sale del hecho que el orden usado entre los genotypos y los lichenes e lo mismo.
+Parece que hay una diagonal pero sale del hecho que el orden usado entre los genotypos y los lichenes e lo mismo (It seems that there is a diagonal, but it comes from the fact that the order used between the genotypes and the lichens is the same). 
