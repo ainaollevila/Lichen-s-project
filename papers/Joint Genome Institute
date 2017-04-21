@@ -50,7 +50,7 @@ Collaborators
 
 DOE Joint Genome Institute
 Ólafur Andrésson at Háskóli Íslands
-Silke Werth at Karl-Franzens-Universität Gra
+Silke Werth at Karl-Franzens-Universität Graz
 Links
 
 JGI Symbiochloris reticulata Spain Portal
@@ -59,6 +59,74 @@ JGI Lecanoromycetes PhyloGroup Portal
 Funding
 
 The work conducted by the U.S. Department of Energy Joint Genome Institute, a DOE Office of Science User Facility, is supported by the Office of Science of the U.S. Department of Energy under Contract No. DE-AC02-05CH11231.
+
+Proposal Name: Sequencing of the three cultured partners of the lichen Lobaria pulmonaria and the sequencing of the transcriptomes from the natural tripartite lichen under selected and controlled conditions. (Proposal ID: 529 / 300815)
+Proposal PI: Olafur Andresson
+Program Year: 2012
+Release Date: 2013-05-07
+
+Complete Genome Projects: 
+Project: Dictyochloropsis reticulata
+JGI Project Id: 1079951 
+JGI Proposal Id: 529 / 300815
+Release Date: 2014-08-08
+Related Projects: 405610
+Product: Plant Annotated Standard Draft
+
+Project: Lobaria pulmonaria Scotland Annotated Standard Draft
+JGI Project Id: 1006353 
+JGI Proposal Id: 529 / 300815
+Release Date: 2015-08-22
+Related Projects: 1070590, 1006354, 1006355, 1070591, 1006356
+Product: Fungal Annotated Standard Draft
+
+Project: Lobaria pulmonaria Scotland Metatranscriptome
+JGI Project Id: 1094229 
+JGI Proposal Id: 529 / 300815
+Release Date: 2015-11-05
+Related Projects: 1094230, 1094243, 1139712
+Product: Eukaryote Isolate Metatranscriptome
+
+Project: Lobaria pulmonaria Switzerland Metatranscriptome
+JGI Project Id: 1094227 
+JGI Proposal Id: 529 / 300815
+Release Date: 2015-11-05
+Related Projects: 1094228, 1094242
+Eukaryote Isolate Metatranscriptome
+
+Incomplete Genome Projects: 
+Gold ID         Organism (NCBI BioProject Name)   			Domain		Type			Project status
+Gp0118081	Nostoc sp. 'Lobaria pulmonaria (5183) cyanobiont'	BACTERIAL	Whole Genome Sequencing	incomplete
+
+Project Information 
+NCBI BioProjectID: 275880
+NCBI BioProject Accession: PRJNA275880
+NCBI Locus Tag: NLP
+Specimen: Organism
+Nucleic Acid: DNA
+Sequencing Strategy: WGS
+Project status: incomplete
+Project relevance: Evolution
+Sequencing Center: University of Iceland
+Project information visibility: Public
+
+Organism Information
+Organism Domain: Bacterial
+Phylogeny: Cyanobacteria
+Genus: Nostoc
+Strain: Lobaria pulmonaria 5183 cyanobiont
+Cultured: Yes
+Culture Type: Isolate
+Organism Type: Natural
+
+Organism Taxonomy: 
+NCBI Taxonomy ID: 1618022
+NCBI Superkingdom: Bacteria
+NCBI Phylum: Cyanobacteria
+NCBI Order: Nostocales
+NCBI Family: Nostocaceae
+NCBI Genus: Nostoc
+NCBI Species: Nostoc sp. 'Lobaria pulmonaria (5183) cyanobiont'
 
 #Other lichen genomes sequenced to date 
 ##	Name	Assembly Length	# Genes	Published
@@ -71,5 +139,3 @@ The work conducted by the U.S. Department of Energy Joint Genome Institute, a DO
 7	Usnea florida ATCC18376 v1.0		44,323,432	12,649	
 8	Xanthoria parietina 46-1-SA22 v1.1	31,900,637	11,065	
 
-Gold ID         Organism    						Domain		Type			Project status
-Gp0118081	Nostoc sp. 'Lobaria pulmonaria (5183) cyanobiont'	BACTERIAL	Whole Genome Sequencing	incomplete
