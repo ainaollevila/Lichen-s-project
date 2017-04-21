@@ -1,7 +1,7 @@
 General Properties
-	 Number of species:       	    75
-	 Number of row species:   	    41
-	 Number of column species:	    34
+	 Number of unique MLGs:       	    75
+	 Number of row species (FMLG):   	    41
+	 Number of column species (AMLG):	    34
 	 Number of Interactions:  	    52
 	 Size:                    	  1394
 	 Connectance or fill:     	 0.037
