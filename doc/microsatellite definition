@@ -1,0 +1,13 @@
+Define general meaning of microsatellites --> specific meaning in Dal Grande et al. (2012) [not finished]
+
+General definition: 
+Microsats are simple sequence tandem repeats (SSTRs). The repeat units are generally di-, tri-, tetra- or pentanucleotides. A common 
+repeat motif in birds is ACn, where the two nucleotides A and C are repated in bead-like fashion a variable number of times (n could range
+from 8 to 50). On each side of the repeat unit are flanking regions that consist of "unordered" DNA. The flanking regions are critical, 
+because they allow us to develop locus-specific primers to amplify the microsats with PCR (polymerase chain reaction). That is, given a
+stretch of unordered DNA 50 bp long, the probability of finding that particular stretch more than once in the genome is 0.25^50. In contrast, 
+a given repeat unit (AC19) may occur in 1000s of places in the genome. We can use this combination of widely occurring repeat units and 
+locus-specific flanking regions to find and develop microsat primers. The primers for PCR will be sequences from these unique flanking regions.
+By having a forward and reverse primer on each side of the microsatellite, we can amplify a short (100-500 bp; base pair) locus-specific 
+microsatellite region. 
+
