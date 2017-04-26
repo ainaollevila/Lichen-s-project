@@ -1,4 +1,4 @@
-Define general meaning of microsatellites (i.e. microsats) --> specific meaning in Dal Grande et al. (2012)
+Define general meaning of microsatellites (i.e. microsats) --> specific meaning in Dal Grande et al. (2012) [not finished]
 
 General definition: 
 Microsats are simple sequence tandem repeats (SSTRs). The repeat units are generally di-, tri-, tetra- or pentanucleotides. A common 
@@ -28,3 +28,6 @@ for DNA replication, because the enzymes that catalyze this process (DNA polymer
 expansion or contraction during DNA replication (for more info see: https://en.wikipedia.org/wiki/Microsatellite)
 
 Specific meaning in Dal Grande et al. (2012):
+For example, in population 29. What is the specific meaning of 179; LPu15)
+Population.ID	Sample.ID	LPu15	LPu23	LPu24	LPu25_12	LPu28	MS4	LPu03	LPu09	LPh1	LPh2	LPh3	LPh4	LPh5	LPh6	LPh7	x	y
+29	IR1.01	179	295	239	214	287	184	187	182	227	165	102	202	169	121	198	0	0
