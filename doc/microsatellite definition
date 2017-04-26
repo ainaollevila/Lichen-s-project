@@ -1,13 +1,30 @@
-Define general meaning of microsatellites --> specific meaning in Dal Grande et al. (2012) [not finished]
+Define general meaning of microsatellites (i.e. microsats) --> specific meaning in Dal Grande et al. (2012)
 
 General definition: 
 Microsats are simple sequence tandem repeats (SSTRs). The repeat units are generally di-, tri-, tetra- or pentanucleotides. A common 
 repeat motif in birds is ACn, where the two nucleotides A and C are repated in bead-like fashion a variable number of times (n could range
 from 8 to 50). On each side of the repeat unit are flanking regions that consist of "unordered" DNA. The flanking regions are critical, 
 because they allow us to develop locus-specific primers to amplify the microsats with PCR (polymerase chain reaction). That is, given a
-stretch of unordered DNA 50 bp long, the probability of finding that particular stretch more than once in the genome is 0.25^50. In contrast, 
+stretch of unordered DNA 50 base pair (bp) long, the probability of finding that particular stretch more than once in the genome is 0.25^50. In contrast, 
 a given repeat unit (AC19) may occur in 1000s of places in the genome. We can use this combination of widely occurring repeat units and 
 locus-specific flanking regions to find and develop microsat primers. The primers for PCR will be sequences from these unique flanking regions.
-By having a forward and reverse primer on each side of the microsatellite, we can amplify a short (100-500 bp; base pair) locus-specific 
-microsatellite region. 
+By having a forward and reverse primer on each side of the microsat, we can amplify a short (100-500 bp) locus-specific microsatellite region (Adapted from:
+https://www.uwyo.edu/dbmcd/molmark/lect08/lect8.html#SectA; Lecture 8 Population Genetics VI: Introduction to microsats: from theory to lab practice)
+Mutation process: Microsats are useful genetic markers, because they tend to be highly polymorphic or variable. Mutation occurs very differently
+from that of "classical" point mutations (i.e. substitute one nucleotide for another; G -> C). The mutation process occurs via slippage replication 
+(for more info see: https://en.wikipedia.org/wiki/Microsatellite). 
 
+Definition of terms: 
+*Locus (plural: loci): A locus in genetics is the position on a chromosome. Each chromosome carries many genes. Gene mapping is the process 
+determining the locus for a particular biological trait. 
+*PCR (polymerase chain reaction): is a technique used in molecular biology to amplify a single copy or a few copies of a segment of DNA
+across several orders of magnitude, generating thousands to millions of copies of a particular DNA sequence. 
+*Nucleotide: is one of the structural components, or building blocks of DNA & RNA. A nucleotide consists of a base (1 of 4 chemicals: 
+adenine, thymine, guanine, and cytosine) plus a molecule of sugar and one of phosphoric acid. 
+*Primer: A primer is a short strand of RNA or DNA (generally 18-22 bases) that serves as a starting point for DNA synthesis. It is required
+for DNA replication, because the enzymes that catalyze this process (DNA polymerases) can only add new nucleotides to an existing strand of DNA
+*Polymorphic: Occuring in several different forms, in particular with reference to species or genetic variation. 
+*Slippage replication/replication slippage/slipped-strand mispairing: is a form of mutation that leads to either a trinucleotide or dinucleotide
+expansion or contraction during DNA replication (for more info see: https://en.wikipedia.org/wiki/Microsatellite)
+
+Specific meaning in Dal Grande et al. (2012):
